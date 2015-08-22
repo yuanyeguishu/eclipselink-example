@@ -37,9 +37,17 @@
             -->
             <!-- EclipseLink -->
             <!--
+                https://wiki.eclipse.org/EclipseLink/Examples/JPA/Logging
                 http://eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_logging_level.htm
             -->
             <property name="eclipselink.logging.level" value="FINE" />
+            <property name="eclipselink.logging.level.sql" value="FINE" />
+            <property name="eclipselink.logging.parameters" value="true" />
+            <property name="eclipselink.logging.timestamp" value="true" />
+            <property name="eclipselink.logging.session" value="true" />
+            <property name="eclipselink.logging.thread" value="true" />
+            <property name="eclipselink.logging.exceptions" value="true" />
+            <property name="eclipselink.validate-existence" value="true" />
         </properties>
     </persistence-unit>
 </persistence>

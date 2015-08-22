@@ -9,7 +9,8 @@ public interface ReferenceObject<T extends ReferenceObject<T, ID>, ID extends Se
     Long getVersion();
 
     default boolean isNew() {
-        return getId() == null || getVersion() == null;
+        // TODO
+        return getId() == null && getVersion() == null;
     }
 
     default boolean isSameIdentityAs(final T other) {

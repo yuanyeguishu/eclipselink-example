@@ -3,6 +3,7 @@ package xxxxx.yyyyy.zzzzz.persistence.jpa;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -18,7 +19,7 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
 
     protected final Class<T> entityClass;
     protected final Class<ID> idClass;
-//    @Inject
+    @Inject
     protected EntityManager entityManager;
 
     //@SuppressWarnings("unchecked")
@@ -49,7 +50,6 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
             entityManager.persist(entity);
             return entity;
         } else {
-            // TODO No @GeneratedValue
             return entityManager.merge(entity);
         }
     }
@@ -89,6 +89,10 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
         return createQuery(queryable).getSingleResult();
     }
 
+    protected T singleResultOrNull(Queryable<T> queryable) {
+        return oneOrNull(resultList(queryable));
+    }
+
     protected List<T> resultList(Queryable<T> queryable) {
         return createQuery(queryable).getResultList();
     }
@@ -96,4 +100,16 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
 //    protected List<T> resultList(Queryable<T> queryable, int startPosition, int maxResult) {
 //        return createQuery(queryable).setFirstResult(startPosition).setMaxResults(maxResult).resultList();
 //    }
+
+    protected T oneOrNull(List<T> resultList) {
+        if (resultList == null || resultList.isEmpty()) {
+            return null;
+        } else {
+            if (resultList.size() == 1) {
+                return resultList.get(0);
+            } else {
+                throw new IllegalStateException();
+            }
+        }
+    }
 }
