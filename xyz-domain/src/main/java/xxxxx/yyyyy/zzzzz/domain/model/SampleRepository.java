@@ -5,4 +5,6 @@ import java.util.List;
 public interface SampleRepository {
 
     List<Sample> findAll();
+
+    Sample findByName(String name);
 }

@@ -10,6 +10,107 @@
     <artifactId>xyz-domain</artifactId>
     <packaging>jar</packaging>
     <dependencies>
+        <!-- https://wikis.oracle.com/display/GlassFish/Java+EE+7+Maven+Coordinates -->
+        <!--
+        <dependency>
+            <groupId>javax.enterprise.concurrent</groupId>
+            <artifactId>javax.enterprise.concurrent-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <!--
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <!--
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <!--
+        <dependency>
+            <groupId>javax.jms</groupId>
+            <artifactId>javax.jms-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <!--
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>javax.faces-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <!--
+        <dependency>
+            <groupId>javax.ejb</groupId>
+            <artifactId>javax.ejb-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>javax.batch</groupId>
+            <artifactId>javax.batch-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <!--
+        <dependency>
+            <groupId>javax.json</groupId>
+            <artifactId>javax.json-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <!--
+        <dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <!--
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>javax.transaction-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <!--
+        <dependency>
+            <groupId>javax.resource</groupId>
+            <artifactId>javax.resource-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
+        <!-- https://wikis.oracle.com/display/GlassFish/Java+EE+7+Maven+Coordinates -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -38,12 +139,82 @@
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+            <version>2.5.2-RC1</version>
+            <scope>provided</scope>
+        </dependency>
+        -->
     </dependencies>
     <build>
         <plugins>
+            <!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <compilerArgs>
+                        <arg>-proc:none</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            -->
             <plugin>
                 <groupId>org.bsc.maven</groupId>
                 <artifactId>maven-processor-plugin</artifactId>
+                <!-- http://docs.jboss.org/hibernate/orm/4.3/topical/html/metamodelgen/MetamodelGenerator.html -->
+                <!--
+                <executions>
+                    <execution>
+                        <id>process</id>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <processors>
+                                <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+                            </processors>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.hibernate</groupId>
+                        <artifactId>hibernate-jpamodelgen</artifactId>
+                        <version>4.3.11.Final</version>
+                    </dependency>
+                </dependencies>
+                -->
+                <!-- http://stackoverflow.com/questions/17385092/eclipselink-2-5-metamodel-generation-using-maven -->
+                <executions>
+                    <execution>
+                        <id>process</id>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <!-- https://wiki.eclipse.org/UserGuide/JPA/Using_the_Canonical_Model_Generator_%28ELUG%29 -->
+                            <compilerArguments>
+                                -Aeclipselink.persistenceunits=xyz_PU
+                                -Aeclipselink.persistencexml=${basedir}/../xyz-infrastructures/xyz-persistence/src/main/resources/META-INF/persistence.xml
+                            </compilerArguments>
+                            <processors>
+                                <processor>org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor</processor>
+                            </processors>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.eclipse.persistence</groupId>
+                        <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+                        <version>2.5.2-RC1</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

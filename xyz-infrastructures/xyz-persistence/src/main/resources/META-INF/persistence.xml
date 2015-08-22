@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+    <persistence-unit name="xyz_PU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <!--
+            http://create-something.hatenadiary.jp/entry/2014/06/09/212645
+            http://create-something.hatenadiary.jp/entry/2014/06/27/191749
+        -->
+        <jta-data-source>java:comp/DefaultDataSource</jta-data-source>
+        <!--
+            war
+                /WEB-INF/lib/domain.jar
+                /WEB-INF/classes/META-INF/persistence.xml
+            persistence.xml contains:
+                <jar-file>lib/domain.jar</jar-file>
+        -->
+        <!--
+            war
+                /WEB-INF/lib/domain.jar
+                /WEB-INF/lib/application.jar (with META-INF/persistence.xml)
+            persistence.xml contains:
+                <jar-file>../lib/domain.jar</jar-file>
+        -->
+        <!-- TODO
+        <jar-file>xyz-domain-1.0.0-SNAPSHOT.jar</jar-file>
+        -->
+        <jar-file>../lib/xyz-domain-1.0.0-SNAPSHOT.jar</jar-file>
+        <properties>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+            <!--
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
+            <property name="javax.persistence.jdbc.user" value="app"/>
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            -->
+            <!-- EclipseLink -->
+            <!--
+                http://eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_logging_level.htm
+            -->
+            <property name="eclipselink.logging.level" value="FINE" />
+        </properties>
+    </persistence-unit>
+</persistence>
