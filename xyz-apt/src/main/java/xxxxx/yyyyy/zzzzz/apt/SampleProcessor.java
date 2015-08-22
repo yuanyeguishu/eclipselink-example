@@ -19,10 +19,10 @@ public class SampleProcessor extends AbstractProcessor {
     public boolean process(final Set<? extends TypeElement> annotations, final RoundEnvironment roundEnv) {
         Messager messager = processingEnv.getMessager();
         annotations.stream().forEach(x -> {
-            messager.printMessage(Diagnostic.Kind.WARNING, String.format("############ %s", x.getQualifiedName().toString()));
+            messager.printMessage(Diagnostic.Kind.WARNING, String.format("annotations  %s", x.getQualifiedName().toString()));
         });
         roundEnv.getRootElements().stream().forEach(x -> {
-            messager.printMessage(Diagnostic.Kind.WARNING, String.format("############ %s", x.asType().toString()));
+            messager.printMessage(Diagnostic.Kind.WARNING, String.format("rootElements %s", x.asType().toString()));
         });
         return true;
     }
