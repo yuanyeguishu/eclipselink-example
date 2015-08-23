@@ -5,6 +5,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
@@ -70,42 +71,52 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
         return entityManager.find(entityClass, id);
     }
 
-    protected TypedQuery<T> createQuery(Queryable<T> queryable) {
+    protected TypedQuery<T> createQuery(CriteriaQueryable<T> queryable) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> cq = cb.createQuery(entityClass);
         Root<T> r = cq.from(entityClass);
         return entityManager.createQuery(queryable.query(cb, cq, r));
     }
 
-    protected TypedQuery<T> createQuery(Updatable<T> updatable) {
+    protected Query createQuery(CriteriaUpdatable<T> updatable) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaUpdate<T> cu = cb.createCriteriaUpdate(entityClass);
         Root<T> r = cu.from(entityClass);
         return entityManager.createQuery(updatable.update(cb, cu, r));
     }
 
-    protected TypedQuery<T> createQuery(Deletable<T> deletable) {
+    protected Query createQuery(CriteriaDeletable<T> deletable) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaDelete<T> cd = cb.createCriteriaDelete(entityClass);
         Root<T> r = cd.from(entityClass);
         return entityManager.createQuery(deletable.delete(cb, cd, r));
     }
 
-    protected T singleResult(Queryable<T> queryable) {
+    protected T singleResult(CriteriaQueryable<T> queryable) {
         return createQuery(queryable).getSingleResult();
     }
 
-    protected T singleResultOrNull(Queryable<T> queryable) {
+    protected T singleResultOrNull(CriteriaQueryable<T> queryable) {
         return oneOrNull(resultList(queryable));
     }
 
-    protected List<T> resultList(Queryable<T> queryable) {
+    protected List<T> resultList(CriteriaQueryable<T> queryable) {
         return createQuery(queryable).getResultList();
     }
 //
-//    protected List<T> resultList(Queryable<T> queryable, int startPosition, int maxResult) {
+//    protected List<T> resultList(CriteriaQueryable<T> queryable, int startPosition, int maxResult) {
 //        return createQuery(queryable).setFirstResult(startPosition).setMaxResults(maxResult).resultList();
 //    }
+
+    protected void executeUpdate(CriteriaUpdatable<T> updatable) {
+        int count = createQuery(updatable).executeUpdate();
+        // TODO count
+    }
+
+    protected void executeDelete(CriteriaDeletable<T> deletable) {
+        int count = createQuery(deletable).executeUpdate();
+        // TODO count
+    }
 
     protected T oneOrNull(List<T> resultList) {
         if (resultList == null || resultList.isEmpty()) {

@@ -21,16 +21,17 @@ public class SampleRepositoryTest {
 
     @Test
     public void UnitOfWork_StateUnderTest_ExpectedBehavior() { // TODO should change method name
-        when(sampleRepository.findAll()).thenReturn(createSamples(5L));
+        when(sampleRepository.findAll()).thenReturn(testData(5));
         assertThat("", sampleRepository.findAll().size(), is(5));
     }
 
-    private List<Sample> createSamples(final long size) {
+    private List<Sample> testData(long size) {
         List<Sample> samples = new ArrayList<>();
         Stream.iterate(0L, i -> i + 1).limit(size).forEach(i -> {
-            Sample sample = new Sample();
-            sample.setId(i);
-            samples.add(sample);
+//            Sample sample = new Sample();
+//            sample.setId(i);
+//            samples.add(sample);
+            samples.add(new Sample(i, "Name" + i));
         });
         return samples;
     }

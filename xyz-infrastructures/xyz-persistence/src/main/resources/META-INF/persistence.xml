@@ -47,6 +47,7 @@
             <property name="eclipselink.logging.session" value="true" />
             <property name="eclipselink.logging.thread" value="true" />
             <property name="eclipselink.logging.exceptions" value="true" />
+            <property name="eclipselink.id-validation" value="NULL" />
             <property name="eclipselink.validate-existence" value="true" />
         </properties>
     </persistence-unit>

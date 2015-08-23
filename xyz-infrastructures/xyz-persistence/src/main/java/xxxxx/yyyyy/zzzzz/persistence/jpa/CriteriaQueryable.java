@@ -5,7 +5,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 @FunctionalInterface
-public interface Queryable<T> {
+public interface CriteriaQueryable<T> {
 
-    CriteriaQuery<T> query(CriteriaBuilder cb, CriteriaQuery<T> cq, Root<T> r);
+    CriteriaQuery<T> query(CriteriaBuilder b, CriteriaQuery<T> q, Root<T> r);
 }
