@@ -6,8 +6,10 @@ import xxxxx.yyyyy.zzzzz.domain.model.Sample;
 import xxxxx.yyyyy.zzzzz.domain.model.SampleRepository;
 import xxxxx.yyyyy.zzzzz.domain.model.Sample_;
 import xxxxx.yyyyy.zzzzz.persistence.jpa.AbstractRepository;
+import xxxxx.yyyyy.zzzzz.persistence.jpa.ArgumentsValidation;
 
 @lombok.extern.slf4j.Slf4j
+@ArgumentsValidation
 @ApplicationScoped
 public class SampleRepositoryImpl extends AbstractRepository<Sample, Long> implements SampleRepository {
 
@@ -25,6 +27,7 @@ public class SampleRepositoryImpl extends AbstractRepository<Sample, Long> imple
         return super.resultList((b, q, r) -> q.select(r));
     }
 
+    @ArgumentsValidation(flagA = false, flagB = false)
     @Override
     public Sample findByName(String name) {
         return super.singleResult((b, q, r) -> q.select(r).where(b.equal(r.get(Sample_.name), name)));

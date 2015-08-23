@@ -16,6 +16,7 @@ import xxxxx.yyyyy.zzzzz.domain.shared.AggregateRoot;
 import xxxxx.yyyyy.zzzzz.domain.shared.Repository;
 
 @lombok.extern.slf4j.Slf4j
+//@ArgumentsValidation
 public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID extends Serializable> implements Repository<T, ID> {
 
     protected final Class<T> entityClass;
