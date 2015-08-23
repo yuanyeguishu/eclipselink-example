@@ -44,6 +44,7 @@ public class SampleRepositoryImplIT {
                 .addAsResource("META-INF/beans.xml", "META-INF/beans.xml")
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsResource("logback.xml", "logback.xml");
+        //.addAsResource("logging.properties", "logging.properties");
         war.addAsLibraries(jar);
         if (log.isDebugEnabled()) {
             log.debug(war.toString(true));

@@ -391,6 +391,11 @@
                             <includes>
                                 <include>**/*IT.java</include>
                             </includes>
+                            <systemPropertyVariables>
+                                <!-- http://arquillian.org/guides/testing_java_persistence/ -->
+                                <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties</java.util.logging.config.file>
+                                <derby.stream.error.file>${project.build.directory}/derby.log</derby.stream.error.file>
+                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>
