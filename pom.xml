@@ -392,7 +392,10 @@
                                 <include>**/*IT.java</include>
                             </includes>
                             <systemPropertyVariables>
-                                <!-- http://arquillian.org/guides/testing_java_persistence/ -->
+                                <!--
+                                    http://arquillian.org/guides/testing_java_persistence/
+                                    http://shrubbery.homeip.net/c/display/W/Arquillian+-+GlassFish+3.1+Embedded
+                                -->
                                 <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties</java.util.logging.config.file>
                                 <derby.stream.error.file>${project.build.directory}/derby.log</derby.stream.error.file>
                             </systemPropertyVariables>
