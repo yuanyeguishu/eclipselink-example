@@ -9,7 +9,10 @@
     <logger name="xxxxx.yyyyy.zzzzz" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
-    <root level="DEBUG">
+    <logger name="org.eclipse.persistence" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <root level="WARN">
         <appender-ref ref="STDOUT"/>
     </root>
 </configuration>
