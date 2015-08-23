@@ -67,7 +67,7 @@ public class SampleRepositoryImplIT {
     @Transactional
     @Test
     public void UnitOfWork_StateUnderTest_ExpectedBehavior2() { // TODO should change method name
-        //testData();
+        testData();
         Sample x = sampleRepository.findByName("Name1");
         if (log.isDebugEnabled()) {
             log.debug(x.toString());
@@ -75,11 +75,15 @@ public class SampleRepositoryImplIT {
     }
 
     private void testData() {
-        for (long x = 1L; x <= 10L; x++) {
-            Sample sample = new Sample();
-            sample.setId(x);
-            sample.setName("Name" + x);
-            sampleRepository.store(sample);
+        for (long id = 1L; id <= 10L; id++) {
+            //Sample sample = new Sample();
+            Sample sample = sampleRepository.find(id);
+            if (sample == null) {
+                sample = new Sample();
+                sample.setId(id);
+                sample.setName("Name" + id);
+                sampleRepository.store(sample);
+            }
         }
     }
 }

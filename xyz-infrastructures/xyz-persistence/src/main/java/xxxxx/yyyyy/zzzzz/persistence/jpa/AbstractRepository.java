@@ -47,9 +47,15 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
     @Override
     public <U extends T> U store(U entity) {
         if (entity.isNew()) {
+            if (log.isDebugEnabled()) {
+                log.debug("persist {}", entity.toString());
+            }
             entityManager.persist(entity);
             return entity;
         } else {
+            if (log.isDebugEnabled()) {
+                log.debug("merge {}", entity.toString());
+            }
             return entityManager.merge(entity);
         }
     }
