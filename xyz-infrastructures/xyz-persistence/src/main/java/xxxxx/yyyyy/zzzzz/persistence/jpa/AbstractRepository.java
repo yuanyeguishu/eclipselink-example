@@ -109,14 +109,27 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
 //        return createQuery(queryable).setFirstResult(startPosition).setMaxResults(maxResult).resultList();
 //    }
 
-    protected void executeUpdate(CriteriaUpdatable<T> updatable) {
+    protected void directUpdate(CriteriaUpdatable<T> updatable) {
         int count = createQuery(updatable).executeUpdate();
-        // TODO count
+        if (log.isTraceEnabled()) {
+            log.trace("#executeUpdate -> count:{}", count);
+        }
+        // TODO count check?
+//        entityManager.flush();
+        entityManager.clear();
+        entityManager.getEntityManagerFactory().getCache().evictAll();
     }
 
-    protected void executeDelete(CriteriaDeletable<T> deletable) {
+    protected void directDelete(CriteriaDeletable<T> deletable) {
         int count = createQuery(deletable).executeUpdate();
+        if (log.isTraceEnabled()) {
+            log.trace("#executeDelete -> count:{}", count);
+        }
+        // TODO count check?
         // TODO count
+//        entityManager.flush();
+//        entityManager.clear();
+        entityManager.getEntityManagerFactory().getCache().evictAll();
     }
 
     protected T oneOrNull(List<T> resultList) {

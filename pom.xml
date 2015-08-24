@@ -413,7 +413,7 @@
         <module>xyz-infrastructures</module>
         <!--
         <module>xyz-interfaces</module>
-        -->
         <module>xyz-apt</module>
+        -->
     </modules>
 </project>

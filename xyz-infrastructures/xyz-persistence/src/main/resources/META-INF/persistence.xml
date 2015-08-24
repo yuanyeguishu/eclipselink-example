@@ -28,7 +28,14 @@
         -->
         <jar-file>../lib/xyz-domain-1.0.0-SNAPSHOT.jar</jar-file>
         <properties>
-            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+            <!--
+                https://docs.oracle.com/javaee/7/tutorial/persistence-intro005.htm
+                    none
+                    create
+                    drop-and-create
+                    drop
+            -->
+            <property name="javax.persistence.schema-generation.database.action" value="create" />
             <!--
             <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
             <property name="javax.persistence.jdbc.user" value="app"/>

@@ -6,10 +6,10 @@
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
-    <logger name="xxxxx.yyyyy.zzzzz" level="DEBUG" additivity="false">
+    <logger name="xxxxx.yyyyy.zzzzz" level="TRACE" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
-    <logger name="org.eclipse.persistence" level="DEBUG" additivity="false">
+    <logger name="org.eclipse.persistence" level="TRACE" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
     <root level="WARN">

@@ -36,12 +36,12 @@ public class SampleRepositoryImpl extends AbstractRepository<Sample, Long> imple
     @Override
     public void updateNameByIds(String name, List<Long> ids) {
         // 2015-08-23 12:14:15.398 [http-listener(2)] DEBUG o.e.p.s.f.0.0.jar_xyz_PU.sql - UPDATE SAMPLE SET VERSION = (VERSION + 1), NAME = Hoge WHERE (ID IN (1, 2))
-        super.executeUpdate((b, u, r) -> u.set(Sample_.name, name).where(r.get(Sample_.id).in(ids)));
+        super.directUpdate((b, u, r) -> u.set(Sample_.name, name).where(r.get(Sample_.id).in(ids)));
     }
 
     @Override
     public void removeByIds(List<Long> ids) {
         // 2015-08-23 12:14:15.577 [http-listener(4)] DEBUG o.e.p.s.f.0.0.jar_xyz_PU.sql - DELETE FROM SAMPLE WHERE (ID IN (?, ?))
-        super.executeDelete((b, d, r) -> d.where(r.get(Sample_.id).in(ids)));
+        super.directDelete((b, d, r) -> d.where(r.get(Sample_.id).in(ids)));
     }
 }
