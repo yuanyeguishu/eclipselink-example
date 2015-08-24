@@ -10,7 +10,7 @@ public interface SampleRepository extends Repository<Sample, Long> {
 
     Sample findByName(String name);
 
-    void updateNameByIds(String name, List<Long> ids);
+    void bulkUpdateNameByIds(String name, List<Long> ids);
 
-    void removeByIds(List<Long> ids);
+    void bulkDeleteByIds(List<Long> ids);
 }

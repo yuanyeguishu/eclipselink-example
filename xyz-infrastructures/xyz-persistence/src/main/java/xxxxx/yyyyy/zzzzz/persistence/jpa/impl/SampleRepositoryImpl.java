@@ -9,21 +9,11 @@ import xxxxx.yyyyy.zzzzz.persistence.jpa.AbstractRepository;
 import xxxxx.yyyyy.zzzzz.persistence.jpa.ArgumentsValidation;
 
 @lombok.extern.slf4j.Slf4j
-@ArgumentsValidation
 @ApplicationScoped
 public class SampleRepositoryImpl extends AbstractRepository<Sample, Long> implements SampleRepository {
 
     @Override
     public List<Sample> findAll() {
-//        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-//        CriteriaQuery<Sample> cq = cb.createQuery(entityClass);
-////        Root<Sample> r = cq.from(entityClass);
-//        cq.select(cq.from(entityClass));
-////                .where(null)
-////                .having(null)
-////                .orderBy(null)
-////                .groupBy(null);
-//        return entityManager.createQuery(cq).resultList();
         return super.resultList((b, q, r) -> q.select(r));
     }
 
@@ -34,14 +24,16 @@ public class SampleRepositoryImpl extends AbstractRepository<Sample, Long> imple
     }
 
     @Override
-    public void updateNameByIds(String name, List<Long> ids) {
-        // 2015-08-23 12:14:15.398 [http-listener(2)] DEBUG o.e.p.s.f.0.0.jar_xyz_PU.sql - UPDATE SAMPLE SET VERSION = (VERSION + 1), NAME = Hoge WHERE (ID IN (1, 2))
-        super.directUpdate((b, u, r) -> u.set(Sample_.name, name).where(r.get(Sample_.id).in(ids)));
+    public void bulkUpdateNameByIds(String name, List<Long> ids) {
+//        // UPDATE SAMPLE SET VERSION = (VERSION + 1), NAME = Hoge WHERE (ID IN (1, 2))
+//        super.bulkUpdate((b, u, r) -> u.set(Sample_.name, name).where(r.get(Sample_.id).in(ids)));
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public void removeByIds(List<Long> ids) {
-        // 2015-08-23 12:14:15.577 [http-listener(4)] DEBUG o.e.p.s.f.0.0.jar_xyz_PU.sql - DELETE FROM SAMPLE WHERE (ID IN (?, ?))
-        super.directDelete((b, d, r) -> d.where(r.get(Sample_.id).in(ids)));
+    public void bulkDeleteByIds(List<Long> ids) {
+//        // DELETE FROM SAMPLE WHERE (ID IN (?, ?))
+//        super.bulkDelete((b, d, r) -> d.where(r.get(Sample_.id).in(ids)));
+        throw new UnsupportedOperationException();
     }
 }

@@ -5,18 +5,14 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.criteria.Root;
 import xxxxx.yyyyy.zzzzz.domain.shared.AggregateRoot;
 import xxxxx.yyyyy.zzzzz.domain.shared.Repository;
 
 @lombok.extern.slf4j.Slf4j
-//@ArgumentsValidation
+@ArgumentsValidation
 public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID extends Serializable> implements Repository<T, ID> {
 
     protected final Class<T> entityClass;
@@ -50,13 +46,13 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
     public <U extends T> U store(U entity) {
         if (entity.isNew()) {
             if (log.isDebugEnabled()) {
-                log.debug("persist {}", entity.toString());
+                log.debug("#store -> persist {}", entity.toString());
             }
             entityManager.persist(entity);
             return entity;
         } else {
             if (log.isDebugEnabled()) {
-                log.debug("merge {}", entity.toString());
+                log.debug("#store -> merge {}", entity.toString());
             }
             return entityManager.merge(entity);
         }
@@ -72,75 +68,49 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
         return entityManager.find(entityClass, id);
     }
 
-    protected TypedQuery<T> createQuery(CriteriaQueryable<T> queryable) {
+    protected T singleResult(ToCriteriaQueryFunction<T> criteria) {
+        return createQuery(criteria).getSingleResult();
+    }
+
+    protected List<T> resultList(ToCriteriaQueryFunction<T> criteria) {
+        return createQuery(criteria).getResultList();
+    }
+
+    private TypedQuery<T> createQuery(ToCriteriaQueryFunction<T> criteria) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> cq = cb.createQuery(entityClass);
-        Root<T> r = cq.from(entityClass);
-        return entityManager.createQuery(queryable.query(cb, cq, r));
-    }
-
-    protected Query createQuery(CriteriaUpdatable<T> updatable) {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaUpdate<T> cu = cb.createCriteriaUpdate(entityClass);
-        Root<T> r = cu.from(entityClass);
-        return entityManager.createQuery(updatable.update(cb, cu, r));
-    }
-
-    protected Query createQuery(CriteriaDeletable<T> deletable) {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaDelete<T> cd = cb.createCriteriaDelete(entityClass);
-        Root<T> r = cd.from(entityClass);
-        return entityManager.createQuery(deletable.delete(cb, cd, r));
-    }
-
-    protected T singleResult(CriteriaQueryable<T> queryable) {
-        return createQuery(queryable).getSingleResult();
-    }
-
-    protected T singleResultOrNull(CriteriaQueryable<T> queryable) {
-        return oneOrNull(resultList(queryable));
-    }
-
-    protected List<T> resultList(CriteriaQueryable<T> queryable) {
-        return createQuery(queryable).getResultList();
+        return entityManager.createQuery(criteria.apply(cb, cq, cq.from(entityClass)));
     }
 //
-//    protected List<T> resultList(CriteriaQueryable<T> queryable, int startPosition, int maxResult) {
-//        return createQuery(queryable).setFirstResult(startPosition).setMaxResults(maxResult).resultList();
-//    }
-
-    protected void directUpdate(CriteriaUpdatable<T> updatable) {
-        int count = createQuery(updatable).executeUpdate();
-        if (log.isTraceEnabled()) {
-            log.trace("#executeUpdate -> count:{}", count);
-        }
-        // TODO count check?
-//        entityManager.flush();
-        entityManager.clear();
-        entityManager.getEntityManagerFactory().getCache().evictAll();
-    }
-
-    protected void directDelete(CriteriaDeletable<T> deletable) {
-        int count = createQuery(deletable).executeUpdate();
-        if (log.isTraceEnabled()) {
-            log.trace("#executeDelete -> count:{}", count);
-        }
-        // TODO count check?
-        // TODO count
+//    protected void bulkUpdate(ToCriteriaUpdateFunction<T> criteria) {
+//        int count = createQuery(criteria).executeUpdate();
+//        if (log.isTraceEnabled()) {
+//            log.trace("#bulkUpdate -> count:{}", count);
+//        }
 //        entityManager.flush();
 //        entityManager.clear();
-        entityManager.getEntityManagerFactory().getCache().evictAll();
-    }
-
-    protected T oneOrNull(List<T> resultList) {
-        if (resultList == null || resultList.isEmpty()) {
-            return null;
-        } else {
-            if (resultList.size() == 1) {
-                return resultList.get(0);
-            } else {
-                throw new IllegalStateException();
-            }
-        }
-    }
+//        entityManager.getEntityManagerFactory().getCache().evictAll();
+//    }
+//
+//    protected void bulkDelete(ToCriteriaDeleteFunction<T> criteria) {
+//        int count = createQuery(criteria).executeUpdate();
+//        if (log.isTraceEnabled()) {
+//            log.trace("#bulkDelete -> count:{}", count);
+//        }
+//        entityManager.flush();
+//        entityManager.clear();
+//        entityManager.getEntityManagerFactory().getCache().evictAll();
+//    }
+//
+//    private Query createQuery(ToCriteriaUpdateFunction<T> criteria) {
+//        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+//        CriteriaUpdate<T> cu = cb.createCriteriaUpdate(entityClass);
+//        return entityManager.createQuery(criteria.apply(cb, cu, cu.from(entityClass)));
+//    }
+//
+//    private Query createQuery(ToCriteriaDeleteFunction<T> criteria) {
+//        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+//        CriteriaDelete<T> cd = cb.createCriteriaDelete(entityClass);
+//        return entityManager.createQuery(criteria.apply(cb, cd, cd.from(entityClass)));
+//    }
 }

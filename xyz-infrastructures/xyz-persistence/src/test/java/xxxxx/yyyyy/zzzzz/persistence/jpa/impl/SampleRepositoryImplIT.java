@@ -1,7 +1,5 @@
 package xxxxx.yyyyy.zzzzz.persistence.jpa.impl;
 
-import static java.util.stream.Collectors.*;
-
 import java.io.File;
 import java.util.List;
 import java.util.stream.Stream;
@@ -32,7 +30,6 @@ public class SampleRepositoryImplIT {
 
     @Inject
     private SampleRepository sampleRepository;
-
     @Rule
     public TestName name = new TestName();
 
@@ -92,81 +89,68 @@ public class SampleRepositoryImplIT {
             log.debug(x.toString());
         }
     }
-
-    @Transactional
-    //@Test
-    public void UnitOfWork_StateUnderTest_ExpectedBehavior3() { // TODO should change method name
-        sampleRepository.updateNameByIds("Hoge", Stream.of(1L, 2L).collect(toList()));
-//        sampleRepository.updateNameByIds("Hoge", Collections.emptyList());
-//javax.persistence.PersistenceException: Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd): org.eclipse.persistence.exceptions.DatabaseException
-//Internal Exception: java.sql.SQLSyntaxErrorException: Syntax error: Encountered ")" at line 1, column 72.
-//Error Code: 20000
-//Call: UPDATE SAMPLE SET VERSION = (VERSION + 1), NAME = 'Hoge' WHERE (ID IN ())
-//Query: UpdateAllQuery(referenceClass=Sample sql="UPDATE SAMPLE SET VERSION = (VERSION + ?), NAME = ? WHERE (ID IN ())")
-// :
-// :
-        List<Sample> samples = sampleRepository.findAll();
-        samples.stream().forEach(x -> {
-            if (log.isDebugEnabled()) {
-                log.debug(x.toString());
-            }
-        });
-    }
-
-    @Transactional
-    //@Test
-    public void UnitOfWork_StateUnderTest_ExpectedBehavior4() { // TODO should change method name
-        sampleRepository.removeByIds(Stream.of(1L, 2L).collect(toList()));
-//        sampleRepository.removeByIds(Collections.emptyList());
-//javax.persistence.PersistenceException: Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd): org.eclipse.persistence.exceptions.DatabaseException
-//Internal Exception: java.sql.SQLSyntaxErrorException: Syntax error: Encountered ")" at line 1, column 34.
-//Error Code: 20000
-//Call: DELETE FROM SAMPLE WHERE (ID IN ())
-//Query: DeleteAllQuery(referenceClass=Sample sql="DELETE FROM SAMPLE WHERE (ID IN ())")
-// :
-// :
-        List<Sample> samples = sampleRepository.findAll();
-        samples.stream().forEach(x -> {
-            if (log.isDebugEnabled()) {
-                log.debug(x.toString());
-            }
-        });
-    }
-
-    @Transactional
-    @Test
-    public void UnitOfWork_StateUnderTest_ExpectedBehavior5() { // TODO should change method name
-        if (log.isDebugEnabled()) {
-            log.debug(sampleRepository.find(1L).toString());
-        }
-        //sampleRepository.removeByIds(Stream.of(1L, 2L).collect(toList()));
-        sampleRepository.updateNameByIds("Hoge", Stream.of(1L, 2L).collect(toList()));
-        if (log.isDebugEnabled()) {
-            log.debug(sampleRepository.find(1L).toString());
-        }
-    }
-
-    @Transactional
-    @Test
-    public void UnitOfWork_StateUnderTest_ExpectedBehavior6() { // TODO should change method name
-        if (log.isDebugEnabled()) {
-            log.debug(sampleRepository.find(1L).toString());
-        }
-    }
-
 //
-//    private void testData() {
-//        for (long id = 1L; id <= 10L; id++) {
-//            //Sample sample = new Sample();
-//            Sample sample = sampleRepository.find(id);
-//            if (sample == null) {
-//                sample = new Sample();
-//                sample.setId(id);
-//                sample.setName("Name" + id);
-//                sampleRepository.store(sample);
+//    @Transactional
+//    //@Test
+//    public void UnitOfWork_StateUnderTest_ExpectedBehavior3() { // TODO should change method name
+//        sampleRepository.bulkUpdateNameByIds("Hoge", Stream.of(1L, 2L).collect(toList()));
+////        sampleRepository.bulkUpdateNameByIds("Hoge", Collections.emptyList());
+////javax.persistence.PersistenceException: Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd): org.eclipse.persistence.exceptions.DatabaseException
+////Internal Exception: java.sql.SQLSyntaxErrorException: Syntax error: Encountered ")" at line 1, column 72.
+////Error Code: 20000
+////Call: UPDATE SAMPLE SET VERSION = (VERSION + 1), NAME = 'Hoge' WHERE (ID IN ())
+////Query: UpdateAllQuery(referenceClass=Sample sql="UPDATE SAMPLE SET VERSION = (VERSION + ?), NAME = ? WHERE (ID IN ())")
+//// :
+//// :
+//        List<Sample> samples = sampleRepository.findAll();
+//        samples.stream().forEach(x -> {
+//            if (log.isDebugEnabled()) {
+//                log.debug(x.toString());
 //            }
+//        });
+//    }
+//
+//    @Transactional
+//    //@Test
+//    public void UnitOfWork_StateUnderTest_ExpectedBehavior4() { // TODO should change method name
+//        sampleRepository.bulkDeleteByIds(Stream.of(1L, 2L).collect(toList()));
+////        sampleRepository.bulkDeleteByIds(Collections.emptyList());
+////javax.persistence.PersistenceException: Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd): org.eclipse.persistence.exceptions.DatabaseException
+////Internal Exception: java.sql.SQLSyntaxErrorException: Syntax error: Encountered ")" at line 1, column 34.
+////Error Code: 20000
+////Call: DELETE FROM SAMPLE WHERE (ID IN ())
+////Query: DeleteAllQuery(referenceClass=Sample sql="DELETE FROM SAMPLE WHERE (ID IN ())")
+//// :
+//// :
+//        List<Sample> samples = sampleRepository.findAll();
+//        samples.stream().forEach(x -> {
+//            if (log.isDebugEnabled()) {
+//                log.debug(x.toString());
+//            }
+//        });
+//    }
+//
+//    @Transactional
+//    @Test
+//    public void UnitOfWork_StateUnderTest_ExpectedBehavior5() { // TODO should change method name
+//        if (log.isDebugEnabled()) {
+//            log.debug(sampleRepository.find(1L).toString());
+//        }
+//        //sampleRepository.bulkDeleteByIds(Stream.of(1L, 2L).collect(toList()));
+//        sampleRepository.bulkUpdateNameByIds("Hoge", Stream.of(1L, 2L).collect(toList()));
+//        if (log.isDebugEnabled()) {
+//            log.debug(sampleRepository.find(1L).toString());
 //        }
 //    }
+//
+//    @Transactional
+//    @Test
+//    public void UnitOfWork_StateUnderTest_ExpectedBehavior6() { // TODO should change method name
+//        if (log.isDebugEnabled()) {
+//            log.debug(sampleRepository.find(1L).toString());
+//        }
+//    }
+
     private void testData(long size) {
         Stream.iterate(1L, i -> i + 1).limit(size).forEach(i -> {
             Sample sample = sampleRepository.find(i);
