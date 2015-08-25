@@ -24,19 +24,7 @@ public class RepositoryValidationInterceptor {
                 log.debug("repositoryValidation is null");
             }
         }
-//        long s = System.currentTimeMillis();
-        try {
-//            Stream.of(ic.getParameters()).forEach(x -> {
-//                if (log.isDebugEnabled()) {
-//                    log.debug("arguments -> {}", x.getClass().getName());
-//                }
-//            });
-            return ic.proceed();
-        } finally {
-//            long e = System.currentTimeMillis();
-//            log.info("{}#{} elapsed time in {} ms",
-//                    ic.getTarget().getClass().getName(), ic.getMethod().getName(), String.valueOf(e - s));
-        }
+        return ic.proceed();
     }
 
     private <T extends Annotation> T declaredAnnotation(InvocationContext ic, Class<T> interceptorBinding) {

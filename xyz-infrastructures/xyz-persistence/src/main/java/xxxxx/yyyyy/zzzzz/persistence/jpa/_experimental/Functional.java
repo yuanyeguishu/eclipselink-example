@@ -13,7 +13,6 @@ import xxxxx.yyyyy.zzzzz.domain.shared.AggregateRoot;
 public interface Functional<T extends AggregateRoot<T, ID>, ID extends Serializable> {
 
     default T singleResult(EntityManager entityManager, Class<T> entityClass, ToCriteriaQueryFunction<T> f) {
-        //return createQuery(criteria).getSingleResult();
         CriteriaBuilder x = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> y = x.createQuery(entityClass);
         Root<T> z = y.from(entityClass);
@@ -21,7 +20,6 @@ public interface Functional<T extends AggregateRoot<T, ID>, ID extends Serializa
     }
 
     default List<T> resultList(EntityManager entityManager, Class<T> entityClass, ToCriteriaQueryFunction<T> f) {
-        //return createQuery(criteria).getResultList();
         CriteriaBuilder x = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> y = x.createQuery(entityClass);
         Root<T> z = y.from(entityClass);
@@ -29,7 +27,6 @@ public interface Functional<T extends AggregateRoot<T, ID>, ID extends Serializa
     }
 
     default int bulkUpdate(EntityManager entityManager, Class<T> entityClass, ToCriteriaUpdateFunction<T> f) {
-        //int count = createQuery(criteria).executeUpdate();
         CriteriaBuilder x = entityManager.getCriteriaBuilder();
         CriteriaUpdate<T> y = x.createCriteriaUpdate(entityClass);
         Root<T> z = y.from(entityClass);
@@ -41,7 +38,6 @@ public interface Functional<T extends AggregateRoot<T, ID>, ID extends Serializa
     }
 
     default int bulkDelete(EntityManager entityManager, Class<T> entityClass, ToCriteriaDeleteFunction<T> f) {
-        //int count = createQuery(criteria).executeUpdate();
         CriteriaBuilder x = entityManager.getCriteriaBuilder();
         CriteriaDelete<T> y = x.createCriteriaDelete(entityClass);
         Root<T> z = y.from(entityClass);
