@@ -1,4 +1,4 @@
-package xxxxx.yyyyy.zzzzz.persistence.jpa;
+package xxxxx.yyyyy.zzzzz.persistence.jpa._experimental;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

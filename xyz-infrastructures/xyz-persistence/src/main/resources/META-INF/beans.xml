@@ -3,6 +3,6 @@
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        version="1.1" bean-discovery-mode="annotated">
     <interceptors>
-        <class>xxxxx.yyyyy.zzzzz.persistence.jpa.ArgumentsValidationInterceptor</class>
+        <class>xxxxx.yyyyy.zzzzz.persistence.jpa._experimental.RepositoryValidationInterceptor</class>
     </interceptors>
 </beans>

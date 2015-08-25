@@ -1,4 +1,4 @@
-package xxxxx.yyyyy.zzzzz.persistence.jpa;
+package xxxxx.yyyyy.zzzzz.persistence.jpa._experimental;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -9,19 +9,19 @@ import javax.interceptor.InvocationContext;
 
 @lombok.extern.slf4j.Slf4j
 @Dependent
-@Interceptor @ArgumentsValidation
-public class ArgumentsValidationInterceptor {
+@Interceptor @RepositoryValidation
+public class RepositoryValidationInterceptor {
 
     @AroundInvoke
     public Object aroundInvoke(InvocationContext ic) throws Exception {
-        ArgumentsValidation argumentsValidation = declaredAnnotation(ic, ArgumentsValidation.class);
-        if (argumentsValidation != null) {
+        RepositoryValidation repositoryValidation = declaredAnnotation(ic, RepositoryValidation.class);
+        if (repositoryValidation != null) {
             if (log.isDebugEnabled()) {
-                log.debug("argumentsValidation -> flagA:{}, flagB:{}", argumentsValidation.flagA(), argumentsValidation.flagB());
+                log.debug("repositoryValidation -> flagA:{}, flagB:{}", repositoryValidation.flagA(), repositoryValidation.flagB());
             }
         } else {
             if (log.isDebugEnabled()) {
-                log.debug("argumentsValidation is null");
+                log.debug("repositoryValidation is null");
             }
         }
 //        long s = System.currentTimeMillis();

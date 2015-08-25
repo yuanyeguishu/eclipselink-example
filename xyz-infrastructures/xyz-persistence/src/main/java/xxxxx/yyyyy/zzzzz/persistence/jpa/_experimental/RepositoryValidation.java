@@ -1,4 +1,4 @@
-package xxxxx.yyyyy.zzzzz.persistence.jpa;
+package xxxxx.yyyyy.zzzzz.persistence.jpa._experimental;
 
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
@@ -13,7 +13,7 @@ import javax.interceptor.InterceptorBinding;
 @InterceptorBinding
 @Retention(RUNTIME)
 @Target({METHOD, TYPE})
-public @interface ArgumentsValidation {
+public @interface RepositoryValidation {
 
     @Nonbinding
     boolean flagA() default true;

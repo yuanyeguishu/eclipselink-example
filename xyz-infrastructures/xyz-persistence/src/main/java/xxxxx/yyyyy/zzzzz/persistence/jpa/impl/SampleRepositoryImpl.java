@@ -2,38 +2,54 @@ package xxxxx.yyyyy.zzzzz.persistence.jpa.impl;
 
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Typed;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import xxxxx.yyyyy.zzzzz.domain.model.Sample;
 import xxxxx.yyyyy.zzzzz.domain.model.SampleRepository;
 import xxxxx.yyyyy.zzzzz.domain.model.Sample_;
 import xxxxx.yyyyy.zzzzz.persistence.jpa.AbstractRepository;
-import xxxxx.yyyyy.zzzzz.persistence.jpa.ArgumentsValidation;
+import xxxxx.yyyyy.zzzzz.persistence.jpa._experimental.Functional;
+import xxxxx.yyyyy.zzzzz.persistence.jpa._experimental.RepositoryValidation;
 
 @lombok.extern.slf4j.Slf4j
+@Typed(value = SampleRepository.class)
 @ApplicationScoped
-public class SampleRepositoryImpl extends AbstractRepository<Sample, Long> implements SampleRepository {
+public class SampleRepositoryImpl extends AbstractRepository<Sample, Long> implements SampleRepository, Functional<Sample, Long> {
+
+    @Inject
+    public SampleRepositoryImpl(EntityManager entityManager) {
+        super(entityManager);
+    }
 
     @Override
     public List<Sample> findAll() {
-        return super.resultList((b, q, r) -> q.select(r));
+        return resultList(entityManager, entityClass, (b, q, r) -> {
+            return q.select(r);
+        });
     }
 
-    @ArgumentsValidation(flagA = false, flagB = false)
+    @RepositoryValidation(flagA = false, flagB = false)
     @Override
     public Sample findByName(String name) {
-        return super.singleResult((b, q, r) -> q.select(r).where(b.equal(r.get(Sample_.name), name)));
+        return singleResult(entityManager, entityClass, (b, q, r) -> {
+            return q.select(r).where(b.equal(r.get(Sample_.name), name));
+        });
     }
 
     @Override
     public void bulkUpdateNameByIds(String name, List<Long> ids) {
-//        // UPDATE SAMPLE SET VERSION = (VERSION + 1), NAME = Hoge WHERE (ID IN (1, 2))
-//        super.bulkUpdate((b, u, r) -> u.set(Sample_.name, name).where(r.get(Sample_.id).in(ids)));
-        throw new UnsupportedOperationException();
+        // UPDATE SAMPLE SET VERSION = (VERSION + 1), NAME = Hoge WHERE (ID IN (1, 2))
+        bulkUpdate(entityManager, entityClass, (b, u, r) -> {
+            return u.set(Sample_.name, name).where(r.get(Sample_.id).in(ids));
+        });
     }
 
     @Override
     public void bulkDeleteByIds(List<Long> ids) {
-//        // DELETE FROM SAMPLE WHERE (ID IN (?, ?))
-//        super.bulkDelete((b, d, r) -> d.where(r.get(Sample_.id).in(ids)));
-        throw new UnsupportedOperationException();
+        // DELETE FROM SAMPLE WHERE (ID IN (?, ?))
+        bulkDelete(entityManager, entityClass, (b, d, r) -> {
+            return d.where(r.get(Sample_.id).in(ids));
+        });
     }
 }
