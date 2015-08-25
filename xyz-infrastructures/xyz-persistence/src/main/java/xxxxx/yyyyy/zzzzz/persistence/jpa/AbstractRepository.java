@@ -22,6 +22,7 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
         this.entityClass = (Class<T>) parameterizedType.getActualTypeArguments()[0];
         this.idClass = (Class<ID>) parameterizedType.getActualTypeArguments()[1];
     }
+//
 //    @Inject
 //    protected EntityManager entityManager;
 //
@@ -31,7 +32,6 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
 //        this.entityClass = (Class<T>) parameterizedType.getActualTypeArguments()[0];
 //        this.idClass = (Class<ID>) parameterizedType.getActualTypeArguments()[1];
 //    }
-//
 
     private ParameterizedType parameterizedType() {
         return (isProxyClass())
