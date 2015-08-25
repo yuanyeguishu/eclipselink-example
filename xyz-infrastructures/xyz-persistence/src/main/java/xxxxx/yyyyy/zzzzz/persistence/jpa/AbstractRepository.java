@@ -2,6 +2,7 @@ package xxxxx.yyyyy.zzzzz.persistence.jpa;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 import javax.persistence.EntityManager;
 import xxxxx.yyyyy.zzzzz.domain.shared.AggregateRoot;
 import xxxxx.yyyyy.zzzzz.domain.shared.Repository;
@@ -56,8 +57,22 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
     }
 
     @Override
+    public <U extends T> List<U> store(final List<U> entities) {
+        // TODO http://www.eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_jdbc_batchwriting.htm
+        // TODO http://www.eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_jdbc_batchwritingsize.htm#CIHJADHF
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
     public <U extends T> void remove(final U entity) {
         entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
+    }
+
+    @Override
+    public <U extends T> void remove(final List<U> entities) {
+        // TODO http://www.eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_jdbc_batchwriting.htm
+        // TODO http://www.eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_jdbc_batchwritingsize.htm#CIHJADHF
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
