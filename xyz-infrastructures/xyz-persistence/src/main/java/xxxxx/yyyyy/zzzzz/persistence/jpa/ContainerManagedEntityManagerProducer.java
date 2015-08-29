@@ -17,15 +17,15 @@ public class ContainerManagedEntityManagerProducer {
     @RequestScoped
     @Produces
     public EntityManager produce() {
-        if (log.isDebugEnabled()) {
-            log.debug(String.format("produce -> %s", em.toString()));
+        if (log.isTraceEnabled()) {
+            log.trace(String.format("produce -> %s", em.toString()));
         }
         return em;
     }
 
     public void dispose(final @Disposes EntityManager em) {
-        if (log.isDebugEnabled()) {
-            log.debug(String.format("dispose -> %s", em.toString()));
+        if (log.isTraceEnabled()) {
+            log.trace(String.format("dispose -> %s", em.toString()));
         }
 // Only an application-managed entity manager...
 // @see javax.persistence.EntityManager.close()

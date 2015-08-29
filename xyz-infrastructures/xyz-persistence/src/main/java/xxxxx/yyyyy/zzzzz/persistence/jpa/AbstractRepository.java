@@ -6,10 +6,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import xxxxx.yyyyy.zzzzz.domain.shared.AggregateRoot;
 import xxxxx.yyyyy.zzzzz.domain.shared.Repository;
-import xxxxx.yyyyy.zzzzz.persistence.jpa._experimental.RepositoryValidation;
+import xxxxx.yyyyy.zzzzz.persistence.jpa._experimental.Trace;
+import xxxxx.yyyyy.zzzzz.persistence.jpa._experimental.Valid;
 
 @lombok.extern.slf4j.Slf4j
-@RepositoryValidation
+@Trace
+@Valid
 public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID extends Serializable> implements Repository<T, ID> {
 
     protected final EntityManager entityManager;
@@ -43,7 +45,7 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
     private boolean isProxyClass() {
         // $Proxy$_$$_WeldSubclass
         // $Proxy$_$$_WeldClientProxy
-        return getClass().getSimpleName().contains("$Proxy$");
+        return getClass().getSimpleName().matches(".*\\$Proxy\\$_\\$\\$_Weld.*");
     }
 
     @Override

@@ -2,7 +2,6 @@ package xxxxx.yyyyy.zzzzz.persistence.jpa.impl;
 
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Typed;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import xxxxx.yyyyy.zzzzz.domain.model.Sample;
@@ -10,10 +9,9 @@ import xxxxx.yyyyy.zzzzz.domain.model.SampleRepository;
 import xxxxx.yyyyy.zzzzz.domain.model.Sample_;
 import xxxxx.yyyyy.zzzzz.persistence.jpa.AbstractRepository;
 import xxxxx.yyyyy.zzzzz.persistence.jpa._experimental.Functional;
-import xxxxx.yyyyy.zzzzz.persistence.jpa._experimental.RepositoryValidation;
 
 @lombok.extern.slf4j.Slf4j
-@Typed(value = SampleRepository.class)
+//@Typed(value = SampleRepository.class)
 @ApplicationScoped
 public class SampleRepositoryImpl extends AbstractRepository<Sample, Long> implements SampleRepository, Functional<Sample, Long> {
 
@@ -29,7 +27,7 @@ public class SampleRepositoryImpl extends AbstractRepository<Sample, Long> imple
         });
     }
 
-    @RepositoryValidation(flagA = false, flagB = false)
+    //@Valid(ignore = true)
     @Override
     public Sample findByName(String name) {
         return singleResult(entityManager, entityClass, (b, q, r) -> {

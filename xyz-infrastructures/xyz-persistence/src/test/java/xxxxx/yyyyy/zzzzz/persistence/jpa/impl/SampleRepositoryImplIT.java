@@ -17,7 +17,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -71,7 +70,13 @@ public class SampleRepositoryImplIT {
     }
 
     @Transactional
-    @Test
+    //@Test
+    public void UnitOfWork_StateUnderTest_ExpectedBehavior0() { // TODO should change method name
+        sampleRepository.findByName(null);
+    }
+
+    @Transactional
+    //@Test
     public void UnitOfWork_StateUnderTest_ExpectedBehavior1() { // TODO should change method name
         testData(5L);
         List<Sample> samples = sampleRepository.findAll();
@@ -83,7 +88,7 @@ public class SampleRepositoryImplIT {
     }
 
     @Transactional
-    @Test
+    //@Test
     public void UnitOfWork_StateUnderTest_ExpectedBehavior2() { // TODO should change method name
         testData(10L);
         Sample x = sampleRepository.findByName("Name1");
@@ -133,7 +138,7 @@ public class SampleRepositoryImplIT {
     }
 
     @Transactional
-    @Test
+    //@Test
     public void UnitOfWork_StateUnderTest_ExpectedBehavior5() { // TODO should change method name
         if (log.isDebugEnabled()) {
             log.debug(sampleRepository.find(1L).toString());
@@ -146,7 +151,7 @@ public class SampleRepositoryImplIT {
     }
 
     @Transactional
-    @Test
+    //@Test
     public void UnitOfWork_StateUnderTest_ExpectedBehavior6() { // TODO should change method name
         if (log.isDebugEnabled()) {
             log.debug(sampleRepository.find(1L).toString());

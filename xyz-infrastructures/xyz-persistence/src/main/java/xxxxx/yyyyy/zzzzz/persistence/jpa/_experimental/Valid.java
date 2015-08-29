@@ -11,13 +11,10 @@ import javax.interceptor.InterceptorBinding;
 
 @Inherited
 @InterceptorBinding
+@Target({TYPE, METHOD, CONSTRUCTOR})
 @Retention(RUNTIME)
-@Target({METHOD, TYPE})
-public @interface RepositoryValidation {
+public @interface Valid {
 
     @Nonbinding
-    boolean flagA() default true;
-
-    @Nonbinding
-    boolean flagB() default true;
+    boolean ignore() default false;
 }
