@@ -3,6 +3,7 @@ package xxxxx.yyyyy.zzzzz.persistence.jpa._experimental;
 import static java.util.stream.Collectors.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 import javax.enterprise.context.Dependent;
@@ -19,30 +20,41 @@ public class ValidationInterceptor extends AbstractInterceptor {
     public Object aroundInvoke(InvocationContext invocationContext) throws Throwable {
         Valid valid = invokeAnnotation(invocationContext, Valid.class);
         if (!valid.ignore()) {
-            Class<?>[] parameterTypes = invocationContext.getMethod().getParameterTypes();
-            if (parameterTypes == null) {
-                throw new IllegalStateException();
-            }
-            Object[] parameters = invocationContext.getParameters();
-            if (parameters == null) {
-                throw new IllegalStateException();
-            }
-            if (parameterTypes.length != parameters.length) {
-                if (log.isTraceEnabled()) {
-                    log.trace("parameterTypes.length -> {}", parameterTypes.length);
-                    log.trace("parameters.length -> {}", parameters.length);
-                }
-                throw new IllegalStateException();
-            }
-            List<ParameterContext> parameterContexts = new ArrayList<>();
-            for (int i = 0; i < parameterTypes.length; i++) {
-                parameterContexts.add(new ParameterContext(parameterTypes[i], parameters[i]));
-            }
-            if (/*parameters != null &&*/parameters.length > 0) {
+//            Class<?>[] parameterTypes = invocationContext.getMethod().getParameterTypes();
+//            Object[] parameters = invocationContext.getParameters();
+//            if (parameterTypes.length != parameters.length) {
+//                throw new IllegalStateException();
+//            }
+//            if (parameterTypes.length > 0) {
+//                List<ParameterContext> parameterContexts = new ArrayList<>();
+//                for (int i = 0; i < parameterTypes.length; i++) {
+//                    parameterContexts.add(new ParameterContext(parameterTypes[i], parameters[i]));
+//                }
+//                validate(valid, parameterContexts);
+//            }
+            List<ParameterContext> parameterContexts = parameterContexts(invocationContext);
+            if (!parameterContexts.isEmpty()) {
                 validate(valid, parameterContexts);
             }
         }
         return invocationContext.proceed();
+    }
+
+    private List<ParameterContext> parameterContexts(InvocationContext invocationContext) {
+        Class<?>[] parameterTypes = invocationContext.getMethod().getParameterTypes();
+        Object[] parameters = invocationContext.getParameters();
+        if (parameterTypes.length != parameters.length) {
+            throw new IllegalStateException();
+        }
+        if (parameterTypes.length == 0) {
+            return Collections.emptyList();
+        } else {
+            List<ParameterContext> parameterContexts = new ArrayList<>();
+            for (int i = 0; i < parameterTypes.length; i++) {
+                parameterContexts.add(new ParameterContext(parameterTypes[i], parameters[i]));
+            }
+            return parameterContexts;
+        }
     }
 
     private void validate(Valid valid, List<ParameterContext> parameterContexts) {
@@ -66,17 +78,16 @@ public class ValidationInterceptor extends AbstractInterceptor {
     }
 
     @lombok.Value
-    //    @lombok.EqualsAndHashCode
-    //    @lombok.ToString
-    //    @lombok.Getter
+    //@lombok.EqualsAndHashCode
+    //@lombok.ToString
+    //@lombok.Getter
     private static class ParameterContext {
 
         private final Class<?> parameterType;
         private final Object parameter;
-//
-//        public ParameterContext(Class<?> parameterType, Object parameter) {
-//            this.parameterType = parameterType;
-//            this.parameter = parameter;
-//        }
+        //public ParameterContext(Class<?> parameterType, Object parameter) {
+        //    this.parameterType = parameterType;
+        //    this.parameter = parameter;
+        //}
     }
 }
