@@ -117,7 +117,7 @@
             <dependency>
                 <groupId>javax.enterprise</groupId>
                 <artifactId>cdi-api</artifactId>
-                <version>1.2</version>
+                <version>1.2</version><!-- According to https://glassfish.java.net/docs/4.1/release-notes.pdf -->
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -141,7 +141,7 @@
             <dependency>
                 <groupId>javax.websocket</groupId>
                 <artifactId>javax.websocket-api</artifactId>
-                <version>1.1</version>
+                <version>1.1</version><!-- According to https://glassfish.java.net/docs/4.1/release-notes.pdf -->
                 <scope>provided</scope>
             </dependency>
             <dependency>
