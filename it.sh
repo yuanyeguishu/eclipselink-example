@@ -1,1 +1,1 @@
-mvn clean test -Parquillian-glassfish-embedded
+mvn clean verify -Parquillian-glassfish-embedded

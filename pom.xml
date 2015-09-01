@@ -42,7 +42,14 @@
     </properties>
     <dependencyManagement>
         <dependencies>
-            <!-- https://wikis.oracle.com/display/GlassFish/Java+EE+7+Maven+Coordinates -->
+            <!-- Java Platform, Enterprise Edition (Java EE) 7 -->
+            <!--
+                Reference
+                    http://docs.oracle.com/javaee/7/index.html
+                    https://glassfish.java.net/docs/4.1/release-notes.pdf
+                    https://glassfish.java.net/wiki-archive/Java%20EE%207%20Maven%20Coordinates.html
+                    https://blogs.oracle.com/theaquarium/entry/spotlight_on_glassfish_4_16
+            -->
             <!--
             <dependency>
                 <groupId>javax</groupId>
@@ -149,13 +156,7 @@
                 <version>1.7</version>
                 <scope>provided</scope>
             </dependency>
-            <!-- https://wikis.oracle.com/display/GlassFish/Java+EE+7+Maven+Coordinates -->
-            <!--
-                NOTE
-                    https://glassfish.java.net/docs/4.1/release-notes.pdf
-                    https://wikis.oracle.com/display/GlassFish/Java+EE+7+Maven+Coordinates
-                    https://blogs.oracle.com/theaquarium/entry/spotlight_on_glassfish_4_16
-            -->
+            <!-- Java Platform, Enterprise Edition (Java EE) 7 -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
@@ -177,13 +178,6 @@
                 <artifactId>logback-classic</artifactId>
                 <version>1.1.3</version>
             </dependency>
-            <!--
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>1.4.187</version>
-            </dependency>
-            -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -275,11 +269,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.18.1</version>
-                    <configuration>
-                        <includes>
-                            <include>**/*Test.java</include>
-                        </includes>
-                    </configuration>
                 </plugin>
                 <!--
                     [WARNING]   maven-war-plugin ............................ (from super-pom) 2.6
@@ -288,6 +277,35 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>2.6</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.4</version>
+                    <executions>
+                        <execution>
+                            <!--
+                            <id>attach-sources</id>
+                            <phase>verify</phase>
+                            -->
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.18.1</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -340,6 +358,12 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+        </plugins>
     </build>
     <!-- Deprecated. Now ignored by Maven.
     <reports />
@@ -386,11 +410,8 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
-                            <includes>
-                                <include>**/*IT.java</include>
-                            </includes>
                             <systemPropertyVariables>
                                 <!--
                                     http://arquillian.org/guides/testing_java_persistence/
