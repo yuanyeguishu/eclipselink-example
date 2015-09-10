@@ -117,7 +117,7 @@
             <dependency>
                 <groupId>javax.enterprise</groupId>
                 <artifactId>cdi-api</artifactId>
-                <version>1.2</version><!-- According to https://glassfish.java.net/docs/4.1/release-notes.pdf -->
+                <version>1.2</version><!-- See https://glassfish.java.net/docs/4.1/release-notes.pdf -->
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -141,7 +141,7 @@
             <dependency>
                 <groupId>javax.websocket</groupId>
                 <artifactId>javax.websocket-api</artifactId>
-                <version>1.1</version><!-- According to https://glassfish.java.net/docs/4.1/release-notes.pdf -->
+                <version>1.1</version><!-- See https://glassfish.java.net/docs/4.1/release-notes.pdf -->
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -458,7 +458,7 @@
         <module>xyz-infrastructures</module>
         <!--
         <module>xyz-interfaces</module>
-        <module>xyz-apt</module>
         -->
+        <module>xyz-apt</module>
     </modules>
 </project>
