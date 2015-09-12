@@ -170,8 +170,8 @@
             <plugin>
                 <groupId>org.bsc.maven</groupId>
                 <artifactId>maven-processor-plugin</artifactId>
-                <!-- http://docs.jboss.org/hibernate/orm/4.3/topical/html/metamodelgen/MetamodelGenerator.html -->
                 <!--
+                    http://docs.jboss.org/hibernate/orm/4.3/topical/html/metamodelgen/MetamodelGenerator.html
                 <executions>
                     <execution>
                         <id>process</id>
@@ -194,8 +194,10 @@
                     </dependency>
                 </dependencies>
                 -->
-                <!-- https://wiki.eclipse.org/UserGuide/JPA/Using_the_Canonical_Model_Generator_%28ELUG%29 -->
-                <!-- http://stackoverflow.com/questions/17385092/eclipselink-2-5-metamodel-generation-using-maven -->
+                <!--
+                    https://wiki.eclipse.org/UserGuide/JPA/Using_the_Canonical_Model_Generator_%28ELUG%29
+                    http://stackoverflow.com/questions/17385092/eclipselink-2-5-metamodel-generation-using-maven
+                -->
                 <executions>
                     <execution>
                         <id>process</id>
