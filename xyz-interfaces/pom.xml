@@ -10,6 +10,9 @@
     <artifactId>xyz-interfaces</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>xyz-api</module>
+        <module>xyz-batch</module>
         <module>xyz-console</module>
+        <module>xyz-web</module>
     </modules>
 </project>

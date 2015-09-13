@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <!-- http://maven.apache.org/ref/3.3.1/maven-model/maven.html -->
+    <!--
+        http://maven.apache.org/ref/3.3.3/maven-model/maven.html
+        http://maven.apache.org/ref/3.3.3/maven-model-builder/super-pom.html
+    -->
     <modelVersion>4.0.0</modelVersion>
     <!--
     <parent>
@@ -38,7 +41,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <prerequisites.maven>3.3.1</prerequisites.maven>
+        <prerequisites.maven>3.3.3</prerequisites.maven>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -194,7 +197,11 @@
                 <version>1.10.19</version>
                 <scope>test</scope>
             </dependency>
-            <!-- Arquillian -->
+            <!-- Arquillian - Write Real Tests -->
+            <!--
+                http://arquillian.org/
+                http://arquillian.org/guides/
+            -->
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
@@ -216,7 +223,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- Arquillian -->
+            <!-- Arquillian - Write Real Tests -->
             <dependency>
                 <groupId>com.github.namioka.eclipselink-example</groupId>
                 <artifactId>xyz-domain</artifactId>
@@ -241,58 +248,30 @@
     <build>
         <pluginManagement>
             <plugins>
+                <!-- Maven - Available Plugins -->
                 <!--
-                    #TODO Specify plugin version
-                    [WARNING] The following plugins do not have their version specified:
-                    [WARNING]   maven-clean-plugin ........................ (from super-pom) 2.6.1
-                    [WARNING]   maven-compiler-plugin ....................... (from super-pom) 3.2
+                    https://maven.apache.org/plugins/
                 -->
+                <!-- Supported By The Maven Project (Core plugins) -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.6.1</version>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.2</version>
+                    <version>3.3</version>
                     <configuration>
                         <compilerArgs>
                             <arg>-Xlint</arg>
                         </compilerArgs>
                     </configuration>
                 </plugin>
-                <!--
-                    [WARNING]   maven-deploy-plugin ....................... (from super-pom) 2.8.2
-                    [WARNING]   maven-install-plugin ...................... (from super-pom) 2.5.2
-                    [WARNING]   maven-jar-plugin ............................ (from super-pom) 2.5
-                    [WARNING]   maven-resources-plugin ...................... (from super-pom) 2.7
-                    [WARNING]   maven-site-plugin ........................... (from super-pom) 3.4
-                    [WARNING]   maven-surefire-plugin .................... (from super-pom) 2.18.1
-                -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.18.1</version>
-                </plugin>
-                <!--
-                    [WARNING]   maven-war-plugin ............................ (from super-pom) 2.6
-                -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>2.6</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>2.4</version>
-                    <executions>
-                        <execution>
-                            <!--
-                            <id>attach-sources</id>
-                            <phase>verify</phase>
-                            -->
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -309,6 +288,47 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.7</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.18.1</version>
+                </plugin>
+                <!-- Supported By The Maven Project (Core plugins) -->
+                <!-- Supported By The Maven Project (Packaging types/tools) -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.4</version>
+                </plugin>
+                <!-- Supported By The Maven Project (Packaging types/tools) -->
+                <!-- Supported By The Maven Project (Reporting plugins) -->
+                <!-- Supported By The Maven Project (Reporting plugins) -->
+                <!-- Supported By The Maven Project (Tools) -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
                     <version>2.5.1</version>
                     <configuration>
@@ -316,19 +336,20 @@
                         <tagNameFormat>@{project.version}</tagNameFormat>
                     </configuration>
                 </plugin>
+                <!-- Supported By The Maven Project (Tools) -->
+                <!-- Supported By The Maven Project (IDEs) -->
+                <!-- Supported By The Maven Project (IDEs) -->
+                <!-- Outside The Maven Land (At codehaus.org) -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>2.2</version>
                 </plugin>
-                <plugin>
-                    <!--
-                        http://bsorrentino.github.io/maven-annotation-plugin/site3/usage.html
-                    -->
-                    <groupId>org.bsc.maven</groupId>
-                    <artifactId>maven-processor-plugin</artifactId>
-                    <version>2.2.4</version>
-                </plugin>
+                <!-- Outside The Maven Land (At codehaus.org) -->
+                <!-- Outside The Maven Land (At code.google.com) -->
+                <!-- Outside The Maven Land (At code.google.com) -->
+                <!-- Maven - Available Plugins -->
+                <!-- Others -->
                 <plugin>
                     <!--
                         https://java.net/projects/maven-glassfish-plugin/content
@@ -360,6 +381,15 @@
                         </execution>
                     </executions>
                 </plugin>
+                <plugin>
+                    <!--
+                        http://bsorrentino.github.io/maven-annotation-plugin/site3/usage.html
+                    -->
+                    <groupId>org.bsc.maven</groupId>
+                    <artifactId>maven-processor-plugin</artifactId>
+                    <version>2.2.4</version>
+                </plugin>
+                <!-- Others -->
             </plugins>
         </pluginManagement>
         <plugins>
@@ -435,14 +465,10 @@
         </profile>
     </profiles>
     <modules>
-        <!--
         <module>xyz-application</module>
-        -->
+        <module>xyz-apt</module>
         <module>xyz-domain</module>
         <module>xyz-infrastructures</module>
-        <!--
         <module>xyz-interfaces</module>
-        -->
-        <module>xyz-apt</module>
     </modules>
 </project>

@@ -10,6 +10,8 @@
     <artifactId>xyz-application</artifactId>
     <packaging>jar</packaging>
     <dependencies>
+        <!-- Java Platform, Enterprise Edition (Java EE) 7 -->
+        <!-- Java Platform, Enterprise Edition (Java EE) 7 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
