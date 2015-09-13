@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <!--
-        http://maven.apache.org/ref/3.3.3/maven-model/maven.html
-        http://maven.apache.org/ref/3.3.3/maven-model-builder/super-pom.html
-    -->
+    <!-- http://maven.apache.org/ref/3.3.3/maven-model/maven.html -->
     <modelVersion>4.0.0</modelVersion>
     <!--
     <parent>
@@ -47,8 +44,8 @@
         <dependencies>
             <!-- Java Platform, Enterprise Edition (Java EE) 7 -->
             <!--
-                https://glassfish.java.net/docs/4.1/release-notes.pdf
                 https://glassfish.java.net/wiki-archive/Java%20EE%207%20Maven%20Coordinates.html
+                https://glassfish.java.net/docs/4.1/release-notes.pdf
                 https://blogs.oracle.com/theaquarium/entry/spotlight_on_glassfish_4_16
             -->
             <!--
@@ -200,7 +197,6 @@
             <!-- Arquillian - Write Real Tests -->
             <!--
                 http://arquillian.org/
-                http://arquillian.org/guides/
             -->
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
@@ -252,7 +248,6 @@
                 <!--
                     https://maven.apache.org/plugins/
                 -->
-                <!-- Supported By The Maven Project (Core plugins) -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
@@ -306,8 +301,6 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.18.1</version>
                 </plugin>
-                <!-- Supported By The Maven Project (Core plugins) -->
-                <!-- Supported By The Maven Project (Packaging types/tools) -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
@@ -323,10 +316,6 @@
                     <artifactId>maven-source-plugin</artifactId>
                     <version>2.4</version>
                 </plugin>
-                <!-- Supported By The Maven Project (Packaging types/tools) -->
-                <!-- Supported By The Maven Project (Reporting plugins) -->
-                <!-- Supported By The Maven Project (Reporting plugins) -->
-                <!-- Supported By The Maven Project (Tools) -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
@@ -336,20 +325,12 @@
                         <tagNameFormat>@{project.version}</tagNameFormat>
                     </configuration>
                 </plugin>
-                <!-- Supported By The Maven Project (Tools) -->
-                <!-- Supported By The Maven Project (IDEs) -->
-                <!-- Supported By The Maven Project (IDEs) -->
-                <!-- Outside The Maven Land (At codehaus.org) -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>2.2</version>
                 </plugin>
-                <!-- Outside The Maven Land (At codehaus.org) -->
-                <!-- Outside The Maven Land (At code.google.com) -->
-                <!-- Outside The Maven Land (At code.google.com) -->
                 <!-- Maven - Available Plugins -->
-                <!-- Others -->
                 <plugin>
                     <!--
                         https://java.net/projects/maven-glassfish-plugin/content
@@ -389,7 +370,6 @@
                     <artifactId>maven-processor-plugin</artifactId>
                     <version>2.2.4</version>
                 </plugin>
-                <!-- Others -->
             </plugins>
         </pluginManagement>
         <plugins>
@@ -413,14 +393,6 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <dependencies>
-                <!--
-                <dependency>
-                    <groupId>com.h2database</groupId>
-                    <artifactId>h2</artifactId>
-                </dependency>
-                -->
-            </dependencies>
         </profile>
         <profile>
             <id>arquillian-glassfish-embedded</id>
@@ -447,14 +419,13 @@
             <build>
                 <plugins>
                     <plugin>
-                        <!--
-                            http://arquillian.org/guides/testing_java_persistence/
-                            http://shrubbery.homeip.net/c/display/W/Arquillian+-+GlassFish+3.1+Embedded
-                        -->
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
                             <systemPropertyVariables>
+                                <!--
+                                    http://arquillian.org/guides/testing_java_persistence/
+                                -->
                                 <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties</java.util.logging.config.file>
                                 <derby.stream.error.file>${project.build.directory}/derby.log</derby.stream.error.file>
                             </systemPropertyVariables>
