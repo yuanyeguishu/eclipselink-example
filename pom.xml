@@ -46,7 +46,8 @@
             <!--
                 https://glassfish.java.net/wiki-archive/Java%20EE%207%20Maven%20Coordinates.html
                 https://glassfish.java.net/docs/4.1/release-notes.pdf
-                https://blogs.oracle.com/theaquarium/entry/spotlight_on_glassfish_4_16
+                NOTE:
+                    https://blogs.oracle.com/theaquarium/entry/spotlight_on_glassfish_4_16
             -->
             <!--
             <dependency>
@@ -327,6 +328,11 @@
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>1.9.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>2.2</version>
                 </plugin>
@@ -342,7 +348,8 @@
                 <plugin>
                     <!--
                         http://www.eclemma.org/jacoco/trunk/doc/maven.html
-                        https://blogs.oracle.com/geertjan/entry/jacoco_maven_and_netbeans
+                        NOTE:
+                            https://blogs.oracle.com/geertjan/entry/jacoco_maven_and_netbeans
                     -->
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
@@ -362,10 +369,10 @@
                         </execution>
                     </executions>
                 </plugin>
+                <!--
+                    https://maven-annotation-plugin.googlecode.com/svn/docs/usage.html
+                -->
                 <plugin>
-                    <!--
-                        http://bsorrentino.github.io/maven-annotation-plugin/site3/usage.html
-                    -->
                     <groupId>org.bsc.maven</groupId>
                     <artifactId>maven-processor-plugin</artifactId>
                     <version>2.2.4</version>
@@ -424,7 +431,8 @@
                         <configuration>
                             <systemPropertyVariables>
                                 <!--
-                                    http://arquillian.org/guides/testing_java_persistence/
+                                    NOTE:
+                                        http://arquillian.org/guides/testing_java_persistence/
                                 -->
                                 <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties</java.util.logging.config.file>
                                 <derby.stream.error.file>${project.build.directory}/derby.log</derby.stream.error.file>

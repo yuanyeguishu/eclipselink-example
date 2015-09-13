@@ -161,6 +161,29 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
+                    <annotationProcessors>
+                        <annotationProcessor>org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor</annotationProcessor>
+                    </annotationProcessors>
+                    <compilerArgs>
+                        <arg>-Aeclipselink.persistenceunits=xyz_PU</arg>
+                        <arg>-Aeclipselink.persistencexml=${basedir}/../xyz-infrastructures/xyz-persistence/src/main/resources/META-INF/persistence.xml</arg>
+                    </compilerArgs>
+                    <forceJavacCompilerUse>true</forceJavacCompilerUse>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.eclipse.persistence</groupId>
+                        <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+                        <version>2.5.2-RC1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            -->
+            <!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
                     <compilerArgs>
                         <arg>-proc:none</arg>
                     </compilerArgs>
@@ -171,32 +194,9 @@
                 <groupId>org.bsc.maven</groupId>
                 <artifactId>maven-processor-plugin</artifactId>
                 <!--
-                    http://docs.jboss.org/hibernate/orm/4.3/topical/html/metamodelgen/MetamodelGenerator.html
-                <executions>
-                    <execution>
-                        <id>process</id>
-                        <goals>
-                            <goal>process</goal>
-                        </goals>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <processors>
-                                <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
-                            </processors>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.hibernate</groupId>
-                        <artifactId>hibernate-jpamodelgen</artifactId>
-                        <version>4.3.11.Final</version>
-                    </dependency>
-                </dependencies>
-                -->
-                <!--
                     https://wiki.eclipse.org/UserGuide/JPA/Using_the_Canonical_Model_Generator_%28ELUG%29
-                    http://stackoverflow.com/questions/17385092/eclipselink-2-5-metamodel-generation-using-maven
+                    NOTE:
+                        http://stackoverflow.com/questions/17385092/eclipselink-2-5-metamodel-generation-using-maven
                 -->
                 <executions>
                     <execution>
