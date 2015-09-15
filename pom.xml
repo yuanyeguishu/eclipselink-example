@@ -46,8 +46,7 @@
             <!--
                 https://glassfish.java.net/wiki-archive/Java%20EE%207%20Maven%20Coordinates.html
                 https://glassfish.java.net/docs/4.1/release-notes.pdf
-                NOTE:
-                    https://blogs.oracle.com/theaquarium/entry/spotlight_on_glassfish_4_16
+                https://blogs.oracle.com/theaquarium/entry/spotlight_on_glassfish_4_16
             -->
             <!--
             <dependency>
@@ -195,7 +194,7 @@
                 <version>1.10.19</version>
                 <scope>test</scope>
             </dependency>
-            <!-- Arquillian - Write Real Tests -->
+            <!-- Arquillian -->
             <!--
                 http://arquillian.org/
             -->
@@ -220,7 +219,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- Arquillian - Write Real Tests -->
+            <!-- Arquillian -->
             <dependency>
                 <groupId>com.github.namioka.eclipselink-example</groupId>
                 <artifactId>xyz-domain</artifactId>
@@ -245,7 +244,7 @@
     <build>
         <pluginManagement>
             <plugins>
-                <!-- Maven - Available Plugins -->
+                <!-- Maven Available Plugins -->
                 <!--
                     https://maven.apache.org/plugins/
                 -->
@@ -336,7 +335,7 @@
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>2.2</version>
                 </plugin>
-                <!-- Maven - Available Plugins -->
+                <!-- Maven Available Plugins -->
                 <plugin>
                     <!--
                         https://java.net/projects/maven-glassfish-plugin/content
@@ -348,8 +347,7 @@
                 <plugin>
                     <!--
                         http://www.eclemma.org/jacoco/trunk/doc/maven.html
-                        NOTE:
-                            https://blogs.oracle.com/geertjan/entry/jacoco_maven_and_netbeans
+                        https://blogs.oracle.com/geertjan/entry/jacoco_maven_and_netbeans
                     -->
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
@@ -369,10 +367,10 @@
                         </execution>
                     </executions>
                 </plugin>
-                <!--
-                    https://maven-annotation-plugin.googlecode.com/svn/docs/usage.html
-                -->
                 <plugin>
+                    <!--
+                        https://maven-annotation-plugin.googlecode.com/svn/docs/usage.html
+                    -->
                     <groupId>org.bsc.maven</groupId>
                     <artifactId>maven-processor-plugin</artifactId>
                     <version>2.2.4</version>
@@ -431,8 +429,7 @@
                         <configuration>
                             <systemPropertyVariables>
                                 <!--
-                                    NOTE:
-                                        http://arquillian.org/guides/testing_java_persistence/
+                                    http://arquillian.org/guides/testing_java_persistence/
                                 -->
                                 <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties</java.util.logging.config.file>
                                 <derby.stream.error.file>${project.build.directory}/derby.log</derby.stream.error.file>
