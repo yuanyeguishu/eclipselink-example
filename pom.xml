@@ -194,10 +194,6 @@
                 <version>1.10.19</version>
                 <scope>test</scope>
             </dependency>
-            <!-- Arquillian -->
-            <!--
-                http://arquillian.org/
-            -->
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
@@ -219,7 +215,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- Arquillian -->
             <dependency>
                 <groupId>com.github.namioka.eclipselink-example</groupId>
                 <artifactId>xyz-domain</artifactId>
@@ -244,10 +239,6 @@
     <build>
         <pluginManagement>
             <plugins>
-                <!-- Maven Available Plugins -->
-                <!--
-                    https://maven.apache.org/plugins/
-                -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
@@ -335,7 +326,6 @@
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>2.2</version>
                 </plugin>
-                <!-- Maven Available Plugins -->
                 <plugin>
                     <!--
                         https://java.net/projects/maven-glassfish-plugin/content
