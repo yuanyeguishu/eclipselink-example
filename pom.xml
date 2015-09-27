@@ -194,23 +194,19 @@
                 <version>1.10.19</version>
                 <scope>test</scope>
             </dependency>
-            <!-- Arquillian -->
-            <!--
-                http://arquillian.org/
-            -->
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
                 <version>1.1.9.Final</version>
-                <scope>import</scope>
                 <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.extension</groupId>
                 <artifactId>arquillian-transaction-bom</artifactId>
                 <version>1.0.1.Final</version>
-                <scope>import</scope>
                 <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -219,7 +215,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- Arquillian -->
             <dependency>
                 <groupId>com.github.namioka.eclipselink-example</groupId>
                 <artifactId>xyz-domain</artifactId>
@@ -244,10 +239,6 @@
     <build>
         <pluginManagement>
             <plugins>
-                <!-- Maven Available Plugins -->
-                <!--
-                    https://maven.apache.org/plugins/
-                -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
@@ -335,7 +326,6 @@
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>2.2</version>
                 </plugin>
-                <!-- Maven Available Plugins -->
                 <plugin>
                     <!--
                         https://java.net/projects/maven-glassfish-plugin/content
@@ -401,6 +391,23 @@
         </profile>
         <profile>
             <id>arquillian-glassfish-embedded</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <!--
+                                    http://arquillian.org/guides/testing_java_persistence/
+                                -->
+                                <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties</java.util.logging.config.file>
+                                <derby.stream.error.file>${project.build.directory}/derby.log</derby.stream.error.file>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
@@ -421,23 +428,6 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <!--
-                                    http://arquillian.org/guides/testing_java_persistence/
-                                -->
-                                <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties</java.util.logging.config.file>
-                                <derby.stream.error.file>${project.build.directory}/derby.log</derby.stream.error.file>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
     </profiles>
     <modules>
