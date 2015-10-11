@@ -3,7 +3,9 @@ package xxxxx.yyyyy.zzzzz.domain.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Version;
+import xxxxx.yyyyy.zzzzz.domain.ServiceLocator;
 import xxxxx.yyyyy.zzzzz.domain.shared.AggregateRoot;
+import xxxxx.yyyyy.zzzzz.domain.shared.DomainEventPublisher;
 //@lombok.Data
 
 @lombok.EqualsAndHashCode
@@ -21,6 +23,7 @@ public class Sample implements AggregateRoot<Sample, Long> {
     public Sample(Long id, String name) {
         setId(id);
         setName(name);
+        ServiceLocator.get(DomainEventPublisher.class).forEach(x -> x.publish(new SampleCreated()));
     }
 
     protected Sample() {
@@ -49,7 +52,7 @@ public class Sample implements AggregateRoot<Sample, Long> {
 
     private void setName(String name) {
         if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("'name' must not be null");
+            throw new IllegalArgumentException("'name' must not be empty");
         }
         this.name = name;
     }
