@@ -13,10 +13,14 @@ hs_err_pid*
 
 # apache maven
 target/
+pom.xml.tag
 pom.xml.releaseBackup
-release.properties
 pom.xml.versionsBackup
+pom.xml.next
+release.properties
 dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
 
 # netbeans
 nbproject/
