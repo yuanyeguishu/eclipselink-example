@@ -26,7 +26,7 @@
         <!-- TODO
         <jar-file>xyz-domain-1.0.0-SNAPSHOT.jar</jar-file>
         -->
-        <jar-file>../lib/xyz-domain-${project.version}.jar</jar-file>
+        <jar-file>../lib/xyz-domain-1.0.0-SNAPSHOT.jar</jar-file>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create" />
             <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create" />
