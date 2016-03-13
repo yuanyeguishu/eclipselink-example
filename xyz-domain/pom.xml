@@ -193,9 +193,6 @@
             <plugin>
                 <groupId>org.bsc.maven</groupId>
                 <artifactId>maven-processor-plugin</artifactId>
-                <!--
-                    https://wiki.eclipse.org/UserGuide/JPA/Using_the_Canonical_Model_Generator_%28ELUG%29
-                -->
                 <executions>
                     <execution>
                         <id>process</id>

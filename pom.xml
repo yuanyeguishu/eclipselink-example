@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <!-- http://maven.apache.org/ref/3.3.3/maven-model/maven.html -->
+    <!-- http://maven.apache.org/ref/current/maven-model/maven.html -->
     <modelVersion>4.0.0</modelVersion>
     <!--
     <parent>
@@ -50,12 +50,6 @@
     <dependencyManagement>
         <dependencies>
             <!-- Java Platform, Enterprise Edition (Java EE) 7 -->
-            <!--
-                https://glassfish.java.net/wiki-archive/Java%20EE%207%20Maven%20Coordinates.html
-                https://glassfish.java.net/docs/4.1/release-notes.pdf
-                https://blogs.oracle.com/theaquarium/entry/spotlight_on_glassfish_4_16
-                https://blogs.oracle.com/theaquarium/entry/glassfish_4_1_1_has
-            -->
             <!--
             <dependency>
                 <groupId>javax</groupId>
@@ -600,26 +594,16 @@
                     <version>2.2</version>
                 </plugin>
                 <plugin>
-                    <!--
-                        https://codehaus-cargo.github.io/cargo/Maven2+plugin.html
-                    -->
                     <groupId>org.codehaus.cargo</groupId>
                     <artifactId>cargo-maven2-plugin</artifactId>
                     <version>1.4.18</version>
                 </plugin>
                 <plugin>
-                    <!--
-                        https://java.net/projects/maven-glassfish-plugin/content
-                    -->
                     <groupId>org.glassfish.maven.plugin</groupId>
                     <artifactId>maven-glassfish-plugin</artifactId>
                     <version>2.1</version>
                 </plugin>
                 <plugin>
-                    <!--
-                        http://www.eclemma.org/jacoco/trunk/doc/maven.html
-                        https://blogs.oracle.com/geertjan/entry/jacoco_maven_and_netbeans
-                    -->
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.7.5.201505241946</version>
@@ -639,25 +623,16 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <!--
-                        http://code.mycila.com/license-maven-plugin/
-                    -->
                     <groupId>com.mycila</groupId>
                     <artifactId>license-maven-plugin</artifactId>
                     <version>2.11</version>
                 </plugin>
                 <plugin>
-                    <!--
-                        http://code.revelc.net/formatter-maven-plugin/
-                    -->
                     <groupId>net.revelc.code</groupId>
                     <artifactId>formatter-maven-plugin</artifactId>
                     <version>0.5.2</version>
                 </plugin>
                 <plugin>
-                    <!--
-                        https://maven-annotation-plugin.googlecode.com/svn/docs/usage.html
-                    -->
                     <groupId>org.bsc.maven</groupId>
                     <artifactId>maven-processor-plugin</artifactId>
                     <version>3.1.0</version>
@@ -699,9 +674,6 @@
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <configuration>
                             <systemPropertyVariables>
-                                <!--
-                                    http://arquillian.org/guides/testing_java_persistence/
-                                -->
                                 <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties</java.util.logging.config.file>
                                 <derby.stream.error.file>${project.build.directory}/derby.log</derby.stream.error.file>
                             </systemPropertyVariables>
