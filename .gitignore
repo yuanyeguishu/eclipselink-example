@@ -29,3 +29,5 @@ nbaction.xml
 
 # other...
 *.log
+*.swp
+*~
