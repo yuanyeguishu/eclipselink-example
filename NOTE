@@ -12,3 +12,6 @@ https://maven-annotation-plugin.googlecode.com/svn/docs/usage.html
 https://en.wikipedia.org/wiki/Deployment_environment#Development
 http://arquillian.org/guides/testing_java_persistence/
 https://wiki.eclipse.org/UserGuide/JPA/Using_the_Canonical_Model_Generator_%28ELUG%29
+http://arquillian.org/modules/transaction-extension/
+https://github.com/arquillian/arquillian-extension-transaction
+http://stackoverflow.com/questions/28046537/testing-jpa-entity-classes-error-transaction-is-required/

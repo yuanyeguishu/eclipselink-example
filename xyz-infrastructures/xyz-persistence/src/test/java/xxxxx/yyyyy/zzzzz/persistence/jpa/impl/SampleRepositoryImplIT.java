@@ -71,7 +71,7 @@ public class SampleRepositoryImplIT {
     }
 
     @Transactional
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = javax.persistence.NoResultException.class)
     public void UnitOfWork_StateUnderTest_ExpectedBehavior0() { // TODO should change method name
         sampleRepository.findByName(null);
     }

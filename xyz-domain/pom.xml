@@ -166,7 +166,7 @@
                     </annotationProcessors>
                     <compilerArgs>
                         <arg>-Aeclipselink.persistenceunits=xyz_PU</arg>
-                        <arg>-Aeclipselink.persistencexml=${basedir}/../xyz-infrastructures/xyz-persistence/src/main/resources/META-INF/persistence.xml</arg>
+                        <arg>-Aeclipselink.persistencexml=${basedir}/../xyz-env/src/main/resources/META-INF/persistence.xml</arg>
                     </compilerArgs>
                     <forceJavacCompilerUse>true</forceJavacCompilerUse>
                 </configuration>
@@ -203,7 +203,7 @@
                         <configuration>
                             <compilerArguments>
                                 -Aeclipselink.persistenceunits=xyz_PU
-                                -Aeclipselink.persistencexml=${basedir}/../xyz-infrastructures/xyz-persistence/src/main/resources/META-INF/persistence.xml
+                                -Aeclipselink.persistencexml=${basedir}/../xyz-env/src/main/resources/META-INF/persistence.xml
                             </compilerArguments>
                             <processors>
                                 <processor>org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor</processor>

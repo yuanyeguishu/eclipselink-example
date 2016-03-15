@@ -233,6 +233,12 @@
                 <version>1.0.2-SNAPSHOT</version>
                 <scope>runtime</scope>
             </dependency>
+            <dependency>
+                <groupId>com.github.namioka.eclipselink-example</groupId>
+                <artifactId>xyz-env</artifactId>
+                <version>1.0.2-SNAPSHOT</version>
+                <scope>runtime</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies />
@@ -659,54 +665,13 @@
     -->
     <reporting />
     <profiles>
-        <profile>
-            <id>local</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <id>arquillian-glassfish-embedded</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties</java.util.logging.config.file>
-                                <derby.stream.error.file>${project.build.directory}/derby.log</derby.stream.error.file>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                    <version>1.0.0.CR4</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.main.extras</groupId>
-                    <artifactId>glassfish-embedded-all</artifactId>
-                    <version>4.1.1</version>
-                    <scope>provided</scope>
-                </dependency>
-                <dependency>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                    <version>19.0</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
+        <!--<profile />-->
     </profiles>
     <modules>
         <module>xyz-application</module>
         <module>xyz-apt</module>
         <module>xyz-domain</module>
+        <module>xyz-env</module>
         <module>xyz-infrastructures</module>
         <module>xyz-interfaces</module>
     </modules>
