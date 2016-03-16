@@ -16,5 +16,37 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
+        <filters>
+            <filter>src/main/filters/${profileId}/filter.properties</filter>
+        </filters>
     </build>
+    <profiles>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profileId>local</profileId>
+            </properties>
+        </profile>
+        <profile>
+            <id>integration</id>
+            <properties>
+                <profileId>integration</profileId>
+            </properties>
+        </profile>
+        <profile>
+            <id>staging</id>
+            <properties>
+                <profileId>staging</profileId>
+            </properties>
+        </profile>
+        <profile>
+            <id>production</id>
+            <properties>
+                <profileId>production</profileId>
+            </properties>
+        </profile>
+    </profiles>
 </project>
