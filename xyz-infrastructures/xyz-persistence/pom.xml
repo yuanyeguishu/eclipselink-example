@@ -177,7 +177,11 @@
             <build>
                 <resources>
                     <resource>
+                        <filtering>true</filtering>
                         <directory>src/it/arquillian-glassfish-embedded/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources</directory>
                     </resource>
                 </resources>
                 <plugins>
@@ -219,7 +223,11 @@
             <build>
                 <resources>
                     <resource>
+                        <filtering>true</filtering>
                         <directory>src/it/arquillian-glassfish-remote/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources</directory>
                     </resource>
                 </resources>
                 <plugins>
