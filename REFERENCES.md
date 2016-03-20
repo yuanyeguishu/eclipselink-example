@@ -13,6 +13,9 @@
   - http://code.mycila.com/license-maven-plugin/
   - http://code.revelc.net/formatter-maven-plugin/
   - https://maven-annotation-plugin.googlecode.com/svn/docs/usage.html
+- [Payara Server](http://www.payara.fish/)
+  - http://blog.c2b2.co.uk/2014/07/alternative-logging-frameworks-for.html
+  - http://blog.payara.fish/testing-applications-with-payara-server-arquillian
 - [Arquillian](http://arquillian.org/)
   - http://arquillian.org/guides/testing_java_persistence/
   - http://arquillian.org/modules/transaction-extension/
