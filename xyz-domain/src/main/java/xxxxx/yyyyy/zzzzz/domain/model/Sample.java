@@ -6,7 +6,6 @@ import javax.persistence.Version;
 import xxxxx.yyyyy.zzzzz.domain.ServiceLocator;
 import xxxxx.yyyyy.zzzzz.domain.shared.AggregateRoot;
 import xxxxx.yyyyy.zzzzz.domain.shared.DomainEventPublisher;
-//@lombok.Data
 
 @lombok.EqualsAndHashCode
 @lombok.ToString
