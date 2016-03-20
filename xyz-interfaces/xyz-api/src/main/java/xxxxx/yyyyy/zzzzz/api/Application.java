@@ -1,4 +1,4 @@
-package xxxxx.yyyyy.zzzzz.batch;
+package xxxxx.yyyyy.zzzzz.api;
 
 import javax.ws.rs.ApplicationPath;
 
