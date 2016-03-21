@@ -1,0 +1,26 @@
+# References
+
+- [Java Platform, Enterprise Edition (Java EE)](http://docs.oracle.com/javaee/7/index.html)
+  - https://glassfish.java.net/wiki-archive/Java%20EE%207%20Maven%20Coordinates.html
+  - https://glassfish.java.net/docs/4.1/release-notes.pdf
+  - https://blogs.oracle.com/theaquarium/entry/spotlight_on_glassfish_4_16
+  - https://blogs.oracle.com/theaquarium/entry/glassfish_4_1_1_has
+- [Apache Maven](https://maven.apache.org/)
+  - https://codehaus-cargo.github.io/cargo/Maven2+plugin.html
+  - https://java.net/projects/maven-glassfish-plugin/content
+  - http://www.eclemma.org/jacoco/trunk/doc/maven.html
+  - https://blogs.oracle.com/geertjan/entry/jacoco_maven_and_netbeans
+  - http://code.mycila.com/license-maven-plugin/
+  - http://code.revelc.net/formatter-maven-plugin/
+  - https://maven-annotation-plugin.googlecode.com/svn/docs/usage.html
+- [Payara Server](http://www.payara.fish/)
+  - http://blog.c2b2.co.uk/2014/07/alternative-logging-frameworks-for.html
+  - http://blog.payara.fish/testing-applications-with-payara-server-arquillian
+- [Arquillian](http://arquillian.org/)
+  - http://arquillian.org/guides/testing_java_persistence/
+  - http://arquillian.org/modules/transaction-extension/
+  - https://github.com/arquillian/arquillian-extension-transaction
+  - http://stackoverflow.com/questions/28046537/testing-jpa-entity-classes-error-transaction-is-required/
+- etc
+  - https://en.wikipedia.org/wiki/Deployment_environment#Development
+  - https://wiki.eclipse.org/UserGuide/JPA/Using_the_Canonical_Model_Generator_%28ELUG%29
