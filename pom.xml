@@ -12,7 +12,7 @@
     -->
     <groupId>com.github.namioka.eclipselink-example</groupId>
     <artifactId>xyz</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description />
@@ -28,7 +28,7 @@
     </prerequisites>
     <scm>
         <developerConnection>scm:git:git@github.com:namioka/eclipselink-example.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>1.0.2</tag>
     </scm>
     <issueManagement />
     <ciManagement />
@@ -220,23 +220,23 @@
             <dependency>
                 <groupId>com.github.namioka.eclipselink-example</groupId>
                 <artifactId>xyz-domain</artifactId>
-                <version>1.0.2-SNAPSHOT</version>
+                <version>1.0.2</version>
             </dependency>
             <dependency>
                 <groupId>com.github.namioka.eclipselink-example</groupId>
                 <artifactId>xyz-application</artifactId>
-                <version>1.0.2-SNAPSHOT</version>
+                <version>1.0.2</version>
             </dependency>
             <dependency>
                 <groupId>com.github.namioka.eclipselink-example</groupId>
                 <artifactId>xyz-persistence</artifactId>
-                <version>1.0.2-SNAPSHOT</version>
+                <version>1.0.2</version>
                 <scope>runtime</scope>
             </dependency>
             <dependency>
                 <groupId>com.github.namioka.eclipselink-example</groupId>
                 <artifactId>xyz-env</artifactId>
-                <version>1.0.2-SNAPSHOT</version>
+                <version>1.0.2</version>
                 <scope>runtime</scope>
             </dependency>
         </dependencies>
