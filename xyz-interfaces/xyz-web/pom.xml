@@ -53,13 +53,11 @@
             <scope>provided</scope>
         </dependency>
         -->
-        <!--
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>javax.faces-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        -->
         <!--
         <dependency>
             <groupId>javax.ejb</groupId>
@@ -129,12 +127,12 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jul-to-slf4j</artifactId>
-            <!-- <scope>test</scope> -->
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <!-- <scope>test</scope> -->
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -183,6 +181,11 @@
         <dependency>
             <groupId>com.github.namioka.eclipselink-example</groupId>
             <artifactId>xyz-persistence</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.namioka.eclipselink-example</groupId>
+            <artifactId>xyz-env</artifactId>
             <scope>runtime</scope>
         </dependency>
     </dependencies>
