@@ -8,7 +8,7 @@
 - [Apache Maven](https://maven.apache.org/)
   - https://codehaus-cargo.github.io/cargo/Maven2+plugin.html
   - https://java.net/projects/maven-glassfish-plugin/content
-  - http://www.eclemma.org/jacoco/trunk/doc/maven.html
+  - http://eclemma.org/jacoco/trunk/doc/maven.html
   - https://blogs.oracle.com/geertjan/entry/jacoco_maven_and_netbeans
   - http://code.mycila.com/license-maven-plugin/
   - http://code.revelc.net/formatter-maven-plugin/
