@@ -1,6 +1,7 @@
 package xxxxx.yyyyy.zzzzz.persistence.jpa._experimental;
 
 import java.io.Serializable;
+import java.lang.reflect.Method;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,21 +13,69 @@ import xxxxx.yyyyy.zzzzz.domain.shared.AggregateRoot;
 
 public interface Functional<T extends AggregateRoot<T, ID>, ID extends Serializable> {
 
-    default T singleResult(EntityManager entityManager, Class<T> entityClass, ToCriteriaQueryFunction<T> f) {
+    default T singleResult(/*EntityManager entityManager, Class<T> entityClass,*/ToCriteriaQueryFunction<T> f) {
+        EntityManager entityManager = null;
+        try {
+            Method method = getClass().getDeclaredMethod("entityManager");
+            method.setAccessible(true);
+            entityManager = (EntityManager) method.invoke(this);
+        } catch (ReflectiveOperationException | SecurityException ex) {
+            throw new RuntimeException(ex);
+        }
+        Class<T> entityClass = null;
+        try {
+            Method method = getClass().getDeclaredMethod("entityClass");
+            method.setAccessible(true);
+            entityClass = (Class<T>) method.invoke(this);
+        } catch (ReflectiveOperationException | SecurityException ex) {
+            throw new RuntimeException(ex);
+        }
         CriteriaBuilder x = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> y = x.createQuery(entityClass);
         Root<T> z = y.from(entityClass);
         return entityManager.createQuery(f.apply(x, y, z)).getSingleResult();
     }
 
-    default List<T> resultList(EntityManager entityManager, Class<T> entityClass, ToCriteriaQueryFunction<T> f) {
+    default List<T> resultList(/*EntityManager entityManager, Class<T> entityClass,*/ToCriteriaQueryFunction<T> f) {
+        EntityManager entityManager = null;
+        try {
+            Method method = getClass().getDeclaredMethod("entityManager");
+            method.setAccessible(true);
+            entityManager = (EntityManager) method.invoke(this);
+        } catch (ReflectiveOperationException | SecurityException ex) {
+            throw new RuntimeException(ex);
+        }
+        Class<T> entityClass = null;
+        try {
+            Method method = getClass().getDeclaredMethod("entityClass");
+            method.setAccessible(true);
+            entityClass = (Class<T>) method.invoke(this);
+        } catch (ReflectiveOperationException | SecurityException ex) {
+            throw new RuntimeException(ex);
+        }
         CriteriaBuilder x = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> y = x.createQuery(entityClass);
         Root<T> z = y.from(entityClass);
         return entityManager.createQuery(f.apply(x, y, z)).getResultList();
     }
 
-    default int bulkUpdate(EntityManager entityManager, Class<T> entityClass, ToCriteriaUpdateFunction<T> f) {
+    default int bulkUpdate(/*EntityManager entityManager, Class<T> entityClass,*/ToCriteriaUpdateFunction<T> f) {
+        EntityManager entityManager = null;
+        try {
+            Method method = getClass().getDeclaredMethod("entityManager");
+            method.setAccessible(true);
+            entityManager = (EntityManager) method.invoke(this);
+        } catch (ReflectiveOperationException | SecurityException ex) {
+            throw new RuntimeException(ex);
+        }
+        Class<T> entityClass = null;
+        try {
+            Method method = getClass().getDeclaredMethod("entityClass");
+            method.setAccessible(true);
+            entityClass = (Class<T>) method.invoke(this);
+        } catch (ReflectiveOperationException | SecurityException ex) {
+            throw new RuntimeException(ex);
+        }
         CriteriaBuilder x = entityManager.getCriteriaBuilder();
         CriteriaUpdate<T> y = x.createCriteriaUpdate(entityClass);
         Root<T> z = y.from(entityClass);
@@ -37,7 +86,23 @@ public interface Functional<T extends AggregateRoot<T, ID>, ID extends Serializa
         return count;
     }
 
-    default int bulkDelete(EntityManager entityManager, Class<T> entityClass, ToCriteriaDeleteFunction<T> f) {
+    default int bulkDelete(/*EntityManager entityManager, Class<T> entityClass,*/ToCriteriaDeleteFunction<T> f) {
+        EntityManager entityManager = null;
+        try {
+            Method method = getClass().getDeclaredMethod("entityManager");
+            method.setAccessible(true);
+            entityManager = (EntityManager) method.invoke(this);
+        } catch (ReflectiveOperationException | SecurityException ex) {
+            throw new RuntimeException(ex);
+        }
+        Class<T> entityClass = null;
+        try {
+            Method method = getClass().getDeclaredMethod("entityClass");
+            method.setAccessible(true);
+            entityClass = (Class<T>) method.invoke(this);
+        } catch (ReflectiveOperationException | SecurityException ex) {
+            throw new RuntimeException(ex);
+        }
         CriteriaBuilder x = entityManager.getCriteriaBuilder();
         CriteriaDelete<T> y = x.createCriteriaDelete(entityClass);
         Root<T> z = y.from(entityClass);

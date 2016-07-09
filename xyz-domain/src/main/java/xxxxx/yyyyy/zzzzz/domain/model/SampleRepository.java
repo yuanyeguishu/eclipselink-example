@@ -1,9 +1,9 @@
 package xxxxx.yyyyy.zzzzz.domain.model;
 
 import java.util.List;
-import xxxxx.yyyyy.zzzzz.domain.shared.Repository;
+import xxxxx.yyyyy.zzzzz.domain.shared._experimental.PageableRepository;
 
-public interface SampleRepository extends Repository<Sample, Long> {
+public interface SampleRepository extends PageableRepository<Sample, Long> {
 
     @Override
     List<Sample> findAll();
