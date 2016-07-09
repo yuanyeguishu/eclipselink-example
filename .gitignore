@@ -1,3 +1,4 @@
+# https://github.com/github/gitignore/blob/master/Java.gitignore
 *.class
 
 # Mobile Tools for Java (J2ME)
@@ -11,7 +12,9 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# apache maven
+
+
+# https://github.com/github/gitignore/blob/master/Maven.gitignore
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -22,12 +25,16 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
-# netbeans
+
+
+# Netbeans
 nbproject/
 nb-configuration.xml
 nbaction.xml
 
-# other...
+
+
+# Other...
 *.log
 *.swp
 *~
