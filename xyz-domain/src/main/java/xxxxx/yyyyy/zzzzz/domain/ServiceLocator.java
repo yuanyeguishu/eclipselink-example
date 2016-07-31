@@ -12,7 +12,7 @@ public final class ServiceLocator {
 
     private static final Map<Class<?>, List<?>> CACHE = new ConcurrentHashMap<>();
 
-    public static <S> List<S> get(final Class<S> clazz) {
+    public static <S> List<S> get(Class<S> clazz) {
         return (List<S>) CACHE.computeIfAbsent(clazz, x -> {
             ServiceLoader<S> serviceLoader = ServiceLoader.load(clazz);
             List<S> services = StreamSupport.stream(serviceLoader.spliterator(), false).collect(Collectors.toList());
@@ -58,7 +58,7 @@ public final class ServiceLocator {
 //        }
 //    }
 //
-//    private static Class<?> forName(final String s) {
+//    private static Class<?> forName(String s) {
 //        try {
 //            return Class.forName(s);
 //        } catch (ClassNotFoundException cause) {
@@ -66,7 +66,7 @@ public final class ServiceLocator {
 //        }
 //    }
 //
-//    public static <S> List<S> get(final Class<S> c) {
+//    public static <S> List<S> get(Class<S> c) {
 //        ServiceLoader<S> serviceLoader = (ServiceLoader<S>) CACHE.get(c);
 //        if (serviceLoader == null) {
 //            throw new IllegalArgumentException();

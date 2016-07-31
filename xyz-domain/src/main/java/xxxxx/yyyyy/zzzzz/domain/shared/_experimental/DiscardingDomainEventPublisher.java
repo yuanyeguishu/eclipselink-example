@@ -7,7 +7,7 @@ import xxxxx.yyyyy.zzzzz.domain.shared.DomainEventPublisher;
 public class DiscardingDomainEventPublisher implements DomainEventPublisher {
 
     @Override
-    public <T extends DomainEvent> void publish(final T domainEvent) {
+    public <T extends DomainEvent> void publish(T domainEvent) {
         log.info(String.format("discard %s [%s]", domainEvent.getClass().getName(), domainEvent.toString()));
     }
 }

@@ -19,7 +19,7 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
     protected final Class<ID> idClass;
 
     //@SuppressWarnings("unchecked")
-    public AbstractRepository(final EntityManager entityManager) {
+    public AbstractRepository(EntityManager entityManager) {
         ParameterizedType parameterizedType = parameterizedType();
         this.entityManager = entityManager;
         this.entityClass = (Class<T>) parameterizedType.getActualTypeArguments()[0];
@@ -49,7 +49,7 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
     }
 
     @Override
-    public <U extends T> U store(final U entity) {
+    public <U extends T> U store(U entity) {
         if (entity.isNew()) {
             entityManager.persist(entity);
             return entity;
@@ -59,26 +59,26 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
     }
 
     @Override
-    public <U extends T> List<U> store(final List<U> entities) {
+    public <U extends T> List<U> store(List<U> entities) {
         // TODO http://www.eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_jdbc_batchwriting.htm
         // TODO http://www.eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_jdbc_batchwritingsize.htm#CIHJADHF
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public <U extends T> void remove(final U entity) {
+    public <U extends T> void remove(U entity) {
         entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
     }
 
     @Override
-    public <U extends T> void remove(final List<U> entities) {
+    public <U extends T> void remove(List<U> entities) {
         // TODO http://www.eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_jdbc_batchwriting.htm
         // TODO http://www.eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_jdbc_batchwritingsize.htm#CIHJADHF
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public T find(final ID id) {
+    public T find(ID id) {
         return entityManager.find(entityClass, id);
     }
 }

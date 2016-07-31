@@ -27,7 +27,7 @@ public class ApplicationManagedEntityManagerProducer {
         return em;
     }
 
-    public void dispose(final @Disposes EntityManager em) {
+    public void dispose(@Disposes EntityManager em) {
         if (log.isTraceEnabled()) {
             log.trace(String.format("dispose -> %s", em.toString()));
         }
@@ -40,17 +40,17 @@ public class ApplicationManagedEntityManagerProducer {
 
         private final EntityManager em;
 
-        public EntityManagerProxy(final EntityManager em) {
+        public EntityManagerProxy(EntityManager em) {
             this.em = em;
         }
 
-        public static EntityManager newProxyInstance(final EntityManager em) {
+        public static EntityManager newProxyInstance(EntityManager em) {
             return (EntityManager) Proxy.newProxyInstance(
                     em.getClass().getClassLoader(), new Class<?>[]{EntityManager.class}, new EntityManagerProxy(em));
         }
 
         @Override
-        public Object invoke(final Object proxy, final Method method, final Object[] args) throws Throwable {
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             em.joinTransaction();
             return method.invoke(em, args);
         }

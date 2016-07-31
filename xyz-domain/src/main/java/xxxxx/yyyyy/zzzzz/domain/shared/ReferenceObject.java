@@ -14,7 +14,7 @@ public interface ReferenceObject<T extends ReferenceObject<T, ID>, ID extends Se
         return id() == null || version() == null;
     }
 
-    default boolean isSameIdentityAs(final T other) {
+    default boolean isSameIdentityAs(T other) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
