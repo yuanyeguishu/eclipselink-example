@@ -15,6 +15,7 @@
                 persistence.xml contains:
                     <jar-file>warEntities.jar</jar-file>
         -->
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <jar-file>xyz-domain-${project.version}.jar</jar-file>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
