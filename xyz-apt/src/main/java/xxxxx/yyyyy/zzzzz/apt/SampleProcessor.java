@@ -16,7 +16,7 @@ import javax.tools.Diagnostic;
 public class SampleProcessor extends AbstractProcessor {
 
     @Override
-    public boolean process(final Set<? extends TypeElement> annotations, final RoundEnvironment roundEnv) {
+    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         Messager messager = processingEnv.getMessager();
         annotations.stream().forEach(x -> {
             messager.printMessage(Diagnostic.Kind.WARNING, String.format("annotations  %s", x.getQualifiedName().toString()));

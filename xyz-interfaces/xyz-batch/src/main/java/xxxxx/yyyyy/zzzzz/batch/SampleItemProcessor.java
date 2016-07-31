@@ -10,7 +10,7 @@ import javax.inject.Named;
 public class SampleItemProcessor implements ItemProcessor {
 
     @Override
-    public Object processItem(final Object item) throws Exception {
+    public Object processItem(Object item) throws Exception {
         log.info("#processItem {}", getClass().getName());
         return null;
     }

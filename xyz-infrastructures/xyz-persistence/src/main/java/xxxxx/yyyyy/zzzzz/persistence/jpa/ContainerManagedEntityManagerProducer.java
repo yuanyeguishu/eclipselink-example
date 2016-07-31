@@ -23,7 +23,7 @@ public class ContainerManagedEntityManagerProducer {
         return em;
     }
 
-    public void dispose(final @Disposes EntityManager em) {
+    public void dispose(@Disposes EntityManager em) {
         if (log.isTraceEnabled()) {
             log.trace(String.format("dispose -> %s", em.toString()));
         }

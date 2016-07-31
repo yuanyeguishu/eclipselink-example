@@ -22,7 +22,7 @@ public class ApplicationManagedEntityManagerFactoryProducer {
         return emf;
     }
 
-    public void dispose(final @Disposes EntityManagerFactory emf) {
+    public void dispose(@Disposes EntityManagerFactory emf) {
         if (log.isTraceEnabled()) {
             log.trace(String.format("dispose -> %s", emf.toString()));
         }

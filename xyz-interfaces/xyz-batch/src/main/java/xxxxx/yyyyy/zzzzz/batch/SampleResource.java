@@ -14,7 +14,7 @@ public class SampleResource {
     private static final String JOB_XML_NAME = "sample-job";
 
     @GET
-    public String start(/*@QueryParam("jobXMLName") final String jobXMLName*/) {
+    public String start(/*@QueryParam("jobXMLName") String jobXMLName*/) {
         JobOperator jobOperator = BatchRuntime.getJobOperator();
         log.info("start");
         long id = jobOperator.start(JOB_XML_NAME, null);

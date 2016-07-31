@@ -12,7 +12,7 @@ import javax.inject.Named;
 public class SampleItemWriter implements ItemWriter {
 
     @Override
-    public void open(final Serializable checkpoint) throws Exception {
+    public void open(Serializable checkpoint) throws Exception {
         log.info("#open {}", getClass().getName());
     }
 
@@ -22,7 +22,7 @@ public class SampleItemWriter implements ItemWriter {
     }
 
     @Override
-    public void writeItems(final List<Object> items) throws Exception {
+    public void writeItems(List<Object> items) throws Exception {
         log.info("#writeItems {}", getClass().getName());
     }
 
