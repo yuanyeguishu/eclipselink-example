@@ -19,4 +19,6 @@ public interface Repository<T extends AggregateRoot<T, ID>, ID extends Serializa
     default List<T> findAll() {
         throw new UnsupportedOperationException("Deprecated");
     }
+//
+//    List<T> findAll(Specification<T> specification);
 }
