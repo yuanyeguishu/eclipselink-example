@@ -35,7 +35,7 @@ public final class POM {
         return (model.getVersion() != null) ? model.getVersion() : model.getParent().getVersion();
     }
 
-    public static String resolveVersion(final String s, final String version) {
+    public static String resolveVersion(String s, String version) {
         if (P.matcher(s).find()) {
             return s.replaceAll(R, String.format("-%s.jar", version));
         } else {
