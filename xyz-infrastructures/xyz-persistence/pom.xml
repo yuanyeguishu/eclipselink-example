@@ -205,6 +205,17 @@
                         <directory>src/main/resources</directory>
                     </resource>
                 </resources>
+                <testResources>
+                    <testResource>
+                        <!--<targetPath />-->
+                        <!--<filtering />-->
+                        <directory>src/test/resources</directory>
+                        <!--<includes />-->
+                        <excludes>
+                            <exclude>META-INF/persistence.xml</exclude>
+                        </excludes>
+                    </testResource>
+                </testResources>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -256,6 +267,7 @@
                 </dependency>
             </dependencies>
         </profile>
+        <!--
         <profile>
             <id>arquillian-glassfish-remote</id>
             <build>
@@ -284,5 +296,6 @@
                 </dependency>
             </dependencies>
         </profile>
+        -->
     </profiles>
 </project>
