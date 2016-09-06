@@ -2,5 +2,7 @@ language: java
 jdk:
   - oraclejdk8
 script:
+  - mvn clean test
   - mvn clean verify -Parquillian-glassfish-embedded
+  - mvn clean install -DskipTests
   - mvn archetype:create-from-project
