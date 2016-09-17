@@ -3,9 +3,7 @@ package xxxxx.yyyyy.zzzzz.xyz.domain.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Version;
-import xxxxx.yyyyy.zzzzz.xyz.domain.ServiceLocator;
 import xxxxx.yyyyy.zzzzz.xyz.domain.shared.AggregateRoot;
-import xxxxx.yyyyy.zzzzz.xyz.domain.shared.DomainEventPublisher;
 
 @lombok.EqualsAndHashCode
 @lombok.ToString
@@ -22,7 +20,7 @@ public class Sample implements AggregateRoot<Sample, Long> {
     public Sample(Long id, String name) {
         setId(id);
         setName(name);
-        ServiceLocator.get(DomainEventPublisher.class).forEach(x -> x.publish(new SampleCreated()));
+        //ServiceLocator.get(DomainEventPublisher.class).forEach(x -> x.publish(new SampleCreated()));
     }
 
     protected Sample() {
