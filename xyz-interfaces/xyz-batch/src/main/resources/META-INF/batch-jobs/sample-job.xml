@@ -13,7 +13,7 @@
     <step id="step2">
         <batchlet ref="sampleBatchlet"/>
         <!--
-        <batchlet ref="xxxxx.yyyyy.zzzzz.xyz.interfaces.batch.SampleBatchlet"/>
+        <batchlet ref="xxxxx.yyyyy.zzzzz.xyz.interfaces.batch.sample.SampleBatchlet"/>
         -->
     </step>
 </job>

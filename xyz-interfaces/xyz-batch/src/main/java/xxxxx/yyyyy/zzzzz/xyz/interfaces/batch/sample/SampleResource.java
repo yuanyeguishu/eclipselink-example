@@ -1,4 +1,4 @@
-package xxxxx.yyyyy.zzzzz.xyz.interfaces.batch;
+package xxxxx.yyyyy.zzzzz.xyz.interfaces.batch.sample;
 
 import javax.batch.operations.JobOperator;
 import javax.batch.runtime.BatchRuntime;

@@ -1,4 +1,4 @@
-package xxxxx.yyyyy.zzzzz.xyz.application.service.impl;
+package xxxxx.yyyyy.zzzzz.xyz.application.sample.service.impl;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -14,8 +14,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import xxxxx.yyyyy.zzzzz.xyz.domain.model.Sample;
-import xxxxx.yyyyy.zzzzz.xyz.domain.model.SampleRepository;
+import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
+import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.SampleRepository;
 
 @Slf4j
 public class SampleServiceImplTest {

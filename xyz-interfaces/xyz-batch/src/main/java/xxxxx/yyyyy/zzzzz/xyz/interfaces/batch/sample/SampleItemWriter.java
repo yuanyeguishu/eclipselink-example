@@ -1,4 +1,4 @@
-package xxxxx.yyyyy.zzzzz.xyz.interfaces.batch;
+package xxxxx.yyyyy.zzzzz.xyz.interfaces.batch.sample;
 
 import java.io.Serializable;
 import java.util.List;

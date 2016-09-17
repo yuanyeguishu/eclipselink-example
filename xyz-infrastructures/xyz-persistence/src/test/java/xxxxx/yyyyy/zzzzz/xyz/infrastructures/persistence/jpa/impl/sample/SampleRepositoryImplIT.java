@@ -1,4 +1,4 @@
-package xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa.impl;
+package xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa.impl.sample;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
@@ -27,8 +27,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
-import xxxxx.yyyyy.zzzzz.xyz.domain.model.Sample;
-import xxxxx.yyyyy.zzzzz.xyz.domain.model.SampleRepository;
+import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
+import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.SampleRepository;
 import xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.POM;
 
 @lombok.extern.slf4j.Slf4j
@@ -42,9 +42,9 @@ public class SampleRepositoryImplIT {
     private EntityManager entityManager;
     @Inject
     private SampleRepository sampleRepository;
+
     //@Rule
     //public TestName name = new TestName();
-
     @Deployment
     public static WebArchive createDeployment() {
         String artifactId = POM.getArtifactId();
@@ -108,7 +108,6 @@ public class SampleRepositoryImplIT {
         assertThat("", x.version(), equalTo(1L));
         assertThat("", x.name(), equalTo("Name1"));
     }
-
 //    //@Transactional
 //    //@Test
 //    public void UnitOfWork_StateUnderTest_ExpectedBehavior3() { // TODO should change method name
@@ -174,6 +173,7 @@ public class SampleRepositoryImplIT {
 //        }
 //    }
 //
+
     private void prepareData(long size) {
         this.begin();
         Stream.iterate(1L, x -> x + 1).limit(size).forEach(x -> {

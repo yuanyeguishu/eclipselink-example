@@ -1,4 +1,4 @@
-package xxxxx.yyyyy.zzzzz.xyz.domain.model;
+package xxxxx.yyyyy.zzzzz.xyz.domain.model.sample;
 
 import java.util.Date;
 import xxxxx.yyyyy.zzzzz.xyz.domain.shared.DomainEvent;

@@ -1,11 +1,11 @@
-package xxxxx.yyyyy.zzzzz.xyz.application.service.impl;
+package xxxxx.yyyyy.zzzzz.xyz.application.sample.service.impl;
 
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import xxxxx.yyyyy.zzzzz.xyz.application.service.SampleService;
-import xxxxx.yyyyy.zzzzz.xyz.domain.model.Sample;
-import xxxxx.yyyyy.zzzzz.xyz.domain.model.SampleRepository;
+import xxxxx.yyyyy.zzzzz.xyz.application.sample.service.SampleService;
+import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
+import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.SampleRepository;
 
 @lombok.extern.slf4j.Slf4j
 @ApplicationScoped
