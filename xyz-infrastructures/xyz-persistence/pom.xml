@@ -196,21 +196,13 @@
         <profile>
             <id>arquillian-glassfish-embedded</id>
             <build>
-                <resources>
-                    <resource>
-                        <filtering>true</filtering>
-                        <directory>src/it/arquillian-glassfish-embedded/resources</directory>
-                    </resource>
-                    <resource>
-                        <directory>src/main/resources</directory>
-                    </resource>
-                </resources>
                 <testResources>
                     <testResource>
-                        <!--<targetPath />-->
-                        <!--<filtering />-->
+                        <filtering>true</filtering>
+                        <directory>src/it/arquillian-glassfish-embedded/resources</directory>
+                    </testResource>
+                    <testResource>
                         <directory>src/test/resources</directory>
-                        <!--<includes />-->
                         <excludes>
                             <exclude>META-INF/persistence.xml</exclude>
                         </excludes>
@@ -256,33 +248,18 @@
                     <scope>provided</scope>
                 </dependency>
                 -->
+                <!--
                 <dependency>
                     <groupId>com.google.guava</groupId>
                     <artifactId>guava</artifactId>
                     <scope>test</scope>
                 </dependency>
+                -->
             </dependencies>
         </profile>
         <!--
         <profile>
             <id>arquillian-glassfish-remote</id>
-            <build>
-                <resources>
-                    <resource>
-                        <filtering>true</filtering>
-                        <directory>src/it/arquillian-glassfish-remote/resources</directory>
-                    </resource>
-                    <resource>
-                        <directory>src/main/resources</directory>
-                    </resource>
-                </resources>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
