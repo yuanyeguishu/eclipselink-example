@@ -1,12 +1,12 @@
-package xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa.impl;
+package xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa.impl.sample;
 
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import xxxxx.yyyyy.zzzzz.xyz.domain.model.Sample;
-import xxxxx.yyyyy.zzzzz.xyz.domain.model.SampleRepository;
-import xxxxx.yyyyy.zzzzz.xyz.domain.model.Sample_;
+import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
+import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.SampleRepository;
+import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample_;
 import xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa.AbstractRepository;
 import xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa._experimental.Functional;
 

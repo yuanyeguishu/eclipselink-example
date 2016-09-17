@@ -1,4 +1,4 @@
-package xxxxx.yyyyy.zzzzz.xyz.apt;
+package xxxxx.yyyyy.zzzzz.xyz.apt.sample;
 
 import static javax.lang.model.SourceVersion.*;
 

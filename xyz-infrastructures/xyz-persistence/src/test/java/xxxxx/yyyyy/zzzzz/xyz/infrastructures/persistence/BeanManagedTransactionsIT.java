@@ -25,7 +25,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import xxxxx.yyyyy.zzzzz.xyz.domain.model.Sample;
+import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
 
 @lombok.extern.slf4j.Slf4j
 //@FixMethodOrder(MethodSorters.NAME_ASCENDING)

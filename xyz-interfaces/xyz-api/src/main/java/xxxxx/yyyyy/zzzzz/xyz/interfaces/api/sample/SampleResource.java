@@ -1,12 +1,12 @@
-package xxxxx.yyyyy.zzzzz.xyz.interfaces.api;
+package xxxxx.yyyyy.zzzzz.xyz.interfaces.api.sample;
 
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import xxxxx.yyyyy.zzzzz.xyz.application.service.SampleService;
-import xxxxx.yyyyy.zzzzz.xyz.domain.model.Sample;
+import xxxxx.yyyyy.zzzzz.xyz.application.sample.service.SampleService;
+import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
 
 @lombok.extern.slf4j.Slf4j
 @Path("sample")
