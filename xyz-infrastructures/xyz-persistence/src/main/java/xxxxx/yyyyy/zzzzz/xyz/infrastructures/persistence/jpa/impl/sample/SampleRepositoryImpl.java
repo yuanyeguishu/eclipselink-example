@@ -18,10 +18,16 @@ public class SampleRepositoryImpl extends AbstractRepository<Sample, Long> imple
     @Inject
     public SampleRepositoryImpl(EntityManager entityManager) {
         super(entityManager);
+        if (log.isTraceEnabled()) {
+            log.trace(String.format("Constructor this.entityManager.toString()=%s", this.entityManager.toString()));
+        }
     }
 
     @Override
     public List<Sample> findAll() {
+        if (log.isTraceEnabled()) {
+            log.trace(String.format("findAll this.entityManager.toString()=%s", this.entityManager.toString()));
+        }
         return resultList(entityManager, entityClass, (b, q, r) -> {
             return q.select(r);
         });
