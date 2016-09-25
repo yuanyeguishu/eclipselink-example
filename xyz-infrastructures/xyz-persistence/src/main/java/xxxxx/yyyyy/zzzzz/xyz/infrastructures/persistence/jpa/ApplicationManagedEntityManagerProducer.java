@@ -1,58 +1,69 @@
 package xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-import javax.enterprise.context.Dependent;
+import javax.ejb.Lock;
+import javax.ejb.LockType;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 
 @lombok.extern.slf4j.Slf4j
-//@ApplicationScoped
+@Startup
+@Singleton
+@Lock(LockType.READ) //TODO
 public class ApplicationManagedEntityManagerProducer {
 
-    @Inject
-    private EntityManagerFactory emf;
+    @PersistenceUnit //(unitName = PERSISTENCE_UNIT_NAME)
+    private EntityManagerFactory entityManagerFactory;
+//
+//    @PostConstruct
+//    void postConstruct() {
+//    }
+//
+//    @PreDestroy
+//    void preDestroy() {
+//    }
 
-    @Dependent
+    @RequestScoped
     @Produces
     public EntityManager produce() {
-        EntityManager em = EntityManagerProxy.newProxyInstance(emf.createEntityManager());
+        //EntityManager entityManager = EntityManagerProxy.newProxyInstance(this.entityManagerFactory.createEntityManager());
+        EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         if (log.isTraceEnabled()) {
-            log.trace(String.format("produce -> %s", em.toString()));
+            log.trace(String.format("@Produces -> %s", entityManager.toString()));
         }
-        return em;
+        return entityManager;
     }
 
-    public void dispose(@Disposes EntityManager em) {
+    public void dispose(@Disposes EntityManager entityManager) {
         if (log.isTraceEnabled()) {
-            log.trace(String.format("dispose -> %s", em.toString()));
+            log.trace(String.format("@Disposes -> %s", entityManager.toString()));
         }
-        if (em != null && em.isOpen()) {
-            em.close();
-        }
-    }
-
-    private static class EntityManagerProxy implements InvocationHandler {
-
-        private final EntityManager em;
-
-        public EntityManagerProxy(EntityManager em) {
-            this.em = em;
-        }
-
-        public static EntityManager newProxyInstance(EntityManager em) {
-            return (EntityManager) Proxy.newProxyInstance(
-                    em.getClass().getClassLoader(), new Class<?>[]{EntityManager.class}, new EntityManagerProxy(em));
-        }
-
-        @Override
-        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            em.joinTransaction();
-            return method.invoke(em, args);
+        if (entityManager.isOpen()) {
+            entityManager.close();
+            if (log.isTraceEnabled()) {
+                log.trace(String.format("@Disposes.closed -> %s", entityManager.toString()));
+            }
         }
     }
+//
+//    private static class EntityManagerProxy implements InvocationHandler {
+//        private final EntityManager entityManager;
+//        public EntityManagerProxy(EntityManager o) {
+//            this.entityManager = o;
+//        }
+//        public static EntityManager newProxyInstance(EntityManager o) {
+//            return (EntityManager) Proxy.newProxyInstance(
+//                    o.getClass().getClassLoader(), new Class<?>[]{EntityManager.class}, new EntityManagerProxy(o));
+//        }
+//        @Override
+//        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+//            this.entityManager.joinTransaction();
+//            return method.invoke(this.entityManager, args);
+//        }
+//    }
 }

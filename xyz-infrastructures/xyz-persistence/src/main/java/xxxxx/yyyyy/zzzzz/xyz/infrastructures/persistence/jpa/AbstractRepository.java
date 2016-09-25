@@ -26,8 +26,10 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
         this.idClass = (Class<ID>) parameterizedType.getActualTypeArguments()[1];
     }
 //
-//    @Inject
+//    @PersistenceContext //@Inject
 //    protected EntityManager entityManager;
+//    protected final Class<T> entityClass;
+//    protected final Class<ID> idClass;
 //
 //    //@SuppressWarnings("unchecked")
 //    public AbstractRepository() {
@@ -50,11 +52,18 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
 
     @Override
     public <U extends T> U store(U entity) {
+        if (log.isDebugEnabled()) {
+            log.trace(String.format("%s -> %s", "store", this.entityManager.toString()));
+        }
+        // JSR 338 7.7 Application-managed Persistence Contexts
+        if (!this.entityManager.isJoinedToTransaction()) {
+            this.entityManager.joinTransaction();
+        }
         if (entity.isNew()) {
-            entityManager.persist(entity);
+            this.entityManager.persist(entity);
             return entity;
         } else {
-            return entityManager.merge(entity);
+            return this.entityManager.merge(entity);
         }
     }
 
@@ -67,7 +76,15 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
 
     @Override
     public <U extends T> void remove(U entity) {
-        entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
+        if (log.isDebugEnabled()) {
+            log.trace(String.format("%s -> %s", "remove", this.entityManager.toString()));
+        }
+        // JSR 338 7.7 Application-managed Persistence Contexts
+        if (!this.entityManager.isJoinedToTransaction()) {
+            this.entityManager.joinTransaction();
+        }
+        this.entityManager.remove(
+                this.entityManager.contains(entity) ? entity : this.entityManager.merge(entity));
     }
 
     @Override
@@ -79,6 +96,9 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
 
     @Override
     public T find(ID id) {
-        return entityManager.find(entityClass, id);
+        if (log.isDebugEnabled()) {
+            log.trace(String.format("%s -> %s", "find", this.entityManager.toString()));
+        }
+        return this.entityManager.find(this.entityClass, id);
     }
 }

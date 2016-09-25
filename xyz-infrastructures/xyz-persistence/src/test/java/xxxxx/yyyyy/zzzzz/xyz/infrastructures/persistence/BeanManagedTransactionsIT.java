@@ -6,8 +6,9 @@ import static org.junit.Assert.*;
 import java.io.File;
 import java.util.UUID;
 import java.util.stream.Stream;
-import javax.inject.Inject;
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
@@ -23,7 +24,9 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
 
@@ -32,13 +35,15 @@ import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
 @RunWith(Arquillian.class)
 public class BeanManagedTransactionsIT {
 
-    @Inject
+    @Rule
+    public TestName name = new TestName();
+    @Resource //@Inject
     private UserTransaction userTransaction;
-    @Inject
+    @PersistenceContext //@Inject
     private EntityManager entityManager;
 
     @Deployment
-    public static WebArchive createDeployment() {
+    public static WebArchive createDeployment() throws Exception {
         String artifactId = POM.getArtifactId();
         String version = POM.getVersion();
         WebArchive war = ShrinkWrap.create(WebArchive.class);
@@ -63,6 +68,7 @@ public class BeanManagedTransactionsIT {
 
     @Before
     public void before() throws Exception {
+        log.info(String.format("\n\n\n[START] %s", name.getMethodName()));
         this.begin();
         this.entityManager.createQuery("delete from Sample").executeUpdate();
         this.commit();
@@ -70,22 +76,24 @@ public class BeanManagedTransactionsIT {
 
     @After
     public void after() throws Exception {
+        log.info("[END]\n\n\n");
     }
 
     @Test
-    public void UnitOfWork_StateUnderTest_ExpectedBehavior0() { // TODO should change method name
+    public void UnitOfWork_StateUnderTest_ExpectedBehavior0() throws Exception { // TODO should change method name
+        final String jpql = "select count(x) from Sample as x";
         this.begin();
         this.entityManager.persist(new Sample(1L, UUID.randomUUID().toString()));
         this.commit();
-        assertThat("", this.entityManager.createQuery("select count(x) from Sample as x", Long.class).getSingleResult(), equalTo(1L));
+        assertThat("", this.entityManager.createQuery(jpql, Long.class).getSingleResult(), equalTo(1L));
         this.begin();
         this.entityManager.persist(new Sample(2L, UUID.randomUUID().toString()));
         this.rollback();
-        assertThat("", this.entityManager.createQuery("select count(x) from Sample as x", Long.class).getSingleResult(), equalTo(1L));
+        assertThat("", this.entityManager.createQuery(jpql, Long.class).getSingleResult(), equalTo(1L));
         this.begin();
         this.entityManager.persist(new Sample(2L, UUID.randomUUID().toString()));
         this.commit();
-        assertThat("", this.entityManager.createQuery("select count(x) from Sample as x", Long.class).getSingleResult(), equalTo(2L));
+        assertThat("", this.entityManager.createQuery(jpql, Long.class).getSingleResult(), equalTo(2L));
     }
 
     private void begin() {
