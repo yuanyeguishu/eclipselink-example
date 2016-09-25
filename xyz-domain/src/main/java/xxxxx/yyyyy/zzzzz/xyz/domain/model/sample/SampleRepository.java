@@ -9,8 +9,4 @@ public interface SampleRepository extends Repository<Sample, Long> {
     List<Sample> findAll();
 
     Sample findByName(String name);
-
-    void bulkUpdateNameByIds(String name, List<Long> ids);
-
-    void bulkDeleteByIds(List<Long> ids);
 }

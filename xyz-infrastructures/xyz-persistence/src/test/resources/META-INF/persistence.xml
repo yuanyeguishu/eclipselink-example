@@ -6,7 +6,7 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <!--<jta-data-source>java:comp/DefaultDataSource</jta-data-source>-->
         <!--
-            jsr338 8.2.1.6.3Jar Files
+            jsr338 8.2.1.6.3 Jar Files
             Example 4:
                 app.ear
                     war1.war

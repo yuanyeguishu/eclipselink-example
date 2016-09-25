@@ -156,6 +156,13 @@
                 <version>1.7</version>
                 <scope>provided</scope>
             </dependency>
+            <!-- Addition -->
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>1.2</version>
+                <scope>provided</scope>
+            </dependency>
             <!-- Java Platform, Enterprise Edition (Java EE) 7 -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
