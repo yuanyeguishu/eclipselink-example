@@ -10,6 +10,8 @@ import xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa.AbstractRepository;
 @lombok.extern.slf4j.Slf4j
 //@Typed(value = SampleRepository.class)
 @javax.enterprise.context.ApplicationScoped
+//@javax.ejb.Singleton
+//@javax.ejb.Stateful
 //@javax.ejb.Stateless
 public class SampleRepositoryImpl extends AbstractRepository<Sample, Long> implements SampleRepository {
 

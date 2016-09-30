@@ -1,6 +1,7 @@
 package xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -17,13 +18,17 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
     protected final EntityManager entityManager;
     protected final Class<T> entityClass;
     protected final Class<ID> idClass;
+    protected final Field idField;
 
-    //@SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked") 
     public AbstractRepository(EntityManager entityManager) {
-        ParameterizedType parameterizedType = parameterizedType();
         this.entityManager = entityManager;
+        // ----------
+        // Reflective operations
+        ParameterizedType parameterizedType = parameterizedType();
         this.entityClass = (Class<T>) parameterizedType.getActualTypeArguments()[0];
         this.idClass = (Class<ID>) parameterizedType.getActualTypeArguments()[1];
+        this.idField = null;
     }
 //
 //    @PersistenceContext //@Inject
@@ -55,6 +60,35 @@ public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID exte
         if (log.isDebugEnabled()) {
             log.trace(String.format("%s -> %s", "store", this.entityManager.toString()));
         }
+
+        if (entity == null) {
+            throw new IllegalArgumentException();
+        }
+
+        if (entity.version() == null) {
+            // New entity.
+            if (entity.id() == null) {
+                if (log.isDebugEnabled()) {
+                    log.trace(String.format("##### id is null, version is null. %s", entity.toString()));
+                }
+            } else {
+                if (log.isDebugEnabled()) {
+                    log.trace(String.format("##### id is not null, version is null. %s", entity.toString()));
+                }
+            }
+        } else {
+            // To be merged.
+            if (entity.id() == null) {
+                if (log.isDebugEnabled()) {
+                    log.trace(String.format("##### id is null, version is not null. %s", entity.toString()));
+                }
+            } else {
+                if (log.isDebugEnabled()) {
+                    log.trace(String.format("##### id is not null, version is not null. %s", entity.toString()));
+                }
+            }
+        }
+
         // JSR 338 7.7 Application-managed Persistence Contexts
         if (!this.entityManager.isJoinedToTransaction()) {
             this.entityManager.joinTransaction();

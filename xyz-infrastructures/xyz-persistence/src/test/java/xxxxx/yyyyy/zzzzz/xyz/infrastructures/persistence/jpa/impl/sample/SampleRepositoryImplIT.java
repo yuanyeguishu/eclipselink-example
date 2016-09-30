@@ -73,8 +73,15 @@ public class SampleRepositoryImplIT {
 
     //@Transactional
     @Test(expected = IllegalArgumentException.class)
+    //@Test(expected = javax.ejb.EJBException.class)
     public void UnitOfWork_StateUnderTest_ExpectedBehavior0() throws Exception { // TODO should change method name
+        //this.sampleRepository.findByName(null);
+        try {
         this.sampleRepository.findByName(null);
+        } catch(Exception cause) {
+        cause.printStackTrace();
+        throw cause;
+        }
     }
 
     @Transactional
