@@ -109,14 +109,18 @@ public class SampleRepositoryImplIT {
     @Transactional
     @Test
     public void UnitOfWork_StateUnderTest_ExpectedBehavior3() throws Exception { // TODO should change method name
+        Sample sample = this.sampleRepository.findByName("0");
+        assertThat("", sample.id(), equalTo(0L));
+        assertThat("", sample.version(), equalTo(1L));
+        assertThat("", sample.name(), equalTo("0"));
+    }
+
+    @Transactional
+    @Test
+    public void UnitOfWork_StateUnderTest_ExpectedBehavior4() throws Exception { // TODO should change method name
         this.sampleRepository.findAll().stream()
                 .forEach(this.sampleRepository::remove);
         List<Sample> samples = this.sampleRepository.findAll();
         assertThat("", samples.size(), equalTo(0));
     }
-//
-//    @Transactional
-//    @Test
-//    public void UnitOfWork_StateUnderTest_ExpectedBehavior4() throws Exception { // TODO should change method name
-//    }
 }
