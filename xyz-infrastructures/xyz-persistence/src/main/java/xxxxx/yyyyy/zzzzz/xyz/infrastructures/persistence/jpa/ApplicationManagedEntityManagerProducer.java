@@ -30,7 +30,7 @@ public class ApplicationManagedEntityManagerProducer {
 
     @RequestScoped
     @Produces
-    EntityManager produce() {
+    public EntityManager produce() {
         //EntityManager entityManager = EntityManagerProxy.newProxyInstance(this.entityManagerFactory.createEntityManager());
         EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         if (log.isTraceEnabled()) {
@@ -39,7 +39,7 @@ public class ApplicationManagedEntityManagerProducer {
         return entityManager;
     }
 
-    void dispose(@Disposes EntityManager entityManager) {
+    public void dispose(@Disposes EntityManager entityManager) {
         if (log.isTraceEnabled()) {
             log.trace(String.format("@Disposes -> %s", entityManager.toString()));
         }
