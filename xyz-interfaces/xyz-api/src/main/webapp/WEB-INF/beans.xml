@@ -3,6 +3,6 @@
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        version="1.1" bean-discovery-mode="annotated">
     <interceptors>
-        <class>xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.LifecycleInterceptor</class>
+        <class>xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.TraceBeanLifecycleInterceptor</class>
     </interceptors>
 </beans>

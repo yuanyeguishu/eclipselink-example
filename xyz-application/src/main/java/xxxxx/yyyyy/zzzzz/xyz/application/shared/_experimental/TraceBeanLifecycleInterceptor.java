@@ -9,8 +9,8 @@ import javax.interceptor.InvocationContext;
 
 @lombok.extern.slf4j.Slf4j
 @Dependent
-@Interceptor @Lifecycle
-public class LifecycleInterceptor {
+@Interceptor @TraceBeanLifecycle
+public class TraceBeanLifecycleInterceptor {
 
     @AroundConstruct
     Object aroundConstruct(InvocationContext ctx) throws Exception {

@@ -12,5 +12,5 @@ import javax.interceptor.InterceptorBinding;
 @InterceptorBinding
 @Target({TYPE}) //@Target({TYPE, METHOD, CONSTRUCTOR})
 @Retention(RUNTIME)
-public @interface Lifecycle {
+public @interface TraceBeanLifecycle {
 }

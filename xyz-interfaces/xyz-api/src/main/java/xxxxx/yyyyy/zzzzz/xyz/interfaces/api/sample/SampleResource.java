@@ -20,11 +20,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import xxxxx.yyyyy.zzzzz.xyz.application.sample.service.SampleService;
-import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.Lifecycle;
+import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.TraceBeanLifecycle;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
 
 @lombok.extern.slf4j.Slf4j
-@Lifecycle
+@TraceBeanLifecycle
 @Path("samples")
 @RequestScoped
 public class SampleResource {

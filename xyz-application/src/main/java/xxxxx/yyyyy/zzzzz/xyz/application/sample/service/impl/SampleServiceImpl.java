@@ -6,12 +6,12 @@ import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import xxxxx.yyyyy.zzzzz.xyz.application.sample.service.SampleService;
-import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.Lifecycle;
+import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.TraceBeanLifecycle;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.SampleRepository;
 
 @lombok.extern.slf4j.Slf4j
-@Lifecycle
+@TraceBeanLifecycle
 @javax.enterprise.context.ApplicationScoped
 //@javax.ejb.Stateless
 public class SampleServiceImpl implements SampleService {
