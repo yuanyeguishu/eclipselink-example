@@ -11,9 +11,12 @@
   - http://blog.c2b2.co.uk/2014/07/alternative-logging-frameworks-for.html
   - http://blog.payara.fish/testing-applications-with-payara-server-arquillian
 - [Arquillian](http://arquillian.org/)
+  - http://arquillian.org/guides/getting_started/
   - http://arquillian.org/guides/testing_java_persistence/
   - http://arquillian.org/modules/transaction-extension/
+  - http://arquillian.org/blog/2012/04/13/the-danger-of-embedded-containers/
   - https://github.com/arquillian/arquillian-extension-transaction
+  - https://github.com/arquillian/arquillian-container-glassfish/pull/33
   - http://stackoverflow.com/questions/28046537/testing-jpa-entity-classes-error-transaction-is-required/
 - [Apache Maven](https://maven.apache.org/)
   - https://codehaus-cargo.github.io/cargo/Maven2+plugin.html

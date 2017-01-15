@@ -2,7 +2,7 @@
 
 set -eu
 
-mvn clean install -DskipTests
-mvn dependency:sources
-mvn dependency:resolve -Dclassifier=javadoc
+mvn -T 1.0C clean install -DskipTests
+mvn -T 1.0C dependency:sources
+mvn -T 1.0C dependency:resolve -Dclassifier=javadoc
 

@@ -8,7 +8,7 @@ import javax.interceptor.InvocationContext;
 @lombok.extern.slf4j.Slf4j
 @Dependent
 @Interceptor @Trace
-public class TraceInterceptor extends AbstractInterceptor {
+public class TraceInterceptor /*extends AbstractInterceptor*/ {
 
     @AroundInvoke
     public Object aroundInvoke(InvocationContext invocationContext) throws Throwable {

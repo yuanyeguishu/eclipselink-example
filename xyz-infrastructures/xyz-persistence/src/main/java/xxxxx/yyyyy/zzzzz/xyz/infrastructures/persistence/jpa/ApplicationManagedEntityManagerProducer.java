@@ -1,5 +1,7 @@
 package xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.Lock;
 import javax.ejb.LockType;
 import javax.ejb.Singleton;
@@ -10,8 +12,10 @@ import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
+import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.Lifecycle;
 
 @lombok.extern.slf4j.Slf4j
+@Lifecycle
 @Startup
 @Singleton
 @Lock(LockType.READ) //TODO
@@ -19,14 +23,18 @@ public class ApplicationManagedEntityManagerProducer {
 
     @PersistenceUnit //(unitName = PERSISTENCE_UNIT_NAME)
     private EntityManagerFactory entityManagerFactory;
-//
-//    @PostConstruct
-//    void postConstruct() {
-//    }
-//
-//    @PreDestroy
-//    void preDestroy() {
-//    }
+
+    @PostConstruct
+    void postConstruct() {
+    }
+
+    @PreDestroy
+    void preDestroy() {
+        // if (this.entityManagerFactory.isOpen()) {
+        //     // java.lang.IllegalStateException: Attempting to execute an operation on a closed EntityManagerFactory.
+        //     this.entityManagerFactory.close();
+        // }
+    }
 
     @RequestScoped
     @Produces
@@ -34,21 +42,32 @@ public class ApplicationManagedEntityManagerProducer {
         //EntityManager entityManager = EntityManagerProxy.newProxyInstance(this.entityManagerFactory.createEntityManager());
         EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         if (log.isTraceEnabled()) {
-            log.trace(String.format("@Produces -> %s", entityManager.toString()));
+            log.trace(String.format("[Lifecycle][@Produces] entityManager=%s", entityManager.toString()));
         }
         return entityManager;
     }
 
     public void dispose(@Disposes EntityManager entityManager) {
         if (log.isTraceEnabled()) {
-            log.trace(String.format("@Disposes -> %s", entityManager.toString()));
+            log.trace(String.format("[Lifecycle][@Disposes] entityManager=%s", entityManager.toString()));
         }
         if (entityManager.isOpen()) {
             entityManager.close();
             if (log.isTraceEnabled()) {
-                log.trace(String.format("@Disposes.closed -> %s", entityManager.toString()));
+                log.trace(String.format("[Lifecycle][@Disposes.closed] entityManager=%s", entityManager.toString()));
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return new StringBuilder()
+                .append(super.toString())
+                .append(" {")
+                .append("this.entityManagerFactory=").append((this.entityManagerFactory == null) ? "null" : this.entityManagerFactory.toString())
+                //.append(", ")
+                .append("}")
+                .toString();
     }
 //
 //    private static class EntityManagerProxy implements InvocationHandler {
