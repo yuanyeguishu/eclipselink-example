@@ -184,23 +184,23 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.16.10</version>
+                <version>1.16.12</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.21</version>
+                <version>1.7.22</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jul-to-slf4j</artifactId>
-                <version>1.7.21</version>
+                <version>1.7.22</version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.1.7</version>
+                <version>1.1.8</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
@@ -217,13 +217,13 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>1.10.19</version>
+                <version>2.6.2</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.1.11.Final</version>
+                <version>1.1.12.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -237,7 +237,7 @@
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-bom</artifactId>
-                <version>2.2.3</version>
+                <version>2.2.5</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -250,7 +250,7 @@
             <dependency>
                 <groupId>fish.payara.extras</groupId>
                 <artifactId>payara-embedded-all</artifactId>
-                <version>4.1.1.163.0.1</version>
+                <version>4.1.1.164</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -268,7 +268,7 @@
             <dependency>
                 <groupId>fish.payara.distributions</groupId>
                 <artifactId>payara</artifactId>
-                <version>4.1.1.163</version>
+                <version>4.1.1.164</version>
                 <type>zip</type>
             </dependency>
             <dependency>
@@ -280,7 +280,7 @@
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
                 <artifactId>wildfly-arquillian-container-managed</artifactId>
-                <version>2.0.0.Final</version>
+                <version>2.0.2.Final</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -292,12 +292,12 @@
             <dependency>
                 <groupId>org.eclipse.persistence</groupId>
                 <artifactId>eclipselink</artifactId>
-                <version>2.6.3</version>
+                <version>2.6.3</version><!-- http://www.payara.fish/release_notes -->
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
-                <version>1.4.192</version>
+                <version>1.4.193</version>
             </dependency>
             <dependency>
                 <groupId>com.github.namioka.eclipselink-example</groupId>
