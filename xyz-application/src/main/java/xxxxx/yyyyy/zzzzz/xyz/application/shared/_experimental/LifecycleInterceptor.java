@@ -13,7 +13,7 @@ import javax.interceptor.InvocationContext;
 public class LifecycleInterceptor {
 
     @AroundConstruct
-    public Object aroundConstruct(InvocationContext ctx) throws Exception {
+    Object aroundConstruct(InvocationContext ctx) throws Exception {
         try {
             return ctx.proceed();
         } finally {
@@ -24,7 +24,7 @@ public class LifecycleInterceptor {
     }
 
     @PostConstruct
-    public Object postConstruct(InvocationContext ctx) throws Exception {
+    Object postConstruct(InvocationContext ctx) throws Exception {
         try {
             return ctx.proceed();
         } finally {
@@ -35,7 +35,7 @@ public class LifecycleInterceptor {
     }
 
     @PreDestroy
-    public Object preDestroy(InvocationContext ctx) throws Exception {
+    Object preDestroy(InvocationContext ctx) throws Exception {
         if (log.isTraceEnabled()) {
             log.trace("[Lifecycle][@PreDestroy]      {}", ctx.getTarget().toString());
         }
