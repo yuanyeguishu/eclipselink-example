@@ -24,21 +24,26 @@ public class LifecycleInterceptor {
     }
 
     @PostConstruct
-    Object postConstruct(InvocationContext ctx) throws Exception {
+    void postConstruct(InvocationContext ctx) {
         try {
-            return ctx.proceed();
-        } finally {
+            ctx.proceed();
             if (log.isTraceEnabled()) {
                 log.trace("[Lifecycle][@PostConstruct]   {}", ctx.getTarget().toString());
             }
+        } catch (Exception cause) {
+            throw new RuntimeException(cause);
         }
     }
 
     @PreDestroy
-    Object preDestroy(InvocationContext ctx) throws Exception {
-        if (log.isTraceEnabled()) {
-            log.trace("[Lifecycle][@PreDestroy]      {}", ctx.getTarget().toString());
+    void preDestroy(InvocationContext ctx) {
+        try {
+            if (log.isTraceEnabled()) {
+                log.trace("[Lifecycle][@PreDestroy]      {}", ctx.getTarget().toString());
+            }
+            ctx.proceed();
+        } catch (Exception cause) {
+            throw new RuntimeException(cause);
         }
-        return ctx.proceed();
     }
 }
