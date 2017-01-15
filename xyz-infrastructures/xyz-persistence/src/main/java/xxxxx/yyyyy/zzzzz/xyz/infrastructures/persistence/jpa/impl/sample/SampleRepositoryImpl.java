@@ -6,13 +6,13 @@ import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.Lifecycle;
+import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.TraceBeanLifecycle;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.SampleRepository;
 import xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa.AbstractRepository;
 
 @lombok.extern.slf4j.Slf4j
-@Lifecycle
+@TraceBeanLifecycle
 //@Typed(value = SampleRepository.class)
 @ApplicationScoped
 public class SampleRepositoryImpl extends AbstractRepository<Sample, Long> implements SampleRepository {

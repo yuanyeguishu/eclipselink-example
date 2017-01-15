@@ -12,10 +12,10 @@ import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
-import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.Lifecycle;
+import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.TraceBeanLifecycle;
 
 @lombok.extern.slf4j.Slf4j
-@Lifecycle
+@TraceBeanLifecycle
 @Startup
 @Singleton
 @Lock(LockType.READ) //TODO

@@ -9,11 +9,11 @@ import javax.interceptor.InvocationContext;
 
 @lombok.extern.slf4j.Slf4j
 @Dependent
-@Interceptor @Lifecycle
-public class LifecycleInterceptor {
+@Interceptor @TraceBeanLifecycle
+public class TraceBeanLifecycleInterceptor {
 
     @AroundConstruct
-    public Object aroundConstruct(InvocationContext ctx) throws Exception {
+    Object aroundConstruct(InvocationContext ctx) throws Exception {
         try {
             return ctx.proceed();
         } finally {
@@ -24,21 +24,26 @@ public class LifecycleInterceptor {
     }
 
     @PostConstruct
-    public Object postConstruct(InvocationContext ctx) throws Exception {
+    void postConstruct(InvocationContext ctx) {
         try {
-            return ctx.proceed();
-        } finally {
+            ctx.proceed();
             if (log.isTraceEnabled()) {
                 log.trace("[Lifecycle][@PostConstruct]   {}", ctx.getTarget().toString());
             }
+        } catch (Exception cause) {
+            throw new RuntimeException(cause);
         }
     }
 
     @PreDestroy
-    public Object preDestroy(InvocationContext ctx) throws Exception {
-        if (log.isTraceEnabled()) {
-            log.trace("[Lifecycle][@PreDestroy]      {}", ctx.getTarget().toString());
+    void preDestroy(InvocationContext ctx) {
+        try {
+            if (log.isTraceEnabled()) {
+                log.trace("[Lifecycle][@PreDestroy]      {}", ctx.getTarget().toString());
+            }
+            ctx.proceed();
+        } catch (Exception cause) {
+            throw new RuntimeException(cause);
         }
-        return ctx.proceed();
     }
 }
