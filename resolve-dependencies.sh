@@ -19,4 +19,4 @@ set -eu
 
 mvn -T 4.0C clean install -DskipTests
 mvn -T 4.0C dependency:sources
-mvn -T 4.0C dependency:resolve -Dclassifier=javadoc
+#mvn -T 4.0C dependency:resolve -Dclassifier=javadoc
