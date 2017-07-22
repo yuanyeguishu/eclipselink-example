@@ -25,7 +25,7 @@ trap "trap_exit" EXIT
 
 which mvn
 if [ $? -eq 0 ]; then
-    mvn -T 1.0C clean
+    mvn -T 4.0C clean
 fi
 
 find -type f -name '*.java'       | xargs sed -i '/^\s*$/d'
