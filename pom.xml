@@ -745,9 +745,10 @@
                             <owner>Masamitsu Namioka</owner>
                             <email>masamitsunamioka@gmail.com</email>
                         </properties>
-                        <!--
                         <excludes>
+                            <exclude>**/*.xhtml</exclude>
                         </excludes>
+                        <!--
                         <includes>
                         </includes>
                         -->
