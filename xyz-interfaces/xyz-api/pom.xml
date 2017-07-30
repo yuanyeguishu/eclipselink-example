@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright © 2015 Masamitsu Namioka (masamitsunamioka@gmail.com)
+    Copyright © 2015-2017 Masamitsu Namioka (masamitsunamioka@gmail.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -26,6 +26,9 @@
     </parent>
     <artifactId>xyz-api</artifactId>
     <packaging>war</packaging>
+    <properties>
+        <project.rootdir>${basedir}/../..</project.rootdir>
+    </properties>
     <dependencies>
         <!-- Java Platform, Enterprise Edition (Java EE) 7 -->
         <!--

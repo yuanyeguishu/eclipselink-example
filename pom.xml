@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright © 2015 Masamitsu Namioka (masamitsunamioka@gmail.com)
+    Copyright © 2015-2017 Masamitsu Namioka (masamitsunamioka@gmail.com)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -63,6 +63,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <prerequisites.maven>3.3.9</prerequisites.maven>
+        <project.rootdir>${basedir}</project.rootdir>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -728,15 +729,26 @@
                     <groupId>com.mycila</groupId>
                     <artifactId>license-maven-plugin</artifactId>
                     <version>3.0</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.mycila</groupId>
+                            <artifactId>license-maven-plugin-git</artifactId>
+                            <version>3.0</version>
+                        </dependency>
+                    </dependencies>
                     <configuration>
+                        <!--
                         <header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
+                        -->
+                        <header>${project.rootdir}/license/templates/APACHE-2.txt</header>
                         <properties>
                             <owner>Masamitsu Namioka</owner>
                             <email>masamitsunamioka@gmail.com</email>
                         </properties>
-                        <!--
                         <excludes>
+                            <exclude>**/*.xhtml</exclude>
                         </excludes>
+                        <!--
                         <includes>
                         </includes>
                         -->
