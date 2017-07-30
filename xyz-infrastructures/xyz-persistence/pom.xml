@@ -26,6 +26,9 @@
     </parent>
     <artifactId>xyz-persistence</artifactId>
     <packaging>jar</packaging>
+    <properties>
+        <project.rootdir>${basedir}/../..</project.rootdir>
+    </properties>
     <dependencies>
         <!-- Java Platform, Enterprise Edition (Java EE) 7 -->
         <!--

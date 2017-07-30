@@ -26,6 +26,9 @@
     </parent>
     <artifactId>xyz-apt</artifactId>
     <packaging>jar</packaging>
+    <properties>
+        <project.rootdir>${basedir}/..</project.rootdir>
+    </properties>
     <build>
         <plugins>
             <plugin>

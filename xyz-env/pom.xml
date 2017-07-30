@@ -26,6 +26,9 @@
     </parent>
     <artifactId>xyz-env</artifactId>
     <packaging>jar</packaging>
+    <properties>
+        <project.rootdir>${basedir}/..</project.rootdir>
+    </properties>
     <build>
         <resources>
             <resource>

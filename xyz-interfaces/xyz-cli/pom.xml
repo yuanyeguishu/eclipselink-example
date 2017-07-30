@@ -26,6 +26,9 @@
     </parent>
     <artifactId>xyz-cli</artifactId>
     <packaging>jar</packaging>
+    <properties>
+        <project.rootdir>${basedir}/../..</project.rootdir>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
