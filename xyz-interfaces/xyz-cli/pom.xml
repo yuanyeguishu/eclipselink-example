@@ -21,7 +21,7 @@
     <parent>
         <groupId>com.github.namioka.eclipselink-example</groupId>
         <artifactId>xyz-interfaces</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.0.3</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>xyz-cli</artifactId>
