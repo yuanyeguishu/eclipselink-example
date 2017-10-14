@@ -21,8 +21,8 @@ import java.util.regex.Pattern;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.DefaultModelReader;
 import org.apache.maven.model.io.ModelReader;
+//@lombok.extern.slf4j.Slf4j
 
-@lombok.extern.slf4j.Slf4j
 public final class POM {
 
     private static final String R = "-[0-9]+\\.jar";

@@ -19,10 +19,10 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+//@lombok.NoArgsConstructor
+//@lombok.AllArgsConstructor
+//@lombok.Data
 
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-@lombok.Data
 @Entity
 public class Employee implements Serializable {
 

@@ -15,11 +15,15 @@
  */
 package xxxxx.yyyyy.zzzzz.xyz.domain.shared._experimental;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import xxxxx.yyyyy.zzzzz.xyz.domain.shared.DomainEvent;
 import xxxxx.yyyyy.zzzzz.xyz.domain.shared.DomainEventPublisher;
+//@lombok.extern.slf4j.Slf4j
 
-@lombok.extern.slf4j.Slf4j
 public class DiscardingDomainEventPublisher implements DomainEventPublisher {
+
+    private static final Logger log = LoggerFactory.getLogger(DiscardingDomainEventPublisher.class); // FIXME issues/#92
 
     @Override
     public <T extends DomainEvent> void publish(T domainEvent) {

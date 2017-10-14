@@ -21,16 +21,20 @@ import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.TraceBeanLifecycle;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.SampleRepository;
 import xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa.AbstractRepository;
+//@lombok.extern.slf4j.Slf4j
 
-@lombok.extern.slf4j.Slf4j
 @TraceBeanLifecycle
 //@Typed(value = SampleRepository.class)
 @ApplicationScoped
 public class SampleRepositoryImpl extends AbstractRepository<Sample, Long> implements SampleRepository {
+
+    private static final Logger log = LoggerFactory.getLogger(SampleRepositoryImpl.class); // FIXME issues/#92
 
     @Inject
     public SampleRepositoryImpl(EntityManager entityManager) {

@@ -19,9 +19,17 @@ set -eu
 
 #declare -r PROCESSORS=$(cat /proc/cpuinfo | grep -E '^processor.*' | wc -l)
 
+# TODO Remove when JDK9 had been available.
+export JAVA_HOME=/usr/java/jdk1.8.0_144
+export PATH=$JAVA_HOME/bin:$PATH
+
+java -version
+mvn --version
+
 mvn -T 4.0C clean install -DskipTests
 mvn -T 4.0C clean test
 mvn -T 4.0C clean verify -Parquillian-glassfish-embedded
-mvn -T 4.0C clean verify -Parquillian-payara-managed
-mvn -T 4.0C clean verify -Parquillian-wildfly-managed
+mvn -T 4.0C clean verify -Parquillian-glassfish-managed
+#mvn -T 4.0C clean verify -Parquillian-payara-managed
+#mvn -T 4.0C clean verify -Parquillian-wildfly-managed
 mvn archetype:create-from-project

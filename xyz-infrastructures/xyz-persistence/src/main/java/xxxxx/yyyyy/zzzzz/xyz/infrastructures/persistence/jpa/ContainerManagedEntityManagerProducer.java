@@ -21,7 +21,7 @@
 //import javax.persistence.EntityManager;
 //import javax.persistence.PersistenceContext;
 //
-//@lombok.extern.slf4j.Slf4j
+////@lombok.extern.slf4j.Slf4j
 //@RequestScoped
 //public class ContainerManagedEntityManagerProducer {
 //

@@ -62,147 +62,128 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <prerequisites.maven>3.3.9</prerequisites.maven>
+        <!--
+            TODO Activate when JDK 9 had been available.
+            <maven.compiler.source>9</maven.compiler.source>
+            <maven.compiler.target>9</maven.compiler.target>
+            <maven.compiler.release>9</maven.compiler.release>
+        -->
+        <prerequisites.maven>3.5.0</prerequisites.maven>
         <project.rootdir>${basedir}</project.rootdir>
     </properties>
     <dependencyManagement>
         <dependencies>
-            <!-- Java Platform, Enterprise Edition (Java EE) 7 -->
+            <!-- Java™ Platform, Enterprise Edition (Java EE) Specification, v8 (https://jcp.org/en/jsr/detail?id=366) -->
             <!--
+                EE.6.1.2 Required Java Technologies
+                    The specification is available at (https://jcp.org/en/jsr/detail?id=???)
+                    EE.6.3  Enterprise JavaBeans™ (EJB) 3.2 Requirements                                                id=345
+                    EE.6.4  Servlet 4.0 Requirements                                                                    id=369
+                    EE.6.5  JavaServer Pages™ (JSP) 2.3 Requirements                                                    id=245
+                    EE.6.6  Expression Language (EL) 3.0 Requirements                                                   id=341
+                    EE.6.7  Java™ Message Service (JMS) 2.0 Requirements                                                id=343
+                    EE.6.8  Java™ Transaction API (JTA) 1.2 Requirements                                                id=907
+                    EE.6.9  JavaMail™ 1.6 Requirements                                                                  id=919
+                    EE.6.10 Java EE™ Connector Architecture 1.7 Requirements                                            id=322
+                    EE.6.11 Web Services for Java EE 1.4 Requirements                                                   id=109
+                    EE.6.12 Java™ API for XML-based RPC (JAX-RPC) 1.1 Requirements (Optional)                           id=101
+                    EE.6.13 Java™ API for RESTful Web Services (JAX-RS) 2.1 Requirements                                id=370
+                    EE.6.14 Java API for WebSocket 1.1 (WebSocket) Requirements                                         id=356
+                    EE.6.15 Java API for JSON Processing 1.1 (JSON-P) Requirements                                      id=374
+                    EE.6.16 Java API for JSON Binding 1.0 (JSON-B) Requirements                                         id=367
+                    EE.6.17 Concurrency Utilities for Java EE 1.0 (Concurrency Utilities) Requirements                  id=236
+                    EE.6.18 Batch Applications for the Java Platform 1.0 (Batch) Requirements                           id=352
+                    EE.6.19 Java™ API for XML Registries (JAXR) 1.0 Requirements (Optional)                             id=93
+                    EE.6.20 Java™ Platform, Enterprise Edition Management API 1.1 Requirements                          id=77
+                    EE.6.21 Java™ Platform, Enterprise Edition Deployment API 1.2 Requirements (Optional)               id=88
+                    EE.6.22 Java™ Authorization Contract for Containers (JACC) 1.5 Requirements                         id=115
+                    EE.6.23 Java™ Authentication Service Provider Interface for Containers (JASPIC) 1.1 Requirements    id=196
+                    EE.6.24 Java EE Security API 1.0 Requirements                                                       id=375
+                    EE.6.25 Debugging Support for Other Languages (JSR-45) Requirements                                 id=45
+                    EE.6.26 Standard Tag Library for JavaServer Pages™ (JSTL) 1.2 Requirements                          id=52
+                    EE.6.27 Web Services Metadata for the Java™ Platform 2.1 Requirements                               id=181
+                    EE.6.28 JavaServer Faces™ 2.3 Requirements                                                          id=372
+                    EE.6.29 Common Annotations for the Java™ Platform 1.3 Requirements                                  id=250
+                    EE.6.30 Java™ Persistence API 2.2 Requirements                                                      id=338
+                    EE.6.31 Bean Validation 2.0 Requirements                                                            id=380
+                    EE.6.32 Managed Beans 1.0 Requirements                                                              id=316
+                    EE.6.33 Interceptors 1.2 Requirements                                                               id=318
+                    EE.6.34 Contexts and Dependency Injection for the Java EE Platform 2.0 Requirements                 id=365
+                    EE.6.35 Dependency Injection for Java 1.0 Requirements                                              id=330
+            -->
+            <!--
+                http://www.oracle.com/technetwork/java/javaee/overview/index.html
+                https://javaee.github.io/
+            -->
+            <dependency>
+                <!--
+                    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                    net.java:jvnet-parent:5
+                        org.glassfish.main:glassfish-nucleus-parent:5.0
+                            org.glassfish.main:glassfish-parent:5.0
+                                org.glassfish.main:javaee-api-parent:5.0
+                                    org.glassfish.main:javaee-api:5.0       (== javax:javaee-api:8.0      *1)
+                                    org.glassfish.main:javaee-web-api:5.0   (== javax:javaee-web-api:8.0  *2)
+                    *1  javaee-api-8.0-sources.jar/pom.xml
+                        javaee-api-8.0-sources.jar/pom.xml != javaee-api-8.0.pom
+                    *2  javaee-web-api-8.0-sources.jar/pom.xml
+                        javaee-web-api-8.0-sources.jar/pom.xml != javaee-web-api-8.0.pom
+                    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                    https://repo1.maven.org/maven2/net/java/jvnet-parent/5/jvnet-parent-5.pom
+                    https://github.com/javaee/glassfish/blob/5.0/nucleus/pom.xml                (glassfish-nucleus-parent)
+                    https://github.com/javaee/glassfish/blob/5.0/appserver/pom.xml              (glassfish-parent)
+                    https://github.com/javaee/glassfish/blob/5.0/appserver/javaee-api/pom.xml   (javaee-api-parent)
+                    https://github.com/javaee/glassfish/blob/5.0/appserver/javaee-api/javax.javaee-api/pom.xml
+                    https://github.com/javaee/glassfish/blob/5.0/appserver/javaee-api/javax.javaee-web-api/pom.xml
+                -->
+                <groupId>org.glassfish.main</groupId>
+                <artifactId>glassfish-parent</artifactId>
+                <version>5.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>javax</groupId>
                 <artifactId>javaee-api</artifactId>
-                <version>7.0</version>
+                <version>8.0</version>
                 <scope>provided</scope>
             </dependency>
-            -->
-            <!--
             <dependency>
                 <groupId>javax</groupId>
                 <artifactId>javaee-web-api</artifactId>
-                <version>7.0</version>
+                <version>8.0</version>
                 <scope>provided</scope>
             </dependency>
-            -->
-            <dependency>
-                <groupId>javax.enterprise.concurrent</groupId>
-                <artifactId>javax.enterprise.concurrent-api</artifactId>
-                <version>1.0</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.eclipse.persistence</groupId>
-                <artifactId>javax.persistence</artifactId>
-                <version>2.1.1</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.ws.rs</groupId>
-                <artifactId>javax.ws.rs-api</artifactId>
-                <version>2.0.1</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>3.1.0</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.el</groupId>
-                <artifactId>javax.el-api</artifactId>
-                <version>3.0.0</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.jms</groupId>
-                <artifactId>javax.jms-api</artifactId>
-                <version>2.0.1</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.faces</groupId>
-                <artifactId>javax.faces-api</artifactId>
-                <version>2.2</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.ejb</groupId>
-                <artifactId>javax.ejb-api</artifactId>
-                <version>3.2</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.enterprise</groupId>
-                <artifactId>cdi-api</artifactId>
-                <version>1.2</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>1.1.0.Final</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.batch</groupId>
-                <artifactId>javax.batch-api</artifactId>
-                <version>1.0.1</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.json</groupId>
-                <artifactId>javax.json-api</artifactId>
-                <version>1.0</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.websocket</groupId>
-                <artifactId>javax.websocket-api</artifactId>
-                <version>1.1</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.transaction</groupId>
-                <artifactId>javax.transaction-api</artifactId>
-                <version>1.2</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.resource</groupId>
-                <artifactId>javax.resource-api</artifactId>
-                <version>1.7</version>
-                <scope>provided</scope>
-            </dependency>
-            <!-- Addition -->
-            <dependency>
-                <groupId>javax.annotation</groupId>
-                <artifactId>javax.annotation-api</artifactId>
-                <version>1.2</version>
-                <scope>provided</scope>
-            </dependency>
-            <!-- Java Platform, Enterprise Edition (Java EE) 7 -->
+            <!-- Java™ Platform, Enterprise Edition (Java EE) Specification, v8 (https://jcp.org/en/jsr/detail?id=366) -->
+            <!-- Third-party -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.16.12</version>
+                <version>1.16.18</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.22</version>
+                <version>1.7.25</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jul-to-slf4j</artifactId>
-                <version>1.7.22</version>
+                <version>1.7.25</version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.1.8</version>
+                <version>1.2.3</version>
             </dependency>
+            <dependency>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>eclipselink</artifactId>
+                <version>2.7.0</version>
+            </dependency>
+            <!-- Third-party -->
+            <!-- Testing -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -218,88 +199,101 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>2.6.2</version>
+                <version>2.10.0</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>1.4.196</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- Testing -->
+            <!-- Testing Arquillian (http://arquillian.org/) -->
+            <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.1.12.Final</version>
+                <version>1.1.13.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.extension</groupId>
                 <artifactId>arquillian-transaction-bom</artifactId>
-                <version>1.0.3.Final</version>
+                <version>1.0.5</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-bom</artifactId>
-                <version>2.2.5</version>
+                <version>2.2.6</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
                 <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                <version>1.0.0.Final</version>
+                <version>1.0.1</version>
                 <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>fish.payara.extras</groupId>
-                <artifactId>payara-embedded-all</artifactId>
-                <version>4.1.1.164</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish.main.extras</groupId>
-                <artifactId>glassfish-embedded-all</artifactId>
-                <version>4.1.1</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
                 <artifactId>arquillian-glassfish-managed-3.1</artifactId>
-                <version>1.0.0.Final</version>
+                <version>1.0.1</version>
                 <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>fish.payara.distributions</groupId>
-                <artifactId>payara</artifactId>
-                <version>4.1.1.164</version>
-                <type>zip</type>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
                 <artifactId>arquillian-glassfish-remote-3.1</artifactId>
-                <version>1.0.0.Final</version>
+                <version>1.0.1</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>org.glassfish.main.extras</groupId>
+                <artifactId>glassfish-embedded-all</artifactId>
+                <version>5.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.main.distributions</groupId>
+                <artifactId>glassfish</artifactId>
+                <version>5.0</version>
+                <type>zip</type>
+            </dependency>
+            <!--
+            <dependency>
+                <groupId>fish.payara.extras</groupId>
+                <artifactId>payara-embedded-all</artifactId>
+                <version>FIXME</version>
+                <scope>provided</scope>
+            </dependency>
+            -->
+            <!--
+            <dependency>
+                <groupId>fish.payara.distributions</groupId>
+                <artifactId>payara</artifactId>
+                <version>FIXME</version>
+                <type>zip</type>
+            </dependency>
+            -->
+            <!--
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
                 <artifactId>wildfly-arquillian-container-managed</artifactId>
-                <version>2.0.2.Final</version>
+                <version>FIXME</version>
                 <scope>test</scope>
             </dependency>
+            -->
+            <!--
             <dependency>
                 <groupId>org.wildfly</groupId>
                 <artifactId>wildfly-dist</artifactId>
-                <version>10.1.0.Final</version>
+                <version>FIXME</version>
                 <type>zip</type>
             </dependency>
-            <dependency>
-                <groupId>org.eclipse.persistence</groupId>
-                <artifactId>eclipselink</artifactId>
-                <version>2.6.3</version><!-- http://www.payara.fish/release_notes -->
-            </dependency>
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>1.4.193</version>
-            </dependency>
+            -->
+            <!-- Testing Arquillian (http://arquillian.org/) -->
             <dependency>
                 <groupId>com.github.namioka.eclipselink-example</groupId>
                 <artifactId>xyz-domain</artifactId>
@@ -325,11 +319,38 @@
         </dependencies>
     </dependencyManagement>
     <dependencies />
-    <repositories />
-    <pluginRepositories />
+    <repositories>
+        <repository>
+            <!-- https://github.com/javaee/glassfish/blob/5.0/nucleus/pom.xml -->
+            <id>jvnet-nexus-promoted</id>
+            <name>Java.net Promoted Repositories</name>
+            <url>https://maven.java.net/content/repositories/promoted/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <!-- https://github.com/javaee/glassfish/blob/5.0/nucleus/pom.xml -->
+            <id>jvnet-nexus-promoted</id>
+            <name>Java.net Promoted Repositories</name>
+            <url>https://maven.java.net/content/repositories/promoted/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
     <build>
         <pluginManagement>
             <plugins>
+                <!-- Maven Available Plugins (https://maven.apache.org/plugins/) -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
@@ -338,11 +359,20 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.6.1</version>
+                    <version>3.7.0</version>
                     <configuration>
                         <compilerArgs>
+                            <!--
                             <arg>-Xlint</arg>
+                            -->
+                            <!--
+                                https://github.com/rzwitserloot/lombok/issues/985
+                                TODO Activate when JDK 9 had been available?.
+                                <args> - - add-modules=java.xml.ws.annotation</args>
+                            -->
                         </compilerArgs>
+                        <showDeprecation>true</showDeprecation>
+                        <showWarnings>true</showWarnings>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -353,7 +383,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>2.20</version>
+                    <version>2.20.1</version>
                     <executions>
                         <execution>
                             <goals>
@@ -388,7 +418,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.20</version>
+                    <version>2.20.1</version>
                     <configuration>
                         <forkCount>1C</forkCount>
                         <includes>
@@ -406,80 +436,36 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-ear-plugin</artifactId>
                     <version>2.10.1</version>
-                    <!--
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            </manifest>
-                        </archive>
-                    </configuration>
-                    -->
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-ejb-plugin</artifactId>
-                    <version>2.5.1</version>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            </manifest>
-                        </archive>
-                    </configuration>
+                    <version>3.0.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>3.0.2</version>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            </manifest>
-                        </archive>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-rar-plugin</artifactId>
                     <version>2.4</version>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            </manifest>
-                        </archive>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>3.1.0</version>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            </manifest>
-                        </archive>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-acr-plugin</artifactId>
                     <version>3.0.0</version>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            </manifest>
-                        </archive>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-shade-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.1.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -501,6 +487,16 @@
                             </manifest>
                         </archive>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jlink-plugin</artifactId>
+                    <version>3.0.0-alpha-1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jmod-plugin</artifactId>
+                    <version>3.0.0-alpha-1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -530,7 +526,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>2.10.4</version>
+                    <version>3.0.0-M1</version>
                     <executions>
                         <execution>
                             <id>javadoc-jar</id>
@@ -544,7 +540,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jdeps-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.1.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -569,7 +565,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-report-plugin</artifactId>
-                    <version>2.20</version>
+                    <version>2.20.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -589,12 +585,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.1.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>3.0.2</version>
                     <!--
                     <executions>
                         <execution>
@@ -610,7 +606,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>1.4.1</version>
+                    <version>3.0.0-M1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -625,7 +621,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-invoker-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.0.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -686,6 +682,7 @@
                     <artifactId>maven-toolchains-plugin</artifactId>
                     <version>1.1</version>
                 </plugin>
+                <!-- Maven Available Plugins (https://maven.apache.org/plugins/) -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
@@ -694,7 +691,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
-                    <version>2.4</version>
+                    <version>2.5</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.cargo</groupId>
@@ -762,7 +759,7 @@
                 <plugin>
                     <groupId>org.bsc.maven</groupId>
                     <artifactId>maven-processor-plugin</artifactId>
-                    <version>3.3.1</version>
+                    <version>3.3.2</version>
                 </plugin>
             </plugins>
         </pluginManagement>
