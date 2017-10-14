@@ -18,7 +18,6 @@ package xxxxx.yyyyy.zzzzz.xyz.application.sample.service.impl;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-
 import java.util.Collections;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;

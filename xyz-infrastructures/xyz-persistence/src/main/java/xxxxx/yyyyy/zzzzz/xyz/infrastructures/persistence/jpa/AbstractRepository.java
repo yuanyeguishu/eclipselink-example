@@ -19,16 +19,19 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import javax.persistence.EntityManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import xxxxx.yyyyy.zzzzz.xyz.domain.shared.AggregateRoot;
 import xxxxx.yyyyy.zzzzz.xyz.domain.shared.Repository;
 import xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa._experimental.Trace;
 import xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa._experimental.Valid;
+//@lombok.extern.slf4j.Slf4j
 
-@lombok.extern.slf4j.Slf4j
 @Trace
 @Valid
 public abstract class AbstractRepository<T extends AggregateRoot<T, ID>, ID extends Serializable> implements Repository<T, ID> {
 
+    private static final Logger log = LoggerFactory.getLogger(AbstractRepository.class); // FIXME issues/#92
     protected final EntityManager entityManager;
     protected final Class<T> entityClass;
     protected final Class<ID> idClass;

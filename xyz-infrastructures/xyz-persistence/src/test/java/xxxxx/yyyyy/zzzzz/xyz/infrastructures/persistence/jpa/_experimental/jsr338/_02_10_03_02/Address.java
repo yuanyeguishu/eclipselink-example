@@ -18,10 +18,10 @@ package xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa._experimental.jsr3
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+//@lombok.NoArgsConstructor
+//@lombok.AllArgsConstructor
+//@lombok.Data
 
-@lombok.NoArgsConstructor
-@lombok.AllArgsConstructor
-@lombok.Data
 @Entity
 public class Address implements Serializable {
 

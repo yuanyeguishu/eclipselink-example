@@ -20,12 +20,15 @@ import javax.batch.runtime.BatchRuntime;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+//@lombok.extern.slf4j.Slf4j
 
-@lombok.extern.slf4j.Slf4j
 @Path("sample")
 @RequestScoped
 public class SampleResource {
 
+    private static final Logger log = LoggerFactory.getLogger(SampleResource.class); // FIXME issues/#92
     private static final String JOB_XML_NAME = "sample-job";
 
     @GET

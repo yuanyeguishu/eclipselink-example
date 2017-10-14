@@ -19,9 +19,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Version;
 import xxxxx.yyyyy.zzzzz.xyz.domain.shared.AggregateRoot;
+//@lombok.EqualsAndHashCode
+//@lombok.ToString
 
-@lombok.EqualsAndHashCode
-@lombok.ToString
 @Entity
 public class Sample implements AggregateRoot<Sample, Long> {
 

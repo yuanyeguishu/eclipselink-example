@@ -16,7 +16,6 @@
 package xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa._experimental;
 
 import static org.mockito.Mockito.*;
-
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
@@ -31,11 +30,14 @@ import org.junit.runners.MethodSorters;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+//@lombok.extern.slf4j.Slf4j
 
-@lombok.extern.slf4j.Slf4j
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ValidationInterceptorTest {
 
+    private static final Logger log = LoggerFactory.getLogger(ValidationInterceptorTest.class); // FIXME issues/#92
     @Rule
     public TestName name = new TestName();
     @Rule
