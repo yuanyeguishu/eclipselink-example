@@ -62,7 +62,7 @@ buildNumber.properties
 
 # https://github.com/github/gitignore/blob/master/Global/NetBeans.gitignore
 
-nbproject/private/
+#nbproject/private/
 build/
 nbbuild/
 dist/
@@ -70,6 +70,7 @@ nbdist/
 .nb-gradle/
 
 # -- patch --
+nbproject/
 nb-configuration.xml
 nbaction.xml
 # -- patch --
@@ -133,3 +134,7 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+# -- patch --
+.project
+# -- patch --
