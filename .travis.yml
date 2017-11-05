@@ -4,5 +4,6 @@ jdk:
 script:
   - mvn clean test
   - mvn clean verify -Parquillian-glassfish-embedded
+  - mvn clean verify -Parquillian-glassfish-managed
   - mvn clean install -DskipTests
   - mvn archetype:create-from-project
