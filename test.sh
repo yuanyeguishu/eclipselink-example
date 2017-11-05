@@ -20,7 +20,7 @@ set -eu
 #declare -r PROCESSORS=$(cat /proc/cpuinfo | grep -E '^processor.*' | wc -l)
 
 # TODO Remove when JDK9 had been available.
-export JAVA_HOME=/usr/java/jdk1.8.0_144
+export JAVA_HOME=/usr/java/jdk1.8.0_151
 export PATH=$JAVA_HOME/bin:$PATH
 
 java -version
