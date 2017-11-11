@@ -60,14 +60,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <!--
-            TODO Activate when JDK 9 had been available.
-            <maven.compiler.source>9</maven.compiler.source>
-            <maven.compiler.target>9</maven.compiler.target>
-            <maven.compiler.release>9</maven.compiler.release>
-        -->
+        <maven.compiler.source>9</maven.compiler.source>
+        <maven.compiler.target>9</maven.compiler.target>
+        <maven.compiler.release>9</maven.compiler.release>
         <prerequisites.maven>3.5.0</prerequisites.maven>
         <project.rootdir>${basedir}</project.rootdir>
     </properties>
@@ -261,22 +256,24 @@
                 <version>5.0</version>
                 <type>zip</type>
             </dependency>
-            <!--
             <dependency>
                 <groupId>fish.payara.extras</groupId>
                 <artifactId>payara-embedded-all</artifactId>
-                <version>FIXME</version>
+                <version>5.0.0.Alpha3</version>
                 <scope>provided</scope>
             </dependency>
-            -->
-            <!--
+            <dependency>
+                <groupId>fish.payara.extras</groupId>
+                <artifactId>payara-micro</artifactId>
+                <version>5.0.0.Alpha3</version>
+                <scope>provided</scope>
+            </dependency>
             <dependency>
                 <groupId>fish.payara.distributions</groupId>
                 <artifactId>payara</artifactId>
-                <version>FIXME</version>
+                <version>5.0.0.Alpha3</version>
                 <type>zip</type>
             </dependency>
-            -->
             <!--
             <dependency>
                 <groupId>org.wildfly.arquillian</groupId>
@@ -368,8 +365,8 @@
                             <!--
                                 https://github.com/rzwitserloot/lombok/issues/985
                                 TODO Activate when JDK 9 had been available?.
-                                <args> - - add-modules=java.xml.ws.annotation</args>
                             -->
+                            <args>--add-modules=java.xml.ws.annotation</args>
                         </compilerArgs>
                         <showDeprecation>true</showDeprecation>
                         <showWarnings>true</showWarnings>

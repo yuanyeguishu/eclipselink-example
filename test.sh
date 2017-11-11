@@ -19,17 +19,38 @@ set -eu
 
 #declare -r PROCESSORS=$(cat /proc/cpuinfo | grep -E '^processor.*' | wc -l)
 
-# TODO Remove when JDK9 had been available.
-export JAVA_HOME=/usr/java/jdk1.8.0_151
-export PATH=$JAVA_HOME/bin:$PATH
+## TODO Remove when JDK9 had been available.
+#export JAVA_HOME=/usr/java/jdk1.8.0_151
+#export PATH=$JAVA_HOME/bin:$PATH
 
 java -version
 mvn --version
 
 mvn -T 4.0C clean install -DskipTests
 mvn -T 4.0C clean test
-mvn -T 4.0C clean verify -Parquillian-glassfish-embedded
-mvn -T 4.0C clean verify -Parquillian-glassfish-managed
-#mvn -T 4.0C clean verify -Parquillian-payara-managed
-#mvn -T 4.0C clean verify -Parquillian-wildfly-managed
+
+#mvn -T 4.0C clean verify -Parquillian-glassfish-embedded
+#mvn -T 4.0C clean verify -Parquillian-glassfish-managed
+##mvn -T 4.0C clean verify -Parquillian-payara-managed
+##mvn -T 4.0C clean verify -Parquillian-wildfly-managed
+
+## -----
+#mvn clean package -DskipTests -T 4.0C -Pdistribution,it
+
+java \
+    --add-opens=java.base/jdk.internal.loader=ALL-UNNAMED \
+    --add-modules=java.se.ee \
+    -jar \
+        ${HOME}/.m2/repository/fish/payara/extras/payara-micro/5.0.0.Alpha3/payara-micro-5.0.0.Alpha3.jar \
+    --deploy \
+        ./xyz-interfaces/xyz-api/target/xyz-api-2.0.0-SNAPSHOT.war
+
+curl -X POST 'http://localhost:8080/xyz-api-2.0.0-SNAPSHOT/samples' -d '{"id":1,"name":"jdk9"}' -H "Content-Type: application/json" -v
+curl -X GET 'http://localhost:8080/xyz-api-2.0.0-SNAPSHOT/samples' -v
+
+#mvn clean verify -T 4.0C -Parquillian-payara-external
+## -----
+
 mvn archetype:create-from-project
+
+

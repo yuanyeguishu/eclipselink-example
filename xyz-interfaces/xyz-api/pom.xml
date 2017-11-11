@@ -152,6 +152,19 @@
             </properties>
         </profile>
         <profile>
+            <id>distribution</id>
+            <properties>
+                <profileId>distribution</profileId>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.github.namioka.eclipselink-example</groupId>
+                    <artifactId>xyz-env</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
             <id>arquillian-glassfish-embedded</id>
             <build>
                 <testResources>
