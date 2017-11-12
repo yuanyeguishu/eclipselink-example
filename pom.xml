@@ -154,8 +154,14 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.16.18</version>
-                <scope>provided</scope>
+                <!--
+                    Workaround for https://github.com/rzwitserloot/lombok/issues/1435
+                    <version>1.16.18</version>
+                    <scope>provided</scope>
+                -->
+                <version>1.16.19-20171106220740UTC</version>
+                <scope>system</scope>
+                <systemPath>${HOME}/Downloads/lombok-1.16.19-20171106220740UTC.jar</systemPath>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
