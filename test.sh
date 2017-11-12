@@ -35,8 +35,14 @@ mvn -T 4.0C clean test
 ##mvn -T 4.0C clean verify -Parquillian-wildfly-managed
 
 ## -----
+mvn -T 4.0C clean package -DskipTests -Pdistribution -pl xyz-interfaces/xyz-api/ -am
+mvn -T 4.0C clean package -DskipTests -Pit -pl xyz-env
 
-mvn -T 4.0C clean package -DskipTests -Pdistribution,it
+pushd ./xyz-interfaces/xyz-api/target
+mkdir -p                                                        ./WEB-INF/lib/
+cp -p       ../../../xyz-env/target/xyz-env-2.0.0-SNAPSHOT.jar  ./WEB-INF/lib/
+jar -uvf    xyz-api-2.0.0-SNAPSHOT.war                          ./WEB-INF/lib/
+popd
 
 java \
     --add-opens=java.base/jdk.internal.loader=ALL-UNNAMED \
@@ -46,6 +52,10 @@ java \
     --deploy \
         ./xyz-interfaces/xyz-api/target/xyz-api-2.0.0-SNAPSHOT.war \
         &
+
+    #--addJars \
+    #    ./xyz-env/target/xyz-env-2.0.0-SNAPSHOT.jar \
+
 declare -r pid=$!
 
 sleep 60
@@ -54,9 +64,8 @@ curl -X POST 'http://localhost:8080/xyz-api-2.0.0-SNAPSHOT/samples' -d '{"id":1,
 curl -X GET  'http://localhost:8080/xyz-api-2.0.0-SNAPSHOT/samples' -v
 
 kill -9 ${pid}
-
 ## -----
 
-mvn clean archetype:create-from-project
+#mvn clean archetype:create-from-project
 
 
