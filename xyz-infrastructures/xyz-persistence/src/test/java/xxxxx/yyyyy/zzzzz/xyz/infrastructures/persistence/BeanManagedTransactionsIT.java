@@ -17,6 +17,7 @@ package xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
+
 import java.io.File;
 import java.util.UUID;
 import java.util.stream.Stream;
@@ -42,16 +43,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
-//@lombok.extern.slf4j.Slf4j
-//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
+@lombok.extern.slf4j.Slf4j
+//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(Arquillian.class)
 public class BeanManagedTransactionsIT {
 
-    private static final Logger log = LoggerFactory.getLogger(BeanManagedTransactionsIT.class); // FIXME issues/#92
     @Rule
     public TestName name = new TestName();
     @Resource //@Inject

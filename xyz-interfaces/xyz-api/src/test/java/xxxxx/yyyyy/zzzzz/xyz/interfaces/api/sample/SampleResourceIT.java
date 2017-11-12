@@ -17,6 +17,7 @@ package xxxxx.yyyyy.zzzzz.xyz.interfaces.api.sample;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
+
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -55,9 +56,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xxxxx.yyyyy.zzzzz.xyz.interfaces.api.Application;
 import xxxxx.yyyyy.zzzzz.xyz.interfaces.api.POM;
-//@lombok.extern.slf4j.Slf4j
-//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
+@lombok.extern.slf4j.Slf4j
+//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(Arquillian.class)
 public class SampleResourceIT {
 

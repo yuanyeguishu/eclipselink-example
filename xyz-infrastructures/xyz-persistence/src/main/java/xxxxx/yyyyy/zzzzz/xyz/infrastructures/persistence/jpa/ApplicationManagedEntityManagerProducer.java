@@ -27,18 +27,15 @@ import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.TraceBeanLifecycle;
-//@lombok.extern.slf4j.Slf4j
 
+@lombok.extern.slf4j.Slf4j
 @TraceBeanLifecycle
 @Startup
 @Singleton
 @Lock(LockType.READ) //TODO
 public class ApplicationManagedEntityManagerProducer {
 
-    private static final Logger log = LoggerFactory.getLogger(ApplicationManagedEntityManagerProducer.class); // FIXME issues/#92
     @PersistenceUnit //(unitName = PERSISTENCE_UNIT_NAME)
     private EntityManagerFactory entityManagerFactory;
 

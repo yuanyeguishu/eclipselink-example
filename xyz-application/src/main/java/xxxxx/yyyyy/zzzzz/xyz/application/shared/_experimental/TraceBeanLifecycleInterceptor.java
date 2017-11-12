@@ -21,15 +21,11 @@ import javax.enterprise.context.Dependent;
 import javax.interceptor.AroundConstruct;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-//@lombok.extern.slf4j.Slf4j
 
+@lombok.extern.slf4j.Slf4j
 @Dependent
 @Interceptor @TraceBeanLifecycle
 public class TraceBeanLifecycleInterceptor {
-
-    private static final Logger log = LoggerFactory.getLogger(TraceBeanLifecycleInterceptor.class); // FIXME issues/#92
 
     @AroundConstruct
     Object aroundConstruct(InvocationContext ctx) throws Exception {

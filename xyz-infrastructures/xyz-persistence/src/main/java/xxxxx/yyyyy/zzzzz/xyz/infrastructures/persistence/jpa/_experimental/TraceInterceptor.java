@@ -19,15 +19,11 @@ import javax.enterprise.context.Dependent;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-//@lombok.extern.slf4j.Slf4j
 
+@lombok.extern.slf4j.Slf4j
 @Dependent
 @Interceptor @Trace
 public class TraceInterceptor /*extends AbstractInterceptor*/ {
-
-    private static final Logger log = LoggerFactory.getLogger(TraceInterceptor.class); // FIXME issues/#92
 
     @AroundInvoke
     public Object aroundInvoke(InvocationContext invocationContext) throws Throwable {

@@ -20,10 +20,10 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-//@lombok.NoArgsConstructor
-//@lombok.AllArgsConstructor
-//@lombok.Data
 
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
+@lombok.Data
 @Entity
 public class Project implements Serializable {
 

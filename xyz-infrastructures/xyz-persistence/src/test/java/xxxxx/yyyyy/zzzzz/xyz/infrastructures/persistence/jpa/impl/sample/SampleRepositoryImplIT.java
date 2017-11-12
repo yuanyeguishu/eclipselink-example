@@ -17,6 +17,7 @@ package xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa.impl.sample;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
+
 import java.io.File;
 import java.util.List;
 import java.util.stream.LongStream;
@@ -37,18 +38,15 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.SampleRepository;
 import xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.POM;
-//@lombok.extern.slf4j.Slf4j
 
+@lombok.extern.slf4j.Slf4j
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(Arquillian.class)
 public class SampleRepositoryImplIT {
 
-    private static final Logger log = LoggerFactory.getLogger(SampleRepositoryImplIT.class); // FIXME issues/#92
     @Rule
     public TestName name = new TestName();
     @Inject

@@ -20,15 +20,11 @@ import java.util.List;
 import javax.batch.api.chunk.ItemWriter;
 import javax.enterprise.context.Dependent;
 import javax.inject.Named;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-//@lombok.extern.slf4j.Slf4j
 
+@lombok.extern.slf4j.Slf4j
 @Dependent
 @Named
 public class SampleItemWriter implements ItemWriter {
-
-    private static final Logger log = LoggerFactory.getLogger(SampleItemWriter.class); // FIXME issues/#92
 
     @Override
     public void open(Serializable checkpoint) throws Exception {
