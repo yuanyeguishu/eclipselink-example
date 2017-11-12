@@ -156,13 +156,6 @@
             <properties>
                 <profileId>distribution</profileId>
             </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>com.github.namioka.eclipselink-example</groupId>
-                    <artifactId>xyz-env</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-            </dependencies>
         </profile>
         <profile>
             <id>arquillian-glassfish-embedded</id>
@@ -196,11 +189,6 @@
                     <scope>test</scope>
                 </dependency>
                 <dependency>
-                    <!--
-                    <groupId>fish.payara.extras</groupId>
-                    <artifactId>payara-embedded-all</artifactId>
-                    <scope>provided</scope>
-                    -->
                     <groupId>org.glassfish.main.extras</groupId>
                     <artifactId>glassfish-embedded-all</artifactId>
                     <scope>provided</scope>
@@ -289,7 +277,6 @@
             </dependencies>
         </profile>
         -->
-        <!--
         <profile>
             <id>arquillian-payara-managed</id>
             <build>
@@ -330,6 +317,13 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <argLine>
+                                --add-opens=java.base/jdk.internal.loader=ALL-UNNAMED
+                                --add-modules=java.se.ee
+                                --illegal-access=permit
+                            </argLine>
+                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -343,7 +337,7 @@
                                 <configuration>
                                     <target>
                                         <exec executable="cat">
-                                            <arg value="target/payara41/glassfish/domains/domain1/logs/server.log" />
+                                            <arg value="target/payara5/glassfish/domains/payaradomain/logs/server.log" />
                                         </exec>
                                     </target>
                                 </configuration>
@@ -360,7 +354,6 @@
                 </dependency>
             </dependencies>
         </profile>
-        -->
         <!--
         <profile>
             <id>arquillian-wildfly-managed</id>
