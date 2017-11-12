@@ -15,13 +15,20 @@
 # limitations under the License.
 #
 
+function trap_exit() {
+    if [ -f target/pid ]; then
+        declare -r pid=$(cat target/pid)
+        echo "pid=${pid}"
+        kill ${pid}
+    fi
+    echo "exit"
+}
+
 set -eu
 
-#declare -r PROCESSORS=$(cat /proc/cpuinfo | grep -E '^processor.*' | wc -l)
+trap "trap_exit" EXIT
 
-## TODO Remove when JDK9 had been available.
-#export JAVA_HOME=/usr/java/jdk1.8.0_151
-#export PATH=$JAVA_HOME/bin:$PATH
+#declare -r PROCESSORS=$(cat /proc/cpuinfo | grep -E '^processor.*' | wc -l)
 
 java -version
 mvn --version
@@ -29,14 +36,9 @@ mvn --version
 mvn -T 4.0C clean install -DskipTests
 mvn -T 4.0C clean test
 
-#mvn -T 4.0C clean verify -Parquillian-glassfish-embedded
-#mvn -T 4.0C clean verify -Parquillian-glassfish-managed
-##mvn -T 4.0C clean verify -Parquillian-payara-managed
-##mvn -T 4.0C clean verify -Parquillian-wildfly-managed
-
 ## -----
-mvn -T 4.0C clean package -DskipTests -Pdistribution -pl xyz-interfaces/xyz-api/ -am
-mvn -T 4.0C clean package -DskipTests -Pit -pl xyz-env
+mvn -T 4.0C clean package -DskipTests -Pdistribution -pl xyz-interfaces/xyz-api/ -am -q
+mvn -T 4.0C clean package -DskipTests -Pit -pl xyz-env -q
 
 pushd ./xyz-interfaces/xyz-api/target
 mkdir -p                                                        ./WEB-INF/lib/
@@ -57,16 +59,42 @@ java \
     #--addJars \
     #    ./xyz-env/target/xyz-env-2.0.0-SNAPSHOT.jar \
 
-declare -r pid=$!
+test -d target || mkdir target
+echo $! > target/pid;
 
 sleep 60
 
-curl -X POST 'http://localhost:8080/xyz-api-2.0.0-SNAPSHOT/samples' -d '{"id":1,"name":"jdk9"}' -H "Content-Type: application/json" -v
-curl -X GET  'http://localhost:8080/xyz-api-2.0.0-SNAPSHOT/samples' -v
+RESPONSE=$(\
+    curl --silent --write-out "HTTP_CODE:%{http_code}" \
+    -X POST 'http://localhost:8080/xyz-api-2.0.0-SNAPSHOT/samples' \
+    -H "Content-Type: application/json" \
+    -d '{"id":1,"name":"jdk9"}' \
+)
+CODE=$(echo ${RESPONSE} | sed 's/^.*HTTP_CODE:\([1-5][0-9][0-9]\)$/\1/g')
+BODY=$(echo ${RESPONSE} | sed 's/HTTP_CODE:\([1-5][0-9][0-9]\)$//g')
+echo "CODE=[${CODE}]"
+echo "BODY=[${BODY}]"
+if [ "${CODE}" != "201" ]; then
+    exit 1;
+fi
 
-kill -9 ${pid}
+
+RESPONSE=$(\
+    curl --silent --write-out "HTTP_CODE:%{http_code}" \
+    -X GET 'http://localhost:8080/xyz-api-2.0.0-SNAPSHOT/samples' \
+    -H "Accept: application/json" \
+)
+CODE=$(echo ${RESPONSE} | sed 's/^.*HTTP_CODE:\([1-5][0-9][0-9]\)$/\1/g')
+BODY=$(echo ${RESPONSE} | sed 's/HTTP_CODE:\([1-5][0-9][0-9]\)$//g')
+echo "CODE=[${CODE}]"
+echo "BODY=[${BODY}]"
+if [ "${CODE}" != "200" ]; then
+    exit 1;
+fi
 ## -----
 
+#mvn -T 4.0C clean verify -Parquillian-glassfish-embedded
+#mvn -T 4.0C clean verify -Parquillian-glassfish-managed
+#mvn -T 4.0C clean verify -Parquillian-payara-managed
+#mvn -T 4.0C clean verify -Parquillian-wildfly-managed
 #mvn clean archetype:create-from-project
-
-

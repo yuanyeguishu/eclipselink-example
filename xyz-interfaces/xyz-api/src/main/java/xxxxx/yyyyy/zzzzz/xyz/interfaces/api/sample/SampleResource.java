@@ -33,6 +33,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import xxxxx.yyyyy.zzzzz.xyz.application.sample.service.SampleService;
 import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.TraceBeanLifecycle;
@@ -77,15 +78,16 @@ public class SampleResource {
     public Response post(String json) {
         try (JsonReader jsonReader = Json.createReader(new StringReader(json));) {
             JsonObject jsonObject = jsonReader.readObject();
+            Long id = jsonObject.getJsonNumber("id").longValueExact();
             Sample sample = new Sample(
-                    jsonObject.getJsonNumber("id").longValueExact(),
+                    id,
                     //jsonObject.getJsonNumber("version").longValueExact(),
                     jsonObject.getJsonString("name").getString());
             this.sampleService.create(sample);
+            UriBuilder builder = this.uriInfo.getAbsolutePathBuilder();
+            builder.path(Long.toString(id));
+            return Response.created(builder.build()).build();
         }
-        // TODO Response code should be 201(Created).
-        // http://terasolunaorg.github.io/guideline/5.2.0.RELEASE/ja/ArchitectureInDetail/WebServiceDetail/REST.html#resthowtodesignhttpstatuscode
-        return Response.ok().build();
     }
 
     @Override

@@ -370,7 +370,6 @@
                             -->
                             <!--
                                 https://github.com/rzwitserloot/lombok/issues/985
-                                TODO Activate when JDK 9 had been available?.
                             -->
                             <args>--add-modules=java.xml.ws.annotation</args>
                         </compilerArgs>
