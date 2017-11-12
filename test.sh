@@ -47,6 +47,7 @@ popd
 java \
     --add-opens=java.base/jdk.internal.loader=ALL-UNNAMED \
     --add-modules=java.se.ee \
+    --illegal-access=permit \
     -jar \
         ${HOME}/.m2/repository/fish/payara/extras/payara-micro/5.0.0.Alpha3/payara-micro-5.0.0.Alpha3.jar \
     --deploy \
