@@ -35,7 +35,8 @@ mvn -T 4.0C clean test
 ##mvn -T 4.0C clean verify -Parquillian-wildfly-managed
 
 ## -----
-#mvn clean package -DskipTests -T 4.0C -Pdistribution,it
+
+mvn -T 4.0C clean package -DskipTests -Pdistribution,it
 
 java \
     --add-opens=java.base/jdk.internal.loader=ALL-UNNAMED \
@@ -43,14 +44,19 @@ java \
     -jar \
         ${HOME}/.m2/repository/fish/payara/extras/payara-micro/5.0.0.Alpha3/payara-micro-5.0.0.Alpha3.jar \
     --deploy \
-        ./xyz-interfaces/xyz-api/target/xyz-api-2.0.0-SNAPSHOT.war
+        ./xyz-interfaces/xyz-api/target/xyz-api-2.0.0-SNAPSHOT.war \
+        &
+declare -r pid=$!
+
+sleep 60
 
 curl -X POST 'http://localhost:8080/xyz-api-2.0.0-SNAPSHOT/samples' -d '{"id":1,"name":"jdk9"}' -H "Content-Type: application/json" -v
-curl -X GET 'http://localhost:8080/xyz-api-2.0.0-SNAPSHOT/samples' -v
+curl -X GET  'http://localhost:8080/xyz-api-2.0.0-SNAPSHOT/samples' -v
 
-#mvn clean verify -T 4.0C -Parquillian-payara-external
+kill -9 ${pid}
+
 ## -----
 
-mvn archetype:create-from-project
+mvn clean archetype:create-from-project
 
 
