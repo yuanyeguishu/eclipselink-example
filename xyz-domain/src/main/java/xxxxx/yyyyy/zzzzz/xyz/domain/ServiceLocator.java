@@ -21,7 +21,6 @@ import java.util.ServiceLoader;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-//@lombok.extern.slf4j.Slf4j
 
 public final class ServiceLocator {
 

@@ -1,9 +1,9 @@
 language: java
 jdk:
-  - oraclejdk8
+  - oraclejdk9
 script:
-  - mvn clean test
-  - mvn clean verify -Parquillian-glassfish-embedded
-  - mvn clean verify -Parquillian-glassfish-managed
   - mvn clean install -DskipTests
+  - mvn test
+  #- mvn clean verify -Parquillian-glassfish-embedded
+  #- mvn clean verify -Parquillian-glassfish-managed
   - mvn archetype:create-from-project

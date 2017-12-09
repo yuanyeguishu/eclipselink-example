@@ -51,9 +51,9 @@
             </properties>
         </profile>
         <profile>
-            <id>integration</id>
+            <id>it</id>
             <properties>
-                <profileId>integration</profileId>
+                <profileId>it</profileId>
             </properties>
         </profile>
         <profile>

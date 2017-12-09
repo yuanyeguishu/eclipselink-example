@@ -16,6 +16,7 @@
 package xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa._experimental;
 
 import static java.util.stream.Collectors.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -23,15 +24,11 @@ import javax.enterprise.context.Dependent;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-//@lombok.extern.slf4j.Slf4j
 
+@lombok.extern.slf4j.Slf4j
 @Dependent
 @Interceptor @Valid
 public class ValidationInterceptor extends AbstractInterceptor {
-
-    private static final Logger log = LoggerFactory.getLogger(ValidationInterceptor.class); // FIXME issues/#92
 
     @AroundInvoke
     public Object aroundInvoke(InvocationContext invocationContext) throws Throwable {
