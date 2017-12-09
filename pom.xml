@@ -318,6 +318,16 @@
     <dependencies />
     <repositories>
         <repository>
+            <!-- http://search.maven.org/remotecontent?filepath=org/kie/kie-user-bom-parent/7.4.1.Final/kie-user-bom-parent-7.4.1.Final.pom -->
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
             <!-- https://github.com/javaee/glassfish/blob/5.0/nucleus/pom.xml -->
             <id>jvnet-nexus-promoted</id>
             <name>Java.net Promoted Repositories</name>
@@ -331,6 +341,16 @@
         </repository>
     </repositories>
     <pluginRepositories>
+        <pluginRepository>
+            <!-- http://search.maven.org/remotecontent?filepath=org/kie/kie-user-bom-parent/7.4.1.Final/kie-user-bom-parent-7.4.1.Final.pom -->
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
         <pluginRepository>
             <!-- https://github.com/javaee/glassfish/blob/5.0/nucleus/pom.xml -->
             <id>jvnet-nexus-promoted</id>
