@@ -18,6 +18,7 @@ package xxxxx.yyyyy.zzzzz.xyz.domain.model.sample;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;

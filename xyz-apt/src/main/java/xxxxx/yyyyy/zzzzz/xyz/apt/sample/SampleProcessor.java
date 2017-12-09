@@ -16,6 +16,7 @@
 package xxxxx.yyyyy.zzzzz.xyz.apt.sample;
 
 import static javax.lang.model.SourceVersion.*;
+
 import java.util.Set;
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Messager;

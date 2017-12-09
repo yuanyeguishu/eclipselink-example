@@ -37,7 +37,6 @@ import javax.ws.rs.core.UriInfo;
 import xxxxx.yyyyy.zzzzz.xyz.application.sample.service.SampleService;
 import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.TraceBeanLifecycle;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
-//@lombok.extern.slf4j.Slf4j
 
 @TraceBeanLifecycle
 @Path("samples")

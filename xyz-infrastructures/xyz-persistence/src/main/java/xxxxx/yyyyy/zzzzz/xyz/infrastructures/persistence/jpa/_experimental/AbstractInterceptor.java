@@ -18,7 +18,6 @@ package xxxxx.yyyyy.zzzzz.xyz.infrastructures.persistence.jpa._experimental;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import javax.interceptor.InvocationContext;
-//@lombok.extern.slf4j.Slf4j
 
 public abstract class AbstractInterceptor {
 

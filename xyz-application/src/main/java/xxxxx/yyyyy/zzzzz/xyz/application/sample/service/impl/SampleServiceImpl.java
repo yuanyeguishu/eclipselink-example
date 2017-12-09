@@ -20,20 +20,17 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import xxxxx.yyyyy.zzzzz.xyz.application.sample.service.SampleService;
 import xxxxx.yyyyy.zzzzz.xyz.application.shared._experimental.TraceBeanLifecycle;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.Sample;
 import xxxxx.yyyyy.zzzzz.xyz.domain.model.sample.SampleRepository;
-//@lombok.extern.slf4j.Slf4j
 
+@lombok.extern.slf4j.Slf4j
 @TraceBeanLifecycle
 @javax.enterprise.context.ApplicationScoped
 //@javax.ejb.Stateless
 public class SampleServiceImpl implements SampleService {
 
-    private static final Logger log = LoggerFactory.getLogger(SampleServiceImpl.class); // FIXME issues/#92
     @Inject
     private SampleRepository sampleRepository;
 

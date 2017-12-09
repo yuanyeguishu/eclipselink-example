@@ -66,7 +66,10 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>provided</scope>
+            <!--
+                Workaround for https://github.com/rzwitserloot/lombok/issues/1435
+                <scope>provided</scope>
+            -->
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

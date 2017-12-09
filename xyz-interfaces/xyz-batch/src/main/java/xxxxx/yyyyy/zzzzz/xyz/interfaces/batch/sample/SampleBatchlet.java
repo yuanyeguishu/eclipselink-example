@@ -19,15 +19,11 @@ import javax.batch.api.Batchlet;
 import javax.batch.runtime.BatchStatus;
 import javax.enterprise.context.Dependent;
 import javax.inject.Named;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-//@lombok.extern.slf4j.Slf4j
 
+@lombok.extern.slf4j.Slf4j
 @Dependent
 @Named
 public class SampleBatchlet implements Batchlet {
-
-    private static final Logger log = LoggerFactory.getLogger(SampleBatchlet.class); // FIXME issues/#92
 
     @Override
     public String process() throws Exception {
