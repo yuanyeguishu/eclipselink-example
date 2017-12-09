@@ -145,8 +145,11 @@
                         <phase>generate-sources</phase>
                         <configuration>
                             <compilerArguments>
-                                -Aeclipselink.persistenceunits=xyz_PU
-                                -Aeclipselink.persistencexml=${basedir}/../xyz-env/src/main/resources/META-INF/persistence.xml
+                                <!--
+                                    -Aeclipselink.persistenceunits=xyz_PU
+                                    -Aeclipselink.persistencexml=${basedir}/../xyz-env/src/main/resources/META-INF/persistence.xml
+                                -->
+                                -Aeclipselink.persistencexml=${basedir}/src/main/resources/META-INF/persistence-ap.xml
                             </compilerArguments>
                             <processors>
                                 <processor>org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor</processor>
@@ -178,6 +181,15 @@
                         <version>2.0.0-SNAPSHOT</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/persistence-ap.xml</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
